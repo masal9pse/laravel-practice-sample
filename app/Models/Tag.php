@@ -8,6 +8,8 @@ use App\Models\Song;
 
 class Tag extends Model
 {
+ protected $table = 'tags';
+
  protected $fillable = [
   'id', 'title'
  ];

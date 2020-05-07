@@ -7,14 +7,17 @@ use App\Admin;
 use App\Like;
 use App\Models\User;
 use App\Comment;
+use App\Models\Tag;
 
 class Song extends Model
 {
+ protected $table = 'songs';
+
  protected $fillable = [
-  'title', 'detail', 'likes_count', 'file_name', 'search'
+  'title', 'detail', 'likes_count', 'file_name',
  ];
 
- // protected $with = ['tags'];
+ protected $with = ['tags'];
 
  public function admin()
  {

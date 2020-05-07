@@ -36,6 +36,7 @@ class SongController extends Controller
   }
 
   $songs = $songs->orderBy('id', 'desc')->paginate(10);
+  // $songs = $songs->all();
 
   return view('songs.index', [
    'songs' => $songs,
