@@ -4,9 +4,9 @@
  <div class="row">
   {{ $song->detail }}
   @if (!empty($song['file_name']))
+  {{-- asset関数の引数は/publicの中をデフォルトで参照する --}}
   <p><img src="{{ asset('/storage/img/'.$song->file_name) }}"></p>
   @else
-  {{-- なぜかスタイルが適用されない --}}
   <p class="mb-3">まだ画像は登録されていません</p>
   @endif
 

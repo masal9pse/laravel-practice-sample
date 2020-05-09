@@ -18,10 +18,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', 'SongController@index');
 
 Route::group(['middleware' => 'auth:user'], function () {
- Route::resource('/songs', 'SongController');
+ Route::resource('/songs', 'SongController', ['only' => ['index', 'show']]);
  Route::resource('/comments', 'CommentController');
  Route::resource('/tags', 'TagController', ['except' => ['destroy', 'update']]);
- // postだけ別指定しないとエラー？
  Route::post('/tags/destroy/{id}', 'TagController@destroy')->name('tags.destroy');
  Route::post('/tags/update/{id}', 'TagController@update')->name('tags.update');
  Route::post('/songs/{song}/likes', 'LikesController@store');
