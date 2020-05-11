@@ -57,10 +57,8 @@ class SongController extends Controller
 
  public function store(CreateSongTask $request)
  {
-  $song = new Song;
-  $song->load('tags');
-  $song->title = $request->input('title');
-  $song->detail = $request->input('detail');
+  $song = Song::create($request->only(['title', 'detail', 'file_name']));
+
   if ($request->file('file_name')) {
    $song->file_name = $request->file('file_name')->store('public/img');
   }
