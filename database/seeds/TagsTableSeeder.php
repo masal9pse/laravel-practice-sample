@@ -17,24 +17,75 @@ class TagsTableSeeder extends Seeder
     'title' => '声がいい',
     'created_at'     => now(),
     'updated_at'     => now()
-   ],
-   [
-    'title' => 'おっとりしている',
-    'created_at'     => now(),
-    'updated_at'     => now()
-   ],
+   ]
+  );
+  Tag::create(
    [
     'title' => 'アップテンポ',
     'created_at'     => now(),
     'updated_at'     => now()
-   ],
+   ]
+  );
+
+  Tag::create(
    [
-    'title' => '怖い',
+    'title' => 'スローテンポ',
     'created_at'     => now(),
     'updated_at'     => now()
-   ],
+   ]
+  );
+
+  Tag::create(
    [
     'title' => 'サビがいい',
+    'created_at'     => now(),
+    'updated_at'     => now()
+   ]
+  );
+
+  Tag::create(
+   [
+    'title' => 'アニソン',
+    'created_at'     => now(),
+    'updated_at'     => now()
+   ]
+  );
+
+  Tag::create(
+   [
+    'title' => 'アカペラ',
+    'created_at'     => now(),
+    'updated_at'     => now()
+   ]
+  );
+
+  Tag::create(
+   [
+    'title' => '映画音楽',
+    'created_at'     => now(),
+    'updated_at'     => now()
+   ]
+  );
+
+  Tag::create(
+   [
+    'title' => '合唱',
+    'created_at'     => now(),
+    'updated_at'     => now()
+   ]
+  );
+
+  Tag::create(
+   [
+    'title' => 'J-POP',
+    'created_at'     => now(),
+    'updated_at'     => now()
+   ]
+  );
+
+  Tag::create(
+   [
+    'title' => 'ジャパニーズメタル',
     'created_at'     => now(),
     'updated_at'     => now()
    ]
