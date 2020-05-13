@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Tag;
 use Illuminate\Database\Seeder;
 
 class TagsTableSeeder extends Seeder
@@ -11,6 +12,32 @@ class TagsTableSeeder extends Seeder
   */
  public function run()
  {
-  factory(App\Models\Tag::class, 10)->create();
+  Tag::create(
+   [
+    'title' => '声がいい',
+    'created_at'     => now(),
+    'updated_at'     => now()
+   ],
+   [
+    'title' => 'おっとりしている',
+    'created_at'     => now(),
+    'updated_at'     => now()
+   ],
+   [
+    'title' => 'アップテンポ',
+    'created_at'     => now(),
+    'updated_at'     => now()
+   ],
+   [
+    'title' => '怖い',
+    'created_at'     => now(),
+    'updated_at'     => now()
+   ],
+   [
+    'title' => 'サビがいい',
+    'created_at'     => now(),
+    'updated_at'     => now()
+   ]
+  );
  }
 }
