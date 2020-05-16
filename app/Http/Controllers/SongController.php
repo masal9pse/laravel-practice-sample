@@ -30,8 +30,8 @@ class SongController extends Controller
    // 空白で区切る
    $search_split2 = preg_split('/[\s]+/', $search_split, -1, PREG_SPLIT_NO_EMPTY);
 
-   foreach ($search_split2 as $search) {
-    $songs->where('title', 'like', '%' . $search . '%');
+   foreach ($search_split2 as $value) {
+    $songs->where('title', 'like', '%' . $value . '%');
    }
   }
 

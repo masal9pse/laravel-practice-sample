@@ -49,4 +49,20 @@ class Song extends Model
  {
   return $this->belongsToMany(Tag::class);
  }
+
+ // これはだめ
+ public function titleSearch($search)
+ {
+  return where('title', 'like', '%' . $search . '%');
+ }
+ // error 
+ public function isLike(Int $user_id)
+ {
+  return $this->where('user_id', $user_id)->first();
+ }
+
+ public function paginateText()
+ {
+  return  orderBy('id', 'desc')->paginate(10);
+ }
 }

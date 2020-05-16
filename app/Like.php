@@ -29,4 +29,9 @@ class Like extends Model
  {
   return $this->belongsTo(User::class);
  }
+
+ public function isLike(Int $user_id)
+ {
+  return $this->where('user_id', $user_id)->first();
+ }
 }
