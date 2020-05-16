@@ -13,8 +13,6 @@
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-
 Route::get('/', 'SongController@index');
 
 Route::group(['middleware' => 'auth:user'], function () {
@@ -56,4 +54,5 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
  Route::post('update/{id}', 'Admin\SongController@update')->name('admin.update');
 });
 
+Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('/user', 'UserController');
