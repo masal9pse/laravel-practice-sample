@@ -1,21 +1,56 @@
 <template>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-8 col-md-offset-2">
-        <div class="panel panel-default">
-          <div class="panel-heading">Example Component</div>
+  <div>
+    <button class="btn btn-primary btn-block">Add New Task</button>
 
-          <div class="panel-body">I'm an example component!</div>
-        </div>
-      </div>
-    </div>
+    <table class="table" v-if="users">
+      <thead>
+        <tr>
+          <th scope="col">id</th>
+          <th scope="col">Name</th>
+          <th scope="col">Body</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="(user,index) in users" :key="index">
+          <td>{{ index+1 }}</td>
+          <!-- <td>{{ task.id }}</td> -->
+          <td>{{ user.name }}</td>
+          <td>{{ user.email }}</td>
+          <td>
+            <button class="btn btn-info">Edit</button>
+          </td>
+          <td>
+            <button class="btn btn-danger">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </template>
 
+
 <script>
 export default {
+  data() {
+    return {
+      user: {
+        name: "",
+        email: ""
+      },
+      users: [],
+      uri: "http://localhost:8000/user"
+    };
+  },
+  methods: {
+    loadTasks() {
+      axios.get(this.uri).then(response => {
+        this.users = response.data.users;
+      });
+    }
+  },
   mounted() {
-    console.log("Component mounted.");
+    this.loadTasks();
+    console.log(this.loadTasks);
   }
 };
 </script>
