@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -15,7 +16,7 @@ class UserController extends Controller
  public function index()
  {
   $users = User::all();
-
+  // dd($users);
   return response()->json([
    'users' => $users
   ], 200);
@@ -28,7 +29,6 @@ class UserController extends Controller
   */
  public function create()
  {
-  //
  }
 
  /**
@@ -39,7 +39,22 @@ class UserController extends Controller
   */
  public function store(Request $request)
  {
-  //
+  $request->validate([
+   'name' => 'required',
+   'email' => 'required',
+   'password' => 'required'
+  ]);
+
+  $user = $request->user()->create([
+   'name' => $request->name,
+   'email' => $request->email,
+   'password' => Hash::make($request->password)
+  ]);
+
+  return response()->json([
+   'user' => $user,
+   'message' => 'task has been created'
+  ]);
  }
 
  /**
