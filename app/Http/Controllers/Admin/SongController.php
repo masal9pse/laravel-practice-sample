@@ -35,7 +35,7 @@ class SongController extends Controller
   if ($search !== null) {
    // 半角スペースを半角に
    $search_split = mb_convert_kana($search, 's');
-
+   // s	引数は文字列として扱われ、文字列として表現されます。string
    // 空白で区切る
    $search_split2 = preg_split('/[\s]+/', $search_split, -1, PREG_SPLIT_NO_EMPTY);
 
