@@ -55,3 +55,5 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
  Route::post('destroy/{id}', 'Admin\SongController@destroy')->name('admin.destroy');
  Route::post('update/{id}', 'Admin\SongController@update')->name('admin.update');
 });
+
+Route::resource('/user', 'UserController');
