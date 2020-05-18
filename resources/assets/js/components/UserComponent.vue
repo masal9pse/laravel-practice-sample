@@ -43,11 +43,24 @@
             </button>
           </div>
           <div class="modal-body">
-            <h1>MODAL WORKS</h1>
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input v-model="user.name" type="text" name id="name" class="form-control" />
+            </div>
+
+            <div class="form-group">
+              <label for="email">Description</label>
+              <input v-model="user.email" type="text" name id="email" class="form-control" />
+            </div>
+
+            <div class="form-group">
+              <label for="password">password</label>
+              <input v-model="user.password" type="text" name id="password" class="form-control" />
+            </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+            <button @click="createUser" type="button" class="btn btn-primary">Save changes</button>
           </div>
         </div>
       </div>
@@ -62,7 +75,8 @@ export default {
     return {
       user: {
         name: "",
-        email: ""
+        email: "",
+        password: ""
       },
       users: [],
       uri: "http://localhost:8000/user"
@@ -71,6 +85,11 @@ export default {
   methods: {
     createModal() {
       $("#create-modal").modal("show");
+    },
+    createUser() {
+      console.log(this.user.name);
+      console.log(this.user.email);
+      console.log(this.user.password);
     },
     loadTasks() {
       axios.get(this.uri).then(response => {
