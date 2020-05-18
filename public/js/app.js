@@ -45263,6 +45263,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -45273,7 +45278,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         password: ""
       },
       users: [],
-      uri: "http://localhost:8000/user"
+      uri: "http://localhost:8000/user",
+      errors: []
     };
   },
 
@@ -45292,7 +45298,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         _this.users.push(response.data.user);
         $("#create-modal").modal("hide");
       }).catch(function (error) {
-        console.log(error);
+        _this.errors = [];
+        if (error.response.data.errors.name) {
+          _this.errors.push(error.response.data.errors.name[0]);
+        }
+
+        if (error.response.data.errors.email) {
+          _this.errors.push(error.response.data.errors.email[0]);
+        }
+
+        if (error.response.data.errors.password) {
+          _this.errors.push(error.response.data.errors.password[0]);
+        }
       });
     },
     loadTasks: function loadTasks() {
@@ -45372,6 +45389,20 @@ var render = function() {
               _vm._m(3),
               _vm._v(" "),
               _c("div", { staticClass: "modal-body" }, [
+                _vm.errors.length > 0
+                  ? _c("div", { staticClass: "alert alert-danger" }, [
+                      _c(
+                        "ul",
+                        _vm._l(_vm.errors, function(error) {
+                          return _c("li", { key: error }, [
+                            _vm._v(_vm._s(error))
+                          ])
+                        }),
+                        0
+                      )
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
                 _c("div", { staticClass: "form-group" }, [
                   _c("label", { attrs: { for: "name" } }, [_vm._v("Name")]),
                   _vm._v(" "),
@@ -45399,9 +45430,7 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "form-group" }, [
-                  _c("label", { attrs: { for: "email" } }, [
-                    _vm._v("Description")
-                  ]),
+                  _c("label", { attrs: { for: "email" } }, [_vm._v("email")]),
                   _vm._v(" "),
                   _c("input", {
                     directives: [

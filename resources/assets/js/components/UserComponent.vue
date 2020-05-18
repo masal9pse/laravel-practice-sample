@@ -43,13 +43,18 @@
             </button>
           </div>
           <div class="modal-body">
+            <div class="alert alert-danger" v-if="errors.length > 0">
+              <ul>
+                <li v-for="error in errors" :key="error">{{ error }}</li>
+              </ul>
+            </div>
             <div class="form-group">
               <label for="name">Name</label>
               <input v-model="user.name" type="text" name id="name" class="form-control" />
             </div>
 
             <div class="form-group">
-              <label for="email">Description</label>
+              <label for="email">email</label>
               <input v-model="user.email" type="text" name id="email" class="form-control" />
             </div>
 
@@ -79,7 +84,8 @@ export default {
         password: ""
       },
       users: [],
-      uri: "http://localhost:8000/user"
+      uri: "http://localhost:8000/user",
+      errors: []
     };
   },
   methods: {
@@ -98,7 +104,18 @@ export default {
           $("#create-modal").modal("hide");
         })
         .catch(error => {
-          console.log(error);
+          this.errors = [];
+          if (error.response.data.errors.name) {
+            this.errors.push(error.response.data.errors.name[0]);
+          }
+
+          if (error.response.data.errors.email) {
+            this.errors.push(error.response.data.errors.email[0]);
+          }
+
+          if (error.response.data.errors.password) {
+            this.errors.push(error.response.data.errors.password[0]);
+          }
         });
     },
     loadTasks() {
