@@ -43,11 +43,29 @@
             </button>
           </div>
           <div class="modal-body">
-            <h1>MODAL WORKS</h1>
+            <div class="alert alert-danger" v-if="errors.length > 0">
+              <ul>
+                <li v-for="error in errors" :key="error">{{ error }}</li>
+              </ul>
+            </div>
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input v-model="user.name" type="text" name id="name" class="form-control" />
+            </div>
+
+            <div class="form-group">
+              <label for="email">email</label>
+              <input v-model="user.email" type="text" name id="email" class="form-control" />
+            </div>
+
+            <div class="form-group">
+              <label for="password">password</label>
+              <input v-model="user.password" type="text" name id="password" class="form-control" />
+            </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+            <button @click="createUser" type="button" class="btn btn-primary">Save changes</button>
           </div>
         </div>
       </div>
@@ -62,15 +80,43 @@ export default {
     return {
       user: {
         name: "",
-        email: ""
+        email: "",
+        password: ""
       },
       users: [],
-      uri: "http://localhost:8000/user"
+      uri: "http://localhost:8000/user",
+      errors: []
     };
   },
   methods: {
     createModal() {
       $("#create-modal").modal("show");
+    },
+    createUser() {
+      axios
+        .post(this.uri, {
+          name: this.user.name,
+          email: this.user.email,
+          password: this.user.password
+        })
+        .then(response => {
+          this.users.push(response.data.user);
+          $("#create-modal").modal("hide");
+        })
+        .catch(error => {
+          this.errors = [];
+          if (error.response.data.errors.name) {
+            this.errors.push(error.response.data.errors.name[0]);
+          }
+
+          if (error.response.data.errors.email) {
+            this.errors.push(error.response.data.errors.email[0]);
+          }
+
+          if (error.response.data.errors.password) {
+            this.errors.push(error.response.data.errors.password[0]);
+          }
+        });
     },
     loadTasks() {
       axios.get(this.uri).then(response => {
