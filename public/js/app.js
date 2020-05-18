@@ -45282,15 +45282,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       $("#create-modal").modal("show");
     },
     createUser: function createUser() {
-      console.log(this.user.name);
-      console.log(this.user.email);
-      console.log(this.user.password);
-    },
-    loadTasks: function loadTasks() {
       var _this = this;
 
+      axios.post(this.uri, {
+        name: this.user.name,
+        email: this.user.email,
+        password: this.user.password
+      }).then(function (response) {
+        _this.users.push(response.data.user);
+        $("#create-modal").modal("hide");
+      }).catch(function (error) {
+        console.log(error);
+      });
+    },
+    loadTasks: function loadTasks() {
+      var _this2 = this;
+
       axios.get(this.uri).then(function (response) {
-        _this.users = response.data.users;
+        _this2.users = response.data.users;
       });
     }
   },

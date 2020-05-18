@@ -87,9 +87,19 @@ export default {
       $("#create-modal").modal("show");
     },
     createUser() {
-      console.log(this.user.name);
-      console.log(this.user.email);
-      console.log(this.user.password);
+      axios
+        .post(this.uri, {
+          name: this.user.name,
+          email: this.user.email,
+          password: this.user.password
+        })
+        .then(response => {
+          this.users.push(response.data.user);
+          $("#create-modal").modal("hide");
+        })
+        .catch(error => {
+          console.log(error);
+        });
     },
     loadTasks() {
       axios.get(this.uri).then(response => {
