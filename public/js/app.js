@@ -1290,7 +1290,7 @@ __webpack_require__(13);
  */
 
 __webpack_require__(14);
-
+__webpack_require__(46);
 window.Vue = __webpack_require__(36);
 
 /**
@@ -45576,6 +45576,24 @@ if (false) {
     require("vue-hot-reload-api")      .rerender("data-v-ebaad86a", module.exports)
   }
 }
+
+/***/ }),
+/* 46 */
+/***/ (function(module, exports) {
+
+$(document).on("change", "#file_photo", function (e) {
+  var reader;
+  if (e.target.files.length) {
+    reader = new FileReader();
+    reader.onload = function (e) {
+      var userThumbnail;
+      userThumbnail = document.getElementById("thumbnail");
+      $("#userImgPreview").addClass("is-active");
+      userThumbnail.setAttribute("src", e.target.result);
+    };
+    return reader.readAsDataURL(e.target.files[0]);
+  }
+});
 
 /***/ })
 /******/ ]);
