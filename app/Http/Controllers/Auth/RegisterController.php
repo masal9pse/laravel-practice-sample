@@ -53,7 +53,7 @@ class RegisterController extends Controller
    'password' => 'required|string|min:6|confirmed',
    'self_introduction' => $data['self_introduction'],
    'sex' => $data['sex'],
-   'img_name' => $data['img_name'],
+   'img_name' => 'required|string',
   ]);
  }
 
