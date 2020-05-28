@@ -7,7 +7,10 @@
 @import "sign_up";
 // Bootstrap
 @import "~bootstrap-sass/assets/stylesheets/bootstrap";
-// @import "~bootstrap/scss/bootstrap";
 
-// @import "../js/bootstrap.js";
 @import "sign_in";
+
+@import "~@fortawesome/fontawesome-free/scss/fontawesome";
+@import "~@fortawesome/fontawesome-free/scss/solid";
+@import "~@fortawesome/fontawesome-free/scss/regular";
+@import "~@fortawesome/fontawesome-free/scss/brands";

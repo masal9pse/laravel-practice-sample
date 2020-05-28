@@ -1303,6 +1303,8 @@ Vue.component("example-component", __webpack_require__(41));
 
 Vue.component("user-component", __webpack_require__(44));
 
+Vue.component("like", __webpack_require__(58));
+
 var app = new Vue({
   el: "#app"
 });
@@ -45600,6 +45602,192 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 48 */,
+/* 49 */,
+/* 50 */,
+/* 51 */,
+/* 52 */,
+/* 53 */,
+/* 54 */,
+/* 55 */,
+/* 56 */,
+/* 57 */,
+/* 58 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(11)
+/* script */
+var __vue_script__ = __webpack_require__(59)
+/* template */
+var __vue_template__ = __webpack_require__(60)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/Like.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-2b31acce", Component.options)
+  } else {
+    hotAPI.reload("data-v-2b31acce", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 59 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ["songId", "userId", "defaultLiked", "defaultCount"],
+  data: function data() {
+    return {
+      liked: false,
+      likeCount: 0
+    };
+  },
+  created: function created() {
+    this.liked = this.defaultLiked;
+    this.likeCount = this.defaultCount;
+  },
+
+  methods: {
+    like: function like(songId) {
+      var _this = this;
+
+      var url = "/api/posts/" + songId + "/like";
+      axios.post(url, {
+        user_id: this.userId
+      }).then(function (response) {
+        _this.liked = true;
+        _this.likeCount = response.data.likeCount;
+      }).catch(function (error) {
+        alert(error);
+      });
+    },
+    unlike: function unlike(songId) {
+      var _this2 = this;
+
+      var url = "/api/posts/" + songId + "/unlike";
+      axios.post(url, {
+        user_id: this.userId
+      }).then(function (response) {
+        _this2.liked = false;
+        _this2.likeCount = response.data.likeCount;
+      }).catch(function (error) {
+        alert(error);
+      });
+    }
+  }
+});
+
+/***/ }),
+/* 60 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    !_vm.liked
+      ? _c(
+          "button",
+          {
+            staticClass: "btn btn-danger",
+            attrs: { type: "button" },
+            on: {
+              click: function($event) {
+                return _vm.like(_vm.songId)
+              }
+            }
+          },
+          [
+            _c("i", { staticClass: "fas fa-heart fa-fw" }),
+            _vm._v(" "),
+            _c("span", [_vm._v(_vm._s(_vm.likeCount))])
+          ]
+        )
+      : _c(
+          "button",
+          {
+            staticClass: "btn btn-primary",
+            attrs: { type: "button" },
+            on: {
+              click: function($event) {
+                return _vm.unlike(_vm.songId)
+              }
+            }
+          },
+          [
+            _c("i", { staticClass: "fas fa-heart fa-fw" }),
+            _vm._v(" "),
+            _c("span", [_vm._v(_vm._s(_vm.likeCount))])
+          ]
+        )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-2b31acce", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

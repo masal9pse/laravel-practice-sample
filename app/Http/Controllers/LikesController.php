@@ -4,33 +4,27 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Like;
-use Illuminate\Support\Facades\Auth;
 use App\Models\Song;
 
 class LikesController extends Controller
 {
 
- public function store(Request $request, $songId)
+ public function like(Song $song, Request $request)
  {
-  Like::create(
-   array(
-    'user_id' => Auth::user()->id,
-    'song_id' => $songId
-   )
-  );
+  $like = Like::create(['song_id' => $song->id, 'user_id' => $request->user_id]);
 
-  $song = Song::findOrFail($songId);
+  $likeCount = count(Like::where('song_id', $song->id)->get());
 
-  return redirect()
-   ->action('SongController@show', $song->id);
+  return response()->json(['likeCount' => $likeCount]);
  }
 
- public function destroy($songId, $likeId)
+ public function unlike(Song $song, Request $request)
  {
-  $song = Song::findOrFail($songId);
-  $song->like_by()->findOrFail($likeId)->delete();
+  $like = Like::where('user_id', $request->user_id)->where('song_id', $song->id)->first();
+  $like->delete();
 
-  return redirect()
-   ->action('SongController@show', $song->id);
+  $likeCount = count(Like::where('song_id', $song->id)->get());
+
+  return response()->json(['likeCount' => $likeCount]);
  }
 }

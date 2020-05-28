@@ -71,20 +71,25 @@ class SongController extends Controller
   */
  public function show($id)
  {
-  $authUser = Auth::user(); // 認証ユーザー取得
+  $userAuth = Auth::user(); // 認証ユーザー取得
   $song = Song::find($id);
-  $song->load('user', 'comments', 'user');
-  // dd($song);
-  // 追加
-  $like = $song->likes()->where('user_id', \Auth::user()->id)->first();
+  $song->load('user', 'comments', 'user', 'likes');
+
+  $defaultCount = count($song->likes);
+  $defaultLiked = $song->likes->where('user_id', $userAuth->id)->first();
+  if (count($defaultLiked) == 0) {
+   $defaultLiked == false;
+  } else {
+   $defaultLiked == true;
+  }
 
   $params = [
-   'authUser' => $authUser,
+   'userAuth' => $userAuth,
    'song' => $song,
-
-   // 追加
-   'like' => $like,
+   'defaultLiked' => $defaultLiked,
+   'defaultCount' => $defaultCount
   ];
+
   return view('songs.show', $params);
  }
 
