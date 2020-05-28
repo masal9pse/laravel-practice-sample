@@ -21,6 +21,8 @@ Vue.component(
 
 Vue.component("user-component", require("./components/UserComponent.vue"));
 
+Vue.component("like", require("./components/Like.vue"));
+
 const app = new Vue({
   el: "#app",
 });

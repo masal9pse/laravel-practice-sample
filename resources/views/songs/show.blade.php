@@ -10,23 +10,8 @@
   <p class="mb-3">まだ画像は登録されていません</p>
   @endif
 
-  @if (Auth::check())
-  @if ($like)
-  <!-- いいね取り消しフォーム -->
-  {{ Form::model($song, array('action' => array('LikesController@destroy', $song->id, $like->id))) }}
-  <button type="submit">
-   ♡ いいね {{ $song->likes_count }}
-  </button>
-  {!! Form::close() !!}
-  @else
-  <!-- いいねフォーム -->
-  {{ Form::model($song, array('action' => array('LikesController@store', $song->id))) }}
-  <button type="submit" class="p-3">
-   + いいね {{ $song->likes_count }}
-  </button>
-  {!! Form::close() !!}
-  @endif
-  @endif
+  <like :song-id="{{ json_encode($song->id) }}" :user-id="{{ json_encode($userAuth->id) }}"
+   :default-Liked="{{ json_encode($defaultLiked) }}" :default-Count="{{ json_encode($defaultCount) }}"></like>
 
   <div class="mt-5">
    <div class="card-title mt-5">コメント一覧</div>

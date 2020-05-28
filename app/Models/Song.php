@@ -26,7 +26,7 @@ class Song extends Model
  // 追加
  public function likes()
  {
-  return $this->hasMany('App\Like');
+  return $this->hasMany('App\Like', 'song_id', 'id');
  }
 
 
