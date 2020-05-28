@@ -10,7 +10,7 @@
   <p class="mb-3">まだ画像は登録されていません</p>
   @endif
 
-  @if (Auth::check())
+  {{-- @if (Auth::check())
   @if ($like)
   <!-- いいね取り消しフォーム -->
   {{ Form::model($song, array('action' => array('LikesController@destroy', $song->id, $like->id))) }}
@@ -26,7 +26,7 @@
   </button>
   {!! Form::close() !!}
   @endif
-  @endif
+  @endif --}}
 
   <div class="mt-5">
    <div class="card-title mt-5">コメント一覧</div>
