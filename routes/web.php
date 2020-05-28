@@ -15,10 +15,12 @@ if (version_compare(PHP_VERSION, '7.2.0', '>=')) {
 
 Auth::routes();
 
-Route::get('/', 'SongController@index');
+Route::get('/', 'SongController@index')->name('songs.index');
+// Route::get('/songs/create', 'SongController@create')->name('songs.create');
+Route::post('/songs', 'SongController@store')->name('songs.store');
 
 Route::group(['middleware' => 'auth:user'], function () {
- Route::resource('/songs', 'SongController', ['only' => ['index', 'show']]);
+ Route::resource('/songs', 'SongController', ['except' => ['index', 'create', 'store']]);
  Route::resource('/comments', 'CommentController');
  Route::resource('/tags', 'TagController', ['except' => ['destroy', 'update']]);
  Route::post('/tags/destroy/{id}', 'TagController@destroy')->name('tags.destroy');

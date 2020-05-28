@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use DB;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Tag;
+use App\Problem;
 
 class SongController extends Controller
 {
@@ -36,10 +37,11 @@ class SongController extends Controller
   }
 
   $songs = $songs->orderBy('id', 'desc')->paginate(10);
-  // $songs = $songs->all();
+  $problems = Problem::all();
 
   return view('songs.index', [
    'songs' => $songs,
+   'problems' => $problems
   ]);
  }
 
@@ -48,9 +50,9 @@ class SongController extends Controller
   *
   * @return \Illuminate\Http\Response
   */
- public function create()
+ public function create(Problem $problem)
  {
-  //
+  dd($problem);
  }
 
  /**
@@ -61,6 +63,9 @@ class SongController extends Controller
   */
  public function store(Request $request)
  {
+  $problem = Problem::create($request->only(['name', 'problem']));
+  $problem->save();
+  return redirect()->route('songs.index');
  }
 
  /**

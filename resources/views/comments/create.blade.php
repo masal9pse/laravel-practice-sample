@@ -2,7 +2,6 @@
 
 @section('content')
 <div class="container">
- <div class="card-header">comment</div>
  <div class="card-body">
   @if (session('status'))
   <div class="alert alert-success" role="alert">
@@ -25,7 +24,7 @@
      {{ csrf_field() }}
 
      <div class="form-group">
-      <label for="comment">Comment:</label>
+      <label for="comment">コメントする</label>
       <textarea class="form-control" rows="5" id="comment" name="comment"></textarea>
      </div>
 
@@ -34,7 +33,7 @@
      {{-- どのユーザーがどの曲に対してコメントしているのかを把握できる --}}
      <input type="hidden" name="song_id" value="{{ $song_id }}">
 
-     <button type="submit" class="btn btn-primary">Submit</button>
+     <button type="submit" class="btn btn-primary">投稿する</button>
     </form>
    </div>
   </div>
