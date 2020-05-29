@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Song;
 use App\Http\Requests\CreateSongTask;
+use App\Http\Requests\TagRequest;
 use Illuminate\Support\Facades\DB;
 use Intervention\Image\ImageManagerStatic as Image;
 use App\Models\Tag;
@@ -82,11 +83,13 @@ class SongController extends Controller
  public function edit($id)
  {
   $song = Song::find($id);
-
-  return view('admin.edit', compact('song'));
+  $song->load('tags');
+  // dd($song);
+  $tags = Tag::pluck('title', 'id')->toArray();
+  return view('admin.edit', compact('song', 'tags'));
  }
 
- public function update(CreateSongTask $request, $id)
+ public function update(CreateSongTask $request, $id, TagRequest $tagRequest)
  {
   $song = Song::find($id);
 
@@ -99,8 +102,9 @@ class SongController extends Controller
 
   $song->file_name = basename($song->file_name);
   $song->save();
+  $song->tags()->sync($request->tags);
   // dd($song);
-  return redirect()->route('admin.create');
+  return redirect()->route('admin.edit', ['id' => $song->id]);
  }
 
  public function destroy($id)
