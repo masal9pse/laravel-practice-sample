@@ -31,6 +31,22 @@
       {{-- <input type="file" class="form-control" name="file_name" src="{{ asset('/storage/img/'.$song->file_name) }}">
       --}}
       <input type="file" class="form-control" name="file_name">
+      {{-- タグ付け機能 --}}
+      <div class="form-group row">
+       <label for="inputTag" class="col-sm-2 col-form-label">タグ</label>
+       <div class="col-sm-10">
+        @foreach($tags as $key => $tag)
+        <div class="form-check form-check-inline">
+         <input type="checkbox" name="tags[]" value="{{ $key }}" id="tag{{ $key }}" @if(isset($song->tags) &&
+         $song->tags->contains($key))
+         checked
+         @endif
+         >
+         <label for="tag{{ $key }}" class="form-check-label">{{ $tag }}</label>
+        </div>
+        @endforeach
+       </div>
+      </div>
       <input type="submit" value="更新する" class="btn btn-info">
     </div>
     </form>
