@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app_admin')
 
 @section('content')
 <div class="container">
@@ -52,7 +52,12 @@
     </form>
    </div>
   </div>
+  <div class="form-group">
+   <form action="{{ route('admin.create') }}" class="mt-3" method="GET">
+    {{ csrf_field() }}
+    <button class="btn btn-primary">管理画面トップページに戻る</button>
+   </form>
+  </div>
  </div>
-</div>
 </div>
 @endsection
