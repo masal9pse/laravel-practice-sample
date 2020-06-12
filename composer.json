@@ -14,11 +14,11 @@
     "kanazaca/counter-cache": "1.0.*",
     "laravel/framework": "^5.5.0",
     "laravel/tinker": "~1.0",
-    "laravelcollective/html": "5.5.*"
+    "laravelcollective/html": "5.5.*",
+    "fzaninotto/faker": "~1.4"
   },
   "require-dev": {
     "filp/whoops": "~2.0",
-    "fzaninotto/faker": "~1.4",
     "laravel/homestead": "^10.5",
     "mockery/mockery": "~1.0",
     "phpunit/phpunit": "~6.0",
