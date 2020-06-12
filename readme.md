@@ -31,5 +31,5 @@ npm install
 1. ファットコントローラー防止
 2. 意味のある単体テストの記述
 3. 現在は個人開発なのでmampで十分だが、チーム開発する場合、開発環境にDockerを使用したい
-テンプレートはあるが、（https://github.com/masal9pse/laravel-docker-workspace）OSが重くなるので、導入はしていない。
+テンプレートはあるが、（https://github.com/masal9pse/laravel-docker-workspace） OSが重くなるので、導入はしていない。
 4. 現在はコロナもあり余裕がないのでできないが、AWSのEC2とRDSでこのプロジェクトをホストしたい。
