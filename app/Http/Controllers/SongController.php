@@ -52,7 +52,6 @@ class SongController extends Controller
   */
  public function create(Problem $problem)
  {
-  dd($problem);
  }
 
  /**
