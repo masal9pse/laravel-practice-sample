@@ -35,4 +35,4 @@ npm install
    ので、悩みどころ。
    
 4. AWSのEC2とRDSでこのプロジェクトをホストしたい。
-5. herokuにテストデータを挿入できていない
+5. herokuにテストデータを挿入できていない + herokuのssh化
