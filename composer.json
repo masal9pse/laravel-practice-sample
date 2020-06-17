@@ -11,7 +11,6 @@
     "php": ">=7.0.0",
     "barryvdh/laravel-debugbar": "^3.3",
     "fideloper/proxy": "~3.3",
-    "fzaninotto/faker": "~1.4",
     "intervention/image": "^2.5",
     "kanazaca/counter-cache": "1.0.*",
     "laravel/framework": "^5.5.0",
