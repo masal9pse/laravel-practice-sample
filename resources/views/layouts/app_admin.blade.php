@@ -15,11 +15,6 @@
  <link href="{{ asset('css/app.css') }}" rel="stylesheet">
  <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 </head>
-<style>
- body {
-  background-color: greenyellow;
- }
-</style>
 
 <body>
  <div id="app">
@@ -89,7 +84,7 @@
    @yield('content')
   </main>
   <footer class='footer p20'>
-   <small class='copyright'>Laravel Book Reviews 2019 copyright</small>
+   <small class='copyright'>Laravel Song Text 2019 copyright</small>
   </footer>
  </div>
 
