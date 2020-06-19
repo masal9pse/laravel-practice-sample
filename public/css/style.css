@@ -3,12 +3,12 @@ html {
 }
 
 body {
-  color: white;
+  /* color: white; */
   font-size: 1.6rem;
 }
-.main {
-  background-color: #393e46;
-}
+/* .main { */
+/* background-color: #393e46; */
+/* } */
 
 .footer {
   background-color: #222831;
