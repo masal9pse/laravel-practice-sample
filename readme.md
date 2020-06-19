@@ -27,8 +27,8 @@ npm install
 1. github の issue,pullRequest 活用
 
 # やりたいこと
-
 1. ファットコントローラー防止
-2. 意味のある単体テストの記述
+2. 意味のある単体テストを記述
 3. 現在は個人開発なのでmampで十分だが、チーム開発する場合、開発環境にDockerを使用したい => macbookPro16GB使う  
 4. AWSのEC2とRDSでこのプロジェクトをホストしたい。
+5. UI/UXを整える
