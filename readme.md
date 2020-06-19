@@ -26,10 +26,6 @@ npm install
 12. １つの曲に対して、タグを紐づける機能（多対多）
 13. いいね機能(Vue 化)
 
-# その他
-
-1. github の issue,pullRequest 活用
-
 # やりたいこと
 1. ファットコントローラー防止
 2. 意味のある単体テストを記述
@@ -37,3 +33,11 @@ npm install
 4. 独自ドメインを取って、route53で紐付けする
 5. UI/UXを整える
 6. https通信する
+
+# インフラ構成図
+
+<img width="500" alt="simpleAWS.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/439295/b01ed595-3477-a42d-7f80-e2815318e555.png">
+
+# その他
+1. github の issue,pullRequest 活用
+
