@@ -1,4 +1,11 @@
+homesteadで構築した https://github.com/masal9pse/song-picture-text をmamp環境に移行した
+
+
+
 インフラ AWS(VPC,EC2,RDS)  http://3.113.165.205/
+
+
+
 インフラ heroku http://laravel-vue-web.herokuapp.com/
 
 
