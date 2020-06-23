@@ -15,10 +15,9 @@ class AppServiceProvider extends ServiceProvider
   */
  public function boot()
  {
-  // マイグレーション時に以下のエラーが発生するため、stringのサイズは191文字をデフォルトとする。
-  // SQLSTATE[42000]: Syntax error or access violation: 1071 Specified key was too long; max key length is 767 bytes
-  // 参考）https://teratail.com/questions/63441
-  Schema::defaultStringLength(191);
+  if (request()->isSecure()) {
+   \URL::forceScheme('https');
+  }
  }
 
  /**
