@@ -2,7 +2,7 @@ homesteadで構築した https://github.com/masal9pse/song-picture-text をmamp�
 
 
 
-インフラ AWS(VPC,EC2,RDS)  http://3.113.165.205/
+インフラ AWS(VPC,EC2,RDS)  http://song-picture-mamp.work/
 
 
 
@@ -40,7 +40,7 @@ npm install
 1. ファットコントローラー防止
 2. 意味のある単体テストを記述
 3. 現在は個人開発なのでmampで十分だが、チーム開発する場合、開発環境にDockerを使用したい => macbookPro16GB使う  
-4. 独自ドメインを取って、route53で紐付けする
+4. 独自ドメインを取って、route53で紐付けした後、SSL通信する。
 5. UI/UXを整える
 6. https通信する
 
