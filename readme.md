@@ -1,7 +1,7 @@
 homesteadで構築した https://github.com/masal9pse/song-picture-text をmamp環境に移行した
 
 
-インフラ AWS(VPC,EC2,RDS)  https://song-picture-mamp.work/
+インフラ AWS(VPC,EC2,RDS,ELB)  https://song-picture-mamp.work/
 
 
 # 使い方
