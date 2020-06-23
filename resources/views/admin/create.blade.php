@@ -17,16 +17,14 @@
      {{ Form::open(['method' => 'get'],['route' => 'admin.create'],['class' => "form-inline my-2 my-lg-0"]) }}
      <input class="form-control mr-sm-2" name="search" type="search" placeholder="検索" aria-label="Search">
      <button class="btn btn-success my-2 my-sm-0" type="submit">検索する</button>
+
      {{Form::close()}}
 
-     <form action="{{ url('/') }}" class="mt-3" method="GET">
-      {{ csrf_field() }}
-      <button class="btn btn-primary">トップページに戻る</button>
-     </form>
-     {{-- <div class="panel-heading">タスクを追加する</div> --}}
-     {{-- <p class="{{ Request::is('tags', 'tags/*') ? 'active' : '' }}">
-     <a class="nav-link" href="{{ route('tags.index') }}">タグ</a>
-     </p> --}}
+     <div class="panel-heading">
+      <p class="{{ Request::is('tags', 'tags/*') ? 'active' : '' }}">
+       <a class="btn btn-danger" href="{{ route('tags.index') }}">タグを追加する</a>
+      </p>
+     </div>
 
      @if ($errors->any())
      <div class="alert alert-danger">
@@ -38,8 +36,6 @@
      </div>
      @endif
 
-
-     createです
      <form action="{{ route('admin.store')}}" method="post" enctype="multipart/form-data">
       {{ csrf_field() }}
       　タイトル

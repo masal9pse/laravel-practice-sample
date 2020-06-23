@@ -42,10 +42,6 @@
       {{-- {{ config('app.name', 'Laravel') }} --}}
       歌詞共有サイト管理画面
      </a>
-
-     <p class="{{ Request::is('tags', 'tags/*') ? 'active' : '' }}">
-      <a class="nav-link" href="{{ route('tags.index') }}">タグ</a>
-     </p>
     </div>
 
     <div class="collapse navbar-collapse" id="app-navbar-collapse">

@@ -8,6 +8,7 @@ use DB;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Tag;
 use App\Problem;
+// use App\Http\Requests\ProblemRequest;
 
 class SongController extends Controller
 {
@@ -36,7 +37,7 @@ class SongController extends Controller
    }
   }
 
-  $songs = $songs->orderBy('id', 'desc')->paginate(10);
+  $songs = $songs->orderBy('id', 'desc')->paginate(3);
   $problems = Problem::all();
 
   return view('songs.index', [

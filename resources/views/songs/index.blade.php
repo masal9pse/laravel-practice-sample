@@ -11,11 +11,11 @@
        <input class="form-control mr-sm-2" name="search" type="search" placeholder="検索" aria-label="Search">
        <button class="btn btn-success my-2 my-sm-0" type="submit">検索する</button>
       </form>
+      <a href="{{ route('admin.create')}}" class="btn btn-primary">管理画面へ移動(通常は存在しません)</a>
      </div>
      <table class="table table-striped">
       <thead>
        <tr>
-        <th>ID</th>
         <th>タイトル</th>
         <th>タグ</th>
         <th>歌詞</th>
@@ -23,7 +23,6 @@
       </thead>
       @foreach($songs as $song)
       <tr>
-       <td class="align-middle">{{ $song->id }}</td>
        <td class="align-middle"><a href="{{ route('songs.show',$song) }}">{{ $song->title }}</a></td>
        <td class="align-middle">
         @foreach($song->tags as $tag)
@@ -43,6 +42,16 @@
      </table>
      {{ $songs->links() }}
 
+     @if ($errors->any())
+     <div class="alert alert-danger">
+      <ul>
+       @foreach ($errors->all() as $error)
+       <li>{{ $error }}</li>
+       @endforeach
+      </ul>
+     </div>
+     @endif
+
      <form action="{{ route('songs.store')}}" method="post" class="col-3">
       {{ csrf_field() }}
       <h3>問題や感想があれば報告お願いします</h3>
@@ -54,7 +63,7 @@
        <textarea name="problem" class="form-control mb-5" rows="3" placeholder="問題、意見お願いします"></textarea>
       </div>
       <div class="form-group">
-       <button type="submit" class="btn btn-success p-3">ボタン</button>
+       <button type="submit" class="btn btn-warning">投稿</button>
       </div>
      </form>
      @foreach ($problems as $problem)
