@@ -46,5 +46,4 @@ npm install
 
 # インフラ構成図
 
-<img width="500" alt="simpleAWS.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/439295/b01ed595-3477-a42d-7f80-e2815318e555.png">
-
+![route53.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/439295/873d5f79-f8a5-1407-b9fe-1d2dbb7e91ba.png)
