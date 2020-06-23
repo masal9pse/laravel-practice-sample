@@ -8,7 +8,7 @@ use DB;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Tag;
 use App\Problem;
-// use App\Http\Requests\ProblemRequest;
+use App\Http\Requests\ProblemRequest;
 
 class SongController extends Controller
 {
@@ -61,7 +61,7 @@ class SongController extends Controller
   * @param  \Illuminate\Http\Request  $request
   * @return \Illuminate\Http\Response
   */
- public function store(Request $request)
+ public function store(ProblemRequest $request)
  {
   $problem = Problem::create($request->only(['name', 'problem']));
   $problem->save();

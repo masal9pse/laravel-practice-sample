@@ -38,9 +38,23 @@
 
      <form action="{{ route('admin.store')}}" method="post" enctype="multipart/form-data">
       {{ csrf_field() }}
+      @if($errors->has('title'))
+      @foreach($errors->get('title') as $message)
+      <div class="text-danger">
+       {{ $message }}
+      </div>
+      @endforeach
+      @endif
       　タイトル
       <input type="text" name="title">
       <br>
+      @if($errors->has('detail'))
+      @foreach($errors->get('detail') as $message)
+      <div class="text-danger">
+       {{ $message }}
+      </div>
+      @endforeach
+      @endif
       歌詞
       <textarea name="detail" class="mt-5"></textarea>
       <br>
