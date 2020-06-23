@@ -1,7 +1,7 @@
 homesteadで構築した https://github.com/masal9pse/song-picture-text をmamp環境に移行した
 
 
-インフラ AWS(VPC,EC2,RDS)  http://song-picture-mamp.work/
+インフラ AWS(VPC,EC2,RDS)  https://song-picture-mamp.work/
 
 
 # 使い方
@@ -31,13 +31,13 @@ npm install
 # その他
 1. github の issue,pullRequest 活用
 
+# インフラ構成図
+
+<img width="500" alt="https.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/439295/e4cd5652-66b6-af9b-8a7f-21241e8e05a4.png">
+
 # やりたいこと
 1. ファットコントローラー防止
 2. 意味のある単体テストを記述
 3. 現在は個人開発なのでmampで十分だが、チーム開発する場合、開発環境にDockerを使用したい => macbookPro16GB使う  
 4. 独自ドメインを取って、route53で紐付けした後、SSL通信する。
 5. UI/UXを整える
-
-# インフラ構成図
-
-![route53.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/439295/873d5f79-f8a5-1407-b9fe-1d2dbb7e91ba.png)
