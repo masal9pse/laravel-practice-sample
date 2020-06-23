@@ -27,7 +27,7 @@ class CreateSongTask extends FormRequest
   return [
    'title' => 'required|max:100',
    'detail' => 'required|max:1000',
-   'file_name' => 'nullable|file|image|mimes:jpeg,png,jpg,gif|max:2048'
+   'file_name' => 'required|file|image|mimes:jpeg,png,jpg,gif|max:2048'
   ];
  }
 
@@ -36,13 +36,7 @@ class CreateSongTask extends FormRequest
   return [
    'title' => 'タイトル',
    'detail' => '歌詞',
-  ];
- }
-
- public function messages()
- {
-  return [
-   'detail.after_or_equal' => ':attribute には今日以降の日付を入力してください。',
+   'file_name' => '画像'
   ];
  }
 }

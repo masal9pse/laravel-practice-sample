@@ -23,17 +23,21 @@
       {{ csrf_field() }}
       <button class="btn btn-primary">トップページに戻る</button>
      </form>
-     <div class="panel-heading">タスクを追加する</div>
-     <p class="{{ Request::is('tags', 'tags/*') ? 'active' : '' }}">
-      <a class="nav-link" href="{{ route('tags.index') }}">タグ</a>
-     </p>
-     @if($errors->any())
+     {{-- <div class="panel-heading">タスクを追加する</div> --}}
+     {{-- <p class="{{ Request::is('tags', 'tags/*') ? 'active' : '' }}">
+     <a class="nav-link" href="{{ route('tags.index') }}">タグ</a>
+     </p> --}}
+
+     @if ($errors->any())
      <div class="alert alert-danger">
-      @foreach($errors->all() as $message)
-      <p>{{ $message }}</p>
-      @endforeach
+      <ul>
+       @foreach ($errors->all() as $error)
+       <li>{{ $error }}</li>
+       @endforeach
+      </ul>
      </div>
      @endif
+
 
      createです
      <form action="{{ route('admin.store')}}" method="post" enctype="multipart/form-data">
