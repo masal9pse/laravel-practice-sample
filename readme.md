@@ -42,7 +42,6 @@ npm install
 3. 現在は個人開発なのでmampで十分だが、チーム開発する場合、開発環境にDockerを使用したい => macbookPro16GB使う  
 4. 独自ドメインを取って、route53で紐付けした後、SSL通信する。
 5. UI/UXを整える
-6. https通信する
 
 # インフラ構成図
 
