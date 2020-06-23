@@ -1,4 +1,11 @@
-インフラ AWS(VPC,EC2,RDS)  http://3.113.165.205/
+homesteadで構築した https://github.com/masal9pse/song-picture-text をmamp環境に移行した
+
+
+
+インフラ AWS(VPC,EC2,RDS)  http://song-picture-mamp.work/
+
+
+
 インフラ heroku http://laravel-vue-web.herokuapp.com/
 
 
@@ -26,18 +33,18 @@ npm install
 12. １つの曲に対して、タグを紐づける機能（多対多）
 13. いいね機能(Vue 化)
 
+# その他
+1. github の issue,pullRequest 活用
+
 # やりたいこと
 1. ファットコントローラー防止
 2. 意味のある単体テストを記述
 3. 現在は個人開発なのでmampで十分だが、チーム開発する場合、開発環境にDockerを使用したい => macbookPro16GB使う  
-4. 独自ドメインを取って、route53で紐付けする
+4. 独自ドメインを取って、route53で紐付けした後、SSL通信する。
 5. UI/UXを整える
 6. https通信する
 
 # インフラ構成図
 
 <img width="500" alt="simpleAWS.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/439295/b01ed595-3477-a42d-7f80-e2815318e555.png">
-
-# その他
-1. github の issue,pullRequest 活用
 
