@@ -1,12 +1,7 @@
 homesteadで構築した https://github.com/masal9pse/song-picture-text をmamp環境に移行した
 
 
-
 インフラ AWS(VPC,EC2,RDS)  http://song-picture-mamp.work/
-
-
-
-インフラ heroku http://laravel-vue-web.herokuapp.com/
 
 
 # 使い方
@@ -42,9 +37,7 @@ npm install
 3. 現在は個人開発なのでmampで十分だが、チーム開発する場合、開発環境にDockerを使用したい => macbookPro16GB使う  
 4. 独自ドメインを取って、route53で紐付けした後、SSL通信する。
 5. UI/UXを整える
-6. https通信する
 
 # インフラ構成図
 
-<img width="500" alt="simpleAWS.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/439295/b01ed595-3477-a42d-7f80-e2815318e555.png">
-
+![route53.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/439295/873d5f79-f8a5-1407-b9fe-1d2dbb7e91ba.png)
