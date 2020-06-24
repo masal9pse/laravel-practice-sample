@@ -14,27 +14,14 @@
      @if ($message = Session::get('success'))
      <p class="text-primary">{{ $message }}</p>
      @endif
-     {{ Form::open(['method' => 'get'],['route' => 'admin.create'],['class' => "form-inline my-2 my-lg-0"]) }}
-     <input class="form-control mr-sm-2" name="search" type="search" placeholder="検索" aria-label="Search">
-     <button class="btn btn-success my-2 my-sm-0" type="submit">検索する</button>
-     <a href="{{ route('songs.index')}}" class="btn btn-primary">トップページに移動</a>
-     {{Form::close()}}
+
+     @include('components.admin_search')
 
      <div class="panel-heading">
       <p class="{{ Request::is('tags', 'tags/*') ? 'active' : '' }}">
        <a class="btn btn-danger" href="{{ route('tags.index') }}">タグを追加する</a>
       </p>
      </div>
-
-     @if ($errors->any())
-     <div class="alert alert-danger">
-      <ul>
-       @foreach ($errors->all() as $error)
-       <li>{{ $error }}</li>
-       @endforeach
-      </ul>
-     </div>
-     @endif
 
      <form action="{{ route('admin.store')}}" method="post" enctype="multipart/form-data">
       {{ csrf_field() }}
@@ -88,12 +75,10 @@
       <button onclick="return confirm('本当に削除しますか？')" class="btn btn-danger">削除</button>
       {{Form::close()}}
 
-      {{-- {{Form::model($song, ['route' => ['admin.edit', $song->id]])}} --}}
       <form action="{{ route('admin.edit',['id' => $song->id]) }}" class="mt-3" method="GET">
        {{ csrf_field() }}
        <button class="btn btn-success">更新</button>
       </form>
-      {{-- {{Form::close()}} --}}
      </p>
      @endforeach
     </div>
