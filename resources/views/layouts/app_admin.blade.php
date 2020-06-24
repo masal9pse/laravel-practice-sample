@@ -54,7 +54,7 @@
      <ul class="nav navbar-nav navbar-right">
       <!-- Authentication Links -->
       @guest
-      <li><a href="{{ route('admin.login') }}">Login</a></li>
+      <li><a href="{{ route('admin.login') }}">ログインする</a></li>
       @else
       <li class="dropdown">
        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"
@@ -66,7 +66,7 @@
         <li>
          <a href="{{ route('admin.logout') }}" onclick="event.preventDefault();
           document.getElementById('logout-form').submit();">
-          Logout
+          ログアウトする
          </a>
 
          <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
