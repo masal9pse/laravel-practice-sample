@@ -45,3 +45,4 @@ html/css/PHP/Laravel/MySQL/JavaScript/Vue/Git/Github/
 3. 現在は個人開発なので mamp で十分だが、チーム開発する場合、開発環境に Docker を使用したい => macbookPro16GB 使う
 4. UI/UX を整える
 5. S3 に画像を保存する。
+6. テストがある程度かけたら、circleCIとgithubを連携させてCIを導入する
