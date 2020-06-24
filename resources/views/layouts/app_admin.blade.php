@@ -15,9 +15,9 @@
  <link href="{{ asset('css/app.css') }}" rel="stylesheet">
  <link href="{{ asset('css/style.css') }}" rel="stylesheet">
  <style>
-  body {
+  /* body {
    background-color: yellowgreen;
-  }
+  } */
  </style>
 </head>
 
@@ -37,9 +37,7 @@
      </button>
 
      <!-- Branding Image -->
-     {{-- <a class="navbar-brand" href="{{ url('/') }}"> --}}
      <a class="navbar-brand" href="{{ route('admin.create') }}">
-      {{-- {{ config('app.name', 'Laravel') }} --}}
       歌詞共有サイト管理画面
      </a>
     </div>

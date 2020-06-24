@@ -4,49 +4,61 @@
 <div class="container">
  <div class="row justify-content-center">
   <div class="col-md-8">
-   <div class="card">
+   @if (session('status'))
+   <div class="alert alert-success" role="alert">
+    {{ session('status') }}
+   </div>
+   @endif
+   @if ($message = Session::get('success'))
+   <p class="text-primary">{{ $message }}</p>
+   @endif
+
+   @include('components.admin_search')
+
+   <div class="panel-heading">
+    <p class="{{ Request::is('tags', 'tags/*') ? 'active' : '' }}">
+     <a class="btn btn-danger" href="{{ route('tags.index') }}">タグを追加する</a>
+    </p>
+   </div>
+
+   <div class="input-group">
+    <div class="card-header">歌詞登録</div>
     <div class="card-body">
-     @if (session('status'))
-     <div class="alert alert-success" role="alert">
-      {{ session('status') }}
-     </div>
-     @endif
-     @if ($message = Session::get('success'))
-     <p class="text-primary">{{ $message }}</p>
-     @endif
-
-     @include('components.admin_search')
-
-     <div class="panel-heading">
-      <p class="{{ Request::is('tags', 'tags/*') ? 'active' : '' }}">
-       <a class="btn btn-danger" href="{{ route('tags.index') }}">タグを追加する</a>
-      </p>
-     </div>
-
      <form action="{{ route('admin.store')}}" method="post" enctype="multipart/form-data">
       {{ csrf_field() }}
-      @if($errors->has('title'))
-      @foreach($errors->get('title') as $message)
-      <div class="text-danger">
-       {{ $message }}
+
+      <div class="form-group row">
+       <label for="inputTitle" class="col-sm-2 col-form-label">タイトル</label>
+       <div class="col-sm-10">
+        @if($errors->has('title'))
+        @foreach($errors->get('title') as $message)
+        <div class="text-danger">
+         {{ $message }}
+        </div>
+        @endforeach
+        @endif
+        <input type="text" name="title">
+       </div>
       </div>
-      @endforeach
-      @endif
-      　タイトル
-      <input type="text" name="title">
-      <br>
-      @if($errors->has('detail'))
-      @foreach($errors->get('detail') as $message)
-      <div class="text-danger">
-       {{ $message }}
+
+      <div class="form-group row">
+       <label for="inputDescription" class="col-sm-2 col-form-label">歌詞</label>
+       <div class="col-sm-10">
+        @if($errors->has('detail'))
+        @foreach($errors->get('detail') as $message)
+        <div class="text-danger">
+         {{ $message }}
+        </div>
+        @endforeach
+        @endif
+        <textarea name="detail" class="mt-5"></textarea>
+       </div>
       </div>
-      @endforeach
-      @endif
-      歌詞
-      <textarea name="detail" class="mt-5"></textarea>
-      <br>
-      <br>
-      <input type="file" class="form-control" name="file_name">
+
+      <div class="form-group row">
+       <input type="file" class="form-control" name="file_name">
+      </div>
+
       <div class="form-group row">
        <label for="inputTag" class="col-sm-2 col-form-label">タグをつける</label>
        <div class="col-sm-10">
@@ -61,27 +73,30 @@
          @endforeach
         </div>
        </div>
-      </div>
-
-      <input type="submit" value="登録する" class="btn btn-info">
+       <input type="submit" value="登録する" class="btn btn-info">
      </form>
-     {{-- {{Form::close()}} --}}
-     @foreach ($songs as $song)
-     <p class="mt-3">
-      <a href="{{ route('admin.show',['id' => $song->id]) }}">
-       {{ $song->title }}
-      </a>
-      {{Form::model($song, ['route' => ['admin.destroy', $song->id]])}}
-      <button onclick="return confirm('本当に削除しますか？')" class="btn btn-danger">削除</button>
-      {{Form::close()}}
-
-      <form action="{{ route('admin.edit',['id' => $song->id]) }}" class="mt-3" method="GET">
-       {{ csrf_field() }}
-       <button class="btn btn-success">更新</button>
-      </form>
-     </p>
-     @endforeach
     </div>
+   </div>
+   <br>
+   <br>
+
+   <div class="card">
+
+    @foreach ($songs as $song)
+    <p class="mt-3">
+     <a href="{{ route('admin.show',['id' => $song->id]) }}">
+      {{ $song->title }}
+     </a>
+     {{Form::model($song, ['route' => ['admin.destroy', $song->id]])}}
+     <button onclick="return confirm('本当に削除しますか？')" class="btn btn-danger">削除</button>
+     {{Form::close()}}
+
+     <form action="{{ route('admin.edit',['id' => $song->id]) }}" class="mt-3" method="GET">
+      {{ csrf_field() }}
+      <button class="btn btn-success">更新</button>
+     </form>
+    </p>
+    @endforeach
     {{ $songs->links() }}
    </div>
   </div>
