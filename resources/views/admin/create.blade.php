@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
  <div class="row justify-content-center">
-  <div class="col-md-8">
+  <div class="col-md-12">
    @if (session('status'))
    <div class="alert alert-success" role="alert">
     {{ session('status') }}
@@ -21,13 +21,16 @@
     </p>
    </div>
 
-   <div class="input-group">
-    <div class="card-header">歌詞登録</div>
-    <div class="card-body">
-     <form action="{{ route('admin.store')}}" method="post" enctype="multipart/form-data">
-      {{ csrf_field() }}
-
-      <div class="form-group row">
+   <div class="panel panel-primary">
+    <div class="panel-heading">
+     <h5 class="panel-title">
+      歌詞登録
+     </h5>
+    </div>
+    <div class="penel-body">
+     <div class="form-group row">
+      <form action="{{ route('admin.store')}}" method="post" enctype="multipart/form-data">
+       {{ csrf_field() }}
        <label for="inputTitle" class="col-sm-2 col-form-label">タイトル</label>
        <div class="col-sm-10">
         @if($errors->has('title'))
@@ -39,49 +42,48 @@
         @endif
         <input type="text" name="title">
        </div>
-      </div>
+     </div>
 
-      <div class="form-group row">
-       <label for="inputDescription" class="col-sm-2 col-form-label">歌詞</label>
-       <div class="col-sm-10">
-        @if($errors->has('detail'))
-        @foreach($errors->get('detail') as $message)
-        <div class="text-danger">
-         {{ $message }}
-        </div>
-        @endforeach
+     <div class="form-group row">
+      <label for="inputDescription" class="col-sm-2 col-form-label">歌詞</label>
+      <div class="col-sm-10">
+       @if($errors->has('detail'))
+       @foreach($errors->get('detail') as $message)
+       <div class="text-danger">
+        {{ $message }}
+       </div>
+       @endforeach
+       @endif
+       <textarea name="detail" class="mt-5"></textarea>
+      </div>
+     </div>
+
+     <div class="form-group row">
+      <input type="file" class="form-control" name="file_name">
+     </div>
+
+     <div class="form-group row">
+      <label for="inputTag" class="col-sm-2 col-form-label">タグをつける</label>
+      <div class="col-sm-10">
+       <div class="form-check form-check-inline">
+        @foreach($tags as $key => $tag)
+        <input type="checkbox" name="tags[]" value="{{ $key }}" id="tag{{ $key }}" @if(isset($song->tags) &&
+        $song->tags->contains($key))
+        checked
         @endif
-        <textarea name="detail" class="mt-5"></textarea>
+        >
+        <label for="tag{{ $key }}" class="form-check-label">{{ $tag }}</label>
+        @endforeach
        </div>
       </div>
-
-      <div class="form-group row">
-       <input type="file" class="form-control" name="file_name">
-      </div>
-
-      <div class="form-group row">
-       <label for="inputTag" class="col-sm-2 col-form-label">タグをつける</label>
-       <div class="col-sm-10">
-        <div class="form-check form-check-inline">
-         @foreach($tags as $key => $tag)
-         <input type="checkbox" name="tags[]" value="{{ $key }}" id="tag{{ $key }}" @if(isset($song->tags) &&
-         $song->tags->contains($key))
-         checked
-         @endif
-         >
-         <label for="tag{{ $key }}" class="form-check-label">{{ $tag }}</label>
-         @endforeach
-        </div>
-       </div>
-       <input type="submit" value="登録する" class="btn btn-info">
-     </form>
+     </div>
+     <input type="submit" value="登録する" class="btn btn-info">
     </div>
    </div>
+   </form>
    <br>
    <br>
-
-   <div class="card">
-
+   <div>
     @foreach ($songs as $song)
     <p class="mt-3">
      <a href="{{ route('admin.show',['id' => $song->id]) }}">
