@@ -19,7 +19,10 @@
       </thead>
       @foreach($songs as $song)
       <tr>
-       <td class="align-middle"><a href="{{ route('songs.show',$song) }}">{{ $song->title }}</a></td>
+       <td class="align-middle">
+        <a href="{{ route('songs.show',$song) }}">{{ $song->title }}
+        </a>
+       </td>
        <td class="align-middle">
         @foreach($song->tags as $tag)
         <a href="{{ route('tags.show', $tag->id) }}">{{ $tag->title }}</a>
@@ -29,9 +32,7 @@
         @endforeach
        </td>
        <td class="align-middle">
-        <div class="d-flex">
-         <a href="{{ route('songs.show', $song) }}" class="btn btn-secondary btn-sm">表示</a>
-        </div>
+        <a href="{{ route('songs.show', $song) }}" class="btn btn-secondary btn-sm">表示</a>
        </td>
       </tr>
       @endforeach

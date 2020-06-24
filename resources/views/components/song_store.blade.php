@@ -1,6 +1,5 @@
 <form action="{{ route('admin.store')}}" method="post" enctype="multipart/form-data">
  {{ csrf_field() }}
-
  <div class="panel panel-primary">
   <div class="panel-heading">
    <h5 class="panel-title">
@@ -21,6 +20,7 @@
     <input type="text" name="title" class="form-control" placeholder="タイトル">
    </div>
    <br>
+   <br>
    <label for="inputDescription" class="col-sm-2 col-form-label">
     歌詞
    </label>
@@ -35,11 +35,14 @@
     <textarea name="detail" class="form-control" placeholder="歌詞を入力してください"></textarea>
    </div>
    <br>
-   <input type="file" class="form-control" name="file_name">
    <br>
-   {{-- <div class="form-group row"> --}}
-   <label for="inputTag" class="col-sm-2 col-form-label">タグをつける</label>
-   <div class="col-sm-10">
+   <br>
+   {{-- <div class="col-md-15"> --}}
+   <input type="file" class="form-control" name="file_name">
+   {{-- </div> --}}
+   <br>
+   <div>
+    {{-- <label for="inputTag" class="col-sm-2 col-form-label">タグをつける</label> --}}
     <div class="form-check form-check-inline">
      @foreach($tags as $key => $tag)
      <input type="checkbox" name="tags[]" value="{{ $key }}" id="tag{{ $key }}" @if(isset($song->tags) &&
@@ -52,7 +55,9 @@
     </div>
    </div>
    <br>
+   {{-- <div class="col-md-10"> --}}
    <input type="submit" value="登録する" class="btn btn-info">
+   {{-- </div> --}}
   </div>
  </div>
 </form>
