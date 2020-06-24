@@ -104,7 +104,7 @@ class SongController extends Controller
   $song->save();
   $song->tags()->sync($request->tags);
   // dd($song);
-  return redirect()->route('admin.edit', ['id' => $song->id]);
+  return redirect()->route('admin.create');
  }
 
  public function destroy($id)

@@ -9,7 +9,7 @@
  <!-- CSRF Token -->
  <meta name="csrf-token" content="{{ csrf_token() }}">
 
- <title>{{ config('app.name', 'Laravel') }}</title>
+ <title>管理画面</title>
 
  <!-- Styles -->
  <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -37,9 +37,7 @@
      </button>
 
      <!-- Branding Image -->
-     {{-- <a class="navbar-brand" href="{{ url('/') }}"> --}}
      <a class="navbar-brand" href="{{ route('admin.create') }}">
-      {{-- {{ config('app.name', 'Laravel') }} --}}
       歌詞共有サイト管理画面
      </a>
     </div>
