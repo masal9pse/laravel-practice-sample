@@ -26,6 +26,12 @@ npm install
 12. １つの曲に対して、タグを紐づける機能（多対多）
 13. いいね機能(Vue 化)
 
+# トップページ
+![スクリーンショット 2020-06-25 5 33 33](https://user-images.githubusercontent.com/51937772/85625242-187ea200-b6a6-11ea-914e-f7054c18d92c.png)
+
+# 管理画面
+![スクリーンショット 2020-06-25 5 34 52](https://user-images.githubusercontent.com/51937772/85625345-48c64080-b6a6-11ea-94d7-a8f7d3295b8b.png)
+
 # 使用技術一覧
 
 html/css/PHP/Laravel/MySQL/JavaScript/Vue/Git/Github/
