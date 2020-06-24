@@ -66,6 +66,7 @@ class SongController extends Controller
   $problem = Problem::create($request->only(['name', 'problem']));
   $problem->save();
   return redirect()->route('songs.index');
+  // return redirect()->route('/');
  }
 
  /**

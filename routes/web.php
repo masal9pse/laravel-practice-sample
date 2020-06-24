@@ -17,10 +17,10 @@ Auth::routes();
 
 Route::get('/', 'SongController@index')->name('songs.index');
 // Route::get('/songs/create', 'SongController@create')->name('songs.create');
-Route::resource('/songs', 'SongController')->only(['show']);
+Route::resource('/songs', 'SongController')->only(['show', 'store']);
 
 Route::group(['middleware' => 'auth:user'], function () {
- Route::resource('/songs', 'SongController', ['except' => ['index', 'create']]);
+ Route::resource('/songs', 'SongController', ['except' => ['index', 'create', 'store']]);
  Route::resource('/comments', 'CommentController');
  Route::resource('/tags', 'TagController', ['except' => ['destroy', 'update']]);
  Route::post('/tags/destroy/{id}', 'TagController@destroy')->name('tags.destroy');
