@@ -9,7 +9,7 @@
  <!-- CSRF Token -->
  <meta name="csrf-token" content="{{ csrf_token() }}">
 
- <title>{{ config('app.name', 'Laravel') }}</title>
+ <title>管理画面</title>
 
  <!-- Styles -->
  <link href="{{ asset('css/app.css') }}" rel="stylesheet">
