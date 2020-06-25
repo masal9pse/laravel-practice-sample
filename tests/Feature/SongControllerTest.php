@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\User;
 use App\Models\Song;
 use App\Problem;
 use Tests\TestCase;
@@ -25,6 +26,18 @@ class SongControllerTest extends TestCase
   $response = $this->get(url('songs/{song}'));
 
   $response->assertRedirect(route('login'));
+ }
+
+ // AAAを意識
+ public function testAuthCreate()
+ {
+  $user = factory(User::class)->create();
+
+  $response = $this->actingAs($user)
+   ->get(route('songs.index'));
+
+  $response->assertStatus(200)
+   ->assertViewIs('songs.index');
  }
 
  public function store(array $data)
