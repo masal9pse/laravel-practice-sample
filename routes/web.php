@@ -25,11 +25,10 @@ Route::group(['middleware' => 'auth:user'], function () {
  Route::resource('/tags', 'TagController', ['except' => ['destroy', 'update']]);
  Route::post('/tags/destroy/{id}', 'TagController@destroy')->name('tags.destroy');
  Route::post('/tags/update/{id}', 'TagController@update')->name('tags.update');
- Route::post('/songs/{song}/likes', 'LikesController@store');
- Route::post('/songs/{song}/likes/{like}', 'LikesController@destroy');
  Route::get('/home', 'HomeController@index')->name('home');
 });
-
+Route::post('/songs/{song}/likes', 'LikesController@store');
+Route::post('/songs/{song}/likes/{like}', 'LikesController@destroy');
 /*
 |--------------------------------------------------------------------------
 | 3) Admin 認証不要
@@ -63,4 +62,4 @@ Route::resource('/user', 'UserController');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');

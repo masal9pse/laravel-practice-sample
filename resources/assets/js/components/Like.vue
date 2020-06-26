@@ -1,20 +1,10 @@
 <template>
   <div>
-    <button
-      v-if="!liked"
-      type="button"
-      class="btn btn-danger"
-      @click="like(songId)"
-    >
+    <button v-if="!liked" type="button" class="btn btn-danger" @click="like(songId)">
       <i class="fas fa-heart fa-fw"></i>
       <span>{{ likeCount }}</span>
     </button>
-    <button
-      v-else
-      type="button"
-      class="btn btn-primary"
-      @click="unlike(songId)"
-    >
+    <button v-else type="button" class="btn btn-primary" @click="unlike(songId)">
       <i class="fas fa-heart fa-fw"></i>
       <span>{{ likeCount }}</span>
     </button>
@@ -27,7 +17,7 @@ export default {
   data() {
     return {
       liked: false,
-      likeCount: 0,
+      likeCount: 0
     };
   },
   created() {
@@ -39,13 +29,13 @@ export default {
       let url = `/api/posts/${songId}/like`;
       axios
         .post(url, {
-          user_id: this.userId,
+          user_id: this.userId
         })
-        .then((response) => {
+        .then(response => {
           this.liked = true;
           this.likeCount = response.data.likeCount;
         })
-        .catch((error) => {
+        .catch(error => {
           alert(error);
         });
     },
@@ -53,16 +43,16 @@ export default {
       let url = `/api/posts/${songId}/unlike`;
       axios
         .post(url, {
-          user_id: this.userId,
+          user_id: this.userId
         })
-        .then((response) => {
+        .then(response => {
           this.liked = false;
           this.likeCount = response.data.likeCount;
         })
-        .catch((error) => {
+        .catch(error => {
           alert(error);
         });
-    },
-  },
+    }
+  }
 };
 </script>
