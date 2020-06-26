@@ -30,7 +30,6 @@ class CreateLikesTable extends Migration
     ->onDelete('cascade');
   });
  }
-
  /**
   * Reverse the migrations.
   *

@@ -8,6 +8,7 @@ use App\Like;
 use App\Models\User;
 use App\Comment;
 use App\Models\Tag;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Song extends Model
 {
@@ -24,11 +25,22 @@ class Song extends Model
   return $this->belongsTo(Admin::class);
  }
  // 追加
- public function likes()
+ public function likes(): BelongsToMany
  {
-  return $this->hasMany('App\Like', 'song_id', 'id');
+  return $this->BelongsToMany(User::class, 'likes');
  }
 
+ public function isLikedBy(?User $user): bool
+ {
+  return $user
+   ? (bool) $this->likes->where('id', $user->id)->count()
+   : false;
+ }
+
+ public function getCountLikesAttribute(): int
+ {
+  return $this->likes->count();
+ }
 
  public function user()
  {

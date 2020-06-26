@@ -77,23 +77,23 @@ class SongController extends Controller
   */
  public function show($id)
  {
-  $userAuth = Auth::user(); // 認証ユーザー取得
+  // $userAuth = Auth::user(); // 認証ユーザー取得
   $song = Song::find($id);
   $song->load('user', 'comments', 'user', 'likes');
 
-  $defaultCount = count($song->likes);
-  $defaultLiked = $song->likes->where('user_id', $userAuth->id)->first();
-  if (count($defaultLiked) == 0) {
-   $defaultLiked == false;
-  } else {
-   $defaultLiked == true;
-  }
+  // $defaultCount = count($song->likes);
+  // $defaultLiked = $song->likes->where('user_id', $userAuth->id)->first();
+  // if (count($defaultLiked) == 0) {
+  //  $defaultLiked == false;
+  // } else {
+  //  $defaultLiked == true;
+  // }
 
   $params = [
-   'userAuth' => $userAuth,
+   // 'userAuth' => $userAuth,
    'song' => $song,
-   'defaultLiked' => $defaultLiked,
-   'defaultCount' => $defaultCount
+   // 'defaultLiked' => $defaultLiked,
+   // 'defaultCount' => $defaultCount
   ];
 
   return view('songs.show', $params);
@@ -105,6 +105,26 @@ class SongController extends Controller
   * @param  \App\Song  $song
   * @return \Illuminate\Http\Response
   */
+ public function like(Request $request, Song $song)
+ {
+  $song->likes()->detach($request->user()->id);
+  $song->likes()->attach($request->user()->id);
+
+  return [
+   'id' => $song->id,
+   'countLikes' => $song->count_likes,
+  ];
+ }
+
+ public function unlike(Request $request, Article $song)
+ {
+  $song->likes()->detach($request->user()->id);
+
+  return [
+   'id' => $song->id,
+   'countLikes' => $song->count_likes,
+  ];
+ }
  public function edit(Song $song)
  {
   //

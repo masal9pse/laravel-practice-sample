@@ -23,12 +23,13 @@ Route::group(['middleware' => 'auth:user'], function () {
  Route::resource('/songs', 'SongController', ['except' => ['index', 'create', 'store']]);
  Route::resource('/comments', 'CommentController');
  Route::resource('/tags', 'TagController', ['except' => ['destroy', 'update']]);
+ Route::post('/songs/{song}/likes', 'SongController@like')->name('like');
+ Route::post('/songs/{song}/likes/{like}', 'SongController@unlike')->name('unlike');
  Route::post('/tags/destroy/{id}', 'TagController@destroy')->name('tags.destroy');
  Route::post('/tags/update/{id}', 'TagController@update')->name('tags.update');
  Route::get('/home', 'HomeController@index')->name('home');
 });
-Route::post('/songs/{song}/likes', 'LikesController@store');
-Route::post('/songs/{song}/likes/{like}', 'LikesController@destroy');
+
 /*
 |--------------------------------------------------------------------------
 | 3) Admin 認証不要
