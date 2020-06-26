@@ -27,7 +27,7 @@ class CreateSongTask extends FormRequest
   return [
    'title' => 'required|max:100',
    'detail' => 'required|max:1000',
-   'file_name' => 'nullable|file|image|mimes:jpeg,png,jpg,gif|max:2048'
+   'file_name' => 'required|file|image|mimes:jpeg,png,jpg,gif|max:2048'
   ];
  }
 

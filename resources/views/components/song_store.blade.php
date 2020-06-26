@@ -37,7 +37,14 @@
    <br>
    <br>
    <br>
-   {{-- <div class="col-md-15"> --}}
+   {{-- <div class="col-sm-10"> --}}
+   @if($errors->has('file_name'))
+   @foreach($errors->get('file_name') as $message)
+   <div class="text-danger">
+    {{ $message }}
+   </div>
+   @endforeach
+   @endif
    <input type="file" class="form-control" name="file_name">
    {{-- </div> --}}
    <br>
