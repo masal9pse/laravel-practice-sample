@@ -38,33 +38,33 @@
    <br>
    <br>
    {{-- <div class="col-sm-10"> --}}
-   {{-- @if($errors->has('file_name'))
+   @if($errors->has('file_name'))
    @foreach($errors->get('file_name') as $message)
    <div class="text-danger">
     {{ $message }}
-  </div>
-  @endforeach
-  @endif --}}
-  <input type="file" class="form-control" name="file_name">
-  {{-- </div> --}}
-  <br>
-  <div>
-   {{-- <label for="inputTag" class="col-sm-2 col-form-label">タグをつける</label> --}}
-   <div class="form-check form-check-inline">
-    @foreach($tags as $key => $tag)
-    <input type="checkbox" name="tags[]" value="{{ $key }}" id="tag{{ $key }}" @if(isset($song->tags) &&
-    $song->tags->contains($key))
-    checked
-    @endif
-    >
-    <label for="tag{{ $key }}" class="form-check-label">{{ $tag }}</label>
-    @endforeach
    </div>
+   @endforeach
+   @endif
+   <input type="file" class="form-control" name="file_name">
+   {{-- </div> --}}
+   <br>
+   <div>
+    {{-- <label for="inputTag" class="col-sm-2 col-form-label">タグをつける</label> --}}
+    <div class="form-check form-check-inline">
+     @foreach($tags as $key => $tag)
+     <input type="checkbox" name="tags[]" value="{{ $key }}" id="tag{{ $key }}" @if(isset($song->tags) &&
+     $song->tags->contains($key))
+     checked
+     @endif
+     >
+     <label for="tag{{ $key }}" class="form-check-label">{{ $tag }}</label>
+     @endforeach
+    </div>
+   </div>
+   <br>
+   {{-- <div class="col-md-10"> --}}
+   <input type="submit" value="登録する" class="btn btn-info">
+   {{-- </div> --}}
   </div>
-  <br>
-  {{-- <div class="col-md-10"> --}}
-  <input type="submit" value="登録する" class="btn btn-info">
-  {{-- </div> --}}
- </div>
  </div>
 </form>
