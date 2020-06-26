@@ -8,6 +8,12 @@ homestead で構築した https://github.com/masal9pse/song-picture-text を mam
 composer install
 
 npm install
+
+php artisan serve
+
+npm run watch
+
+php artisan migrate --seed
 ```
 
 ## 機能一覧
@@ -17,7 +23,7 @@ npm install
 3. 管理ユーザー認証機能(/admin でアクセスする)=>わかりやすいように遷移できるボタンつけました。
 4. ユーザー認証機能
 5. 管理画面から曲を一覧表示
-6. 管理画面から CRUD 機能実装
+6. 管理画面から CRUD 機能実装、詳細ページでログイン画面に飛ばされますが、テストユーザーを作っているのでそのままEnterを押せばログインできます。
 7. ページネーション機能
 8. 検索機能
 9. 画像投稿機能
