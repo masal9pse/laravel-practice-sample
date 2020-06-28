@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Tag;
 use App\Problem;
 use App\Http\Requests\ProblemRequest;
+use App\Like;
 
 class SongController extends Controller
 {
@@ -79,21 +80,23 @@ class SongController extends Controller
  {
   // $userAuth = Auth::user(); // 認証ユーザー取得
   $song = Song::find($id);
+  $like = new Like();
   $song->load('user', 'comments', 'user', 'likes');
 
-  // $defaultCount = count($song->likes);
-  // $defaultLiked = $song->likes->where('user_id', $userAuth->id)->first();
-  // if (count($defaultLiked) == 0) {
-  //  $defaultLiked == false;
-  // } else {
-  //  $defaultLiked == true;
-  // }
+  $defaultCount = count($song->likes);
+  $defaultLiked = $song->likes->where('user_id', $song->user()->id)->first();
+  if (count($defaultLiked) == 0) {
+   $defaultLiked == false;
+  } else {
+   $defaultLiked == true;
+  }
 
   $params = [
    // 'userAuth' => $userAuth,
    'song' => $song,
-   // 'defaultLiked' => $defaultLiked,
-   // 'defaultCount' => $defaultCount
+   'like' => $like,
+   'defaultLiked' => $defaultLiked,
+   'defaultCount' => $defaultCount
   ];
 
   return view('songs.show', $params);

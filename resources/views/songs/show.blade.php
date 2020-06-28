@@ -14,11 +14,11 @@
    @endif
   </div>
 
-  {{-- <div class="form-group"> --}}
-  {{-- <like :initial-is-liked-by='@json($song->isLikedBy(Auth::user()))' :initial-count-likes='@json($song->count_likes)'
-    :authorized='@json(Auth::check())' endpoint="{{ route('songs.like', ['song' => $song]) }}">
-  </like>
- </div> --}}
+  <div class="form-group">
+   <like :song-id="{{ json_encode($song->id) }}" :user-id="{{ json_encode($song->likes()->id) }}"
+    :default-Liked="{{ json_encode($defaultLiked) }}" :default-Count="{{ json_encode($defaultCount) }}"></like>
+  </div>
+ </div>
 
  <div class="form-group">
   <div class="from-group">コメント一覧</div>
