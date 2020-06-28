@@ -27,9 +27,14 @@ Route::group(['middleware' => 'auth:user'], function () {
  // Route::post('/songs/{song}/likes/{like}', 'SongController@unlike')->name('unlike');
  Route::post('/tags/destroy/{id}', 'TagController@destroy')->name('tags.destroy');
  Route::post('/tags/update/{id}', 'TagController@update')->name('tags.update');
- // Route::get('/home', 'HomeController@index')->name('home');
+ // Route::post('/posts/{song}/like', 'LikesController@like')->name('like');
+ // Route::post('/posts/{song}/unlike', 'LikesController@unlike')->name('unlike');
+ // Route::put('api/posts/{song}/like', 'LikesController@like')->name('like');
+ // Route::delete('api/posts/{song}/unlike', 'LikesController@unlike')->name('unlike');
 });
 
+// Route::put('api/posts/{song}/like', 'LikesController@like')->name('like');
+// Route::delete('api/posts/{song}/unlike', 'LikesController@unlike')->name('unlike');
 /*
 |--------------------------------------------------------------------------
 | 3) Admin 認証不要
@@ -61,6 +66,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('/user', 'UserController');
 
-Auth::routes();
+// Auth::routes();
 
 // Route::get('/home', 'HomeController@index')->name('home');
