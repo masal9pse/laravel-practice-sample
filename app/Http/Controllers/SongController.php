@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Tag;
 use App\Problem;
 use App\Http\Requests\ProblemRequest;
+use App\Like;
 
 class SongController extends Controller
 {
@@ -77,9 +78,9 @@ class SongController extends Controller
   */
  public function show($id)
  {
-  $userAuth = Auth::user(); // 認証ユーザー取得
+  $userAuth = \Auth::user(); // 認証ユーザー取得
   $song = Song::find($id);
-  $song->load('user', 'comments', 'user', 'likes');
+  $song->load('user', 'comments', 'likes');
 
   $defaultCount = count($song->likes);
   $defaultLiked = $song->likes->where('user_id', $userAuth->id)->first();
@@ -97,39 +98,5 @@ class SongController extends Controller
   ];
 
   return view('songs.show', $params);
- }
-
- /**
-  * Show the form for editing the specified resource.
-  *
-  * @param  \App\Song  $song
-  * @return \Illuminate\Http\Response
-  */
- public function edit(Song $song)
- {
-  //
- }
-
- /**
-  * Update the specified resource in storage.
-  *
-  * @param  \Illuminate\Http\Request  $request
-  * @param  \App\Song  $song
-  * @return \Illuminate\Http\Response
-  */
- public function update(Request $request, Song $song)
- {
-  //
- }
-
- /**
-  * Remove the specified resource from storage.
-  *
-  * @param  \App\Song  $song
-  * @return \Illuminate\Http\Response
-  */
- public function destroy(Song $song)
- {
-  //
  }
 }
