@@ -16,20 +16,16 @@ if (version_compare(PHP_VERSION, '7.2.0', '>=')) {
 Auth::routes();
 
 Route::get('/', 'SongController@index')->name('songs.index');
-// Route::get('/songs/create', 'SongController@create')->name('songs.create');
 Route::resource('/songs', 'SongController')->only(['show', 'store']);
+Route::resource('/user', 'UserController');
 
 Route::group(['middleware' => 'auth:user'], function () {
- Route::resource('/songs', 'SongController', ['except' => ['index', 'create', 'store']]);
- Route::resource('/comments', 'CommentController');
+ Route::resource('/songs', 'SongController', ['except' => ['index', 'create', 'store', 'show']]);
  Route::resource('/tags', 'TagController', ['except' => ['destroy', 'update']]);
+ Route::resource('/comments', 'CommentController');
  Route::post('/tags/destroy/{id}', 'TagController@destroy')->name('tags.destroy');
  Route::post('/tags/update/{id}', 'TagController@update')->name('tags.update');
- Route::post('/songs/{song}/likes', 'LikesController@store');
- Route::post('/songs/{song}/likes/{like}', 'LikesController@destroy');
- Route::get('/home', 'HomeController@index')->name('home');
 });
-
 /*
 |--------------------------------------------------------------------------
 | 3) Admin 認証不要
@@ -57,10 +53,5 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
  Route::post('destroy/{id}', 'Admin\SongController@destroy')->name('admin.destroy');
  Route::post('update/{id}', 'Admin\SongController@update')->name('admin.update');
 });
-
-Route::get('/home', 'HomeController@index')->name('home');
-Route::resource('/user', 'UserController');
-
-Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

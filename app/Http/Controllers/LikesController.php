@@ -8,7 +8,6 @@ use App\Models\Song;
 
 class LikesController extends Controller
 {
-
  public function like(Song $song, Request $request)
  {
   $like = Like::create(['song_id' => $song->id, 'user_id' => $request->user_id]);
