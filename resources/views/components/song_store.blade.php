@@ -37,12 +37,16 @@
    <br>
    <br>
    <br>
-   {{-- <div class="col-md-15"> --}}
+   @if($errors->has('file_name'))
+   @foreach($errors->get('file_name') as $message)
+   <div class="text-danger">
+    {{ $message }}
+   </div>
+   @endforeach
+   @endif
    <input type="file" class="form-control" name="file_name">
-   {{-- </div> --}}
    <br>
    <div>
-    {{-- <label for="inputTag" class="col-sm-2 col-form-label">タグをつける</label> --}}
     <div class="form-check form-check-inline">
      @foreach($tags as $key => $tag)
      <input type="checkbox" name="tags[]" value="{{ $key }}" id="tag{{ $key }}" @if(isset($song->tags) &&

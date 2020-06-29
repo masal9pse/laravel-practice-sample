@@ -16,25 +16,16 @@ if (version_compare(PHP_VERSION, '7.2.0', '>=')) {
 Auth::routes();
 
 Route::get('/', 'SongController@index')->name('songs.index');
-// Route::get('/songs/create', 'SongController@create')->name('songs.create');
 Route::resource('/songs', 'SongController')->only(['show', 'store']);
+Route::resource('/user', 'UserController');
 
 Route::group(['middleware' => 'auth:user'], function () {
  Route::resource('/songs', 'SongController', ['except' => ['index', 'create', 'store', 'show']]);
  Route::resource('/tags', 'TagController', ['except' => ['destroy', 'update']]);
  Route::resource('/comments', 'CommentController');
- // Route::post('/songs/{song}/likes', 'SongController@like')->name('like');
- // Route::post('/songs/{song}/likes/{like}', 'SongController@unlike')->name('unlike');
  Route::post('/tags/destroy/{id}', 'TagController@destroy')->name('tags.destroy');
  Route::post('/tags/update/{id}', 'TagController@update')->name('tags.update');
- // Route::post('/posts/{song}/like', 'LikesController@like')->name('like');
- // Route::post('/posts/{song}/unlike', 'LikesController@unlike')->name('unlike');
- // Route::put('api/posts/{song}/like', 'LikesController@like')->name('like');
- // Route::delete('api/posts/{song}/unlike', 'LikesController@unlike')->name('unlike');
 });
-
-// Route::put('api/posts/{song}/like', 'LikesController@like')->name('like');
-// Route::delete('api/posts/{song}/unlike', 'LikesController@unlike')->name('unlike');
 /*
 |--------------------------------------------------------------------------
 | 3) Admin 認証不要
@@ -64,8 +55,3 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
 });
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::resource('/user', 'UserController');
-
-// Auth::routes();
-
-// Route::get('/home', 'HomeController@index')->name('home');

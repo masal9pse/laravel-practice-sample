@@ -100,6 +100,7 @@ return [
   'name' => '名前',
   'title' => 'タイトル',
   'body' => '本文',
+  'file_name' => '画像',
   'problem' => '感想',
   'detail' => '歌詞'
  ],

@@ -8,12 +8,6 @@ use App\Models\Song;
 
 class LikesController extends Controller
 {
- public function __construct()
- {
-  // 認証が必要
-  $this->middleware('auth');
- }
-
  public function like(Song $song, Request $request)
  {
   $like = Like::create(['song_id' => $song->id, 'user_id' => $request->user_id]);
