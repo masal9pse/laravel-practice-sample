@@ -82,9 +82,6 @@
   <main class="main">
    @yield('content')
   </main>
-  <footer class='footer p20'>
-   <small class='copyright'>Laravel Song Text 2019 copyright</small>
-  </footer>
  </div>
 
  <!-- Scripts -->
