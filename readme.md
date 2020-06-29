@@ -1,6 +1,6 @@
 ローカル開発環境: homestead で構築した https://github.com/masal9pse/song-picture-text を mamp 環境に移行した
 
-本番環境 AWS(VPC,EC2,RDS,ELB,CloudFormation) https://song-picture-mamp.work/
+本番環境 AWS(VPC,EC2,RDS,ELB,一部CloudFormationで構築) https://song-picture-mamp.work/
 
 # 使い方
 
