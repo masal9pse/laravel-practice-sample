@@ -36,7 +36,8 @@ export default {
           this.likeCount = response.data.likeCount;
         })
         .catch(error => {
-          alert(error);
+          alert("いいねを使うにはログインしてください");
+          return false;
         });
     },
     unlike(songId) {
@@ -50,7 +51,8 @@ export default {
           this.likeCount = response.data.likeCount;
         })
         .catch(error => {
-          alert(error);
+          alert("いいねを使うにはログインしてください");
+          return false;
         });
     }
   }

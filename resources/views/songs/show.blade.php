@@ -14,13 +14,13 @@
    @endif
   </div>
 
-  @if (Auth::check())
+  {{-- @if (Auth::check()) --}}
   <div class="form-group">
    <like :song-id="{{ json_encode($song->id) }}" :user-id="{{ json_encode($userAuth->id) }}"
     :default-Liked="{{ json_encode($defaultLiked) }}" :default-Count="{{ json_encode($defaultCount) }}">
    </like>
   </div>
-  @endif
+  {{-- @endif --}}
  </div>
 
  <div class="form-group">

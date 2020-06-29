@@ -45688,7 +45688,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         _this.liked = true;
         _this.likeCount = response.data.likeCount;
       }).catch(function (error) {
-        alert(error);
+        alert("いいねを使うにはログインしてください");
+        return false;
       });
     },
     unlike: function unlike(songId) {
@@ -45701,7 +45702,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         _this2.liked = false;
         _this2.likeCount = response.data.likeCount;
       }).catch(function (error) {
-        alert(error);
+        alert("いいねを使うにはログインしてください");
+        return false;
       });
     }
   }
