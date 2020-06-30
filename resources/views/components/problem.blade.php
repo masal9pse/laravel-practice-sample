@@ -1,4 +1,4 @@
-<form action="{{ route('songs.store')}}" method="post" class="col-3">
+<form action="{{ route('problems.store')}}" method="post" class="col-3">
  {{ csrf_field() }}
  <h3>問題や感想があれば報告お願いします</h3>
  <div class="form-group">

@@ -17,6 +17,7 @@ Auth::routes();
 
 Route::get('/', 'SongController@index')->name('songs.index');
 Route::resource('/songs', 'SongController')->only(['show', 'store']);
+Route::resource('/problems', 'ProblemController')->only(['store']);
 Route::resource('/user', 'UserController');
 
 Route::group(['middleware' => 'auth:user'], function () {
