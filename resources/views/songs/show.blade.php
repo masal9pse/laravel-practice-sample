@@ -15,6 +15,7 @@
   </div>
 
   <div class="form-group">
+   {{-- v-bindの参照先はとうぜんそのページと変数を返すSongController@show --}}
    <like :song-id="{{ json_encode($song->id) }}" :user-id="{{ json_encode($userAuth->id) }}"
     :default-Liked="{{ json_encode($defaultLiked) }}" :default-Count="{{ json_encode($defaultCount) }}">
    </like>
