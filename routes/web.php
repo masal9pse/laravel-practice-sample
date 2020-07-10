@@ -22,7 +22,7 @@ Route::resource('/user', 'UserController');
 
 Route::group(['middleware' => 'auth:user'], function () {
  Route::resource('/songs', 'SongController', ['except' => ['index', 'create', 'store', 'show']]);
- Route::resource('/tags', 'TagController', ['except' => ['destroy', 'update']]);
+ // Route::resource('/tags', 'TagController', ['except' => ['destroy', 'update']]);
  Route::resource('/comments', 'CommentController');
  Route::post('/tags/destroy/{id}', 'TagController@destroy')->name('tags.destroy');
  Route::post('/tags/update/{id}', 'TagController@update')->name('tags.update');
@@ -53,6 +53,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
  Route::get('edit/{id}', 'Admin\SongController@edit')->name('admin.edit');
  Route::post('destroy/{id}', 'Admin\SongController@destroy')->name('admin.destroy');
  Route::post('update/{id}', 'Admin\SongController@update')->name('admin.update');
+ Route::resource('/tags', 'TagController', ['except' => ['destroy', 'update']]);
 });
 
 Route::get('/home', 'HomeController@index')->name('home');
