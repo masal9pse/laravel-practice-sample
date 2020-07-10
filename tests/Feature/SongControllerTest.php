@@ -40,25 +40,17 @@ class SongControllerTest extends TestCase
    ->assertViewIs('songs.index');
  }
 
- public function store(array $data)
+ public function test_store(Problem $problem)
  {
-  $data = $this->beforeMakeMockFomRequest($data);
+  //第二引数にPOST値の配列を渡すだけ
+  // error原因はsongsテーブルを参照しちゃってる
+  $response = $problem->post('/problems', [
+   'name' => 'テストユーザー',
+   'problem' => '歌大好き'
+  ]);
 
-  $before = $this->Problem->all();
-
-  /** @var \Illuminate\Foundation\Http\FormRequest $request */
-  // フォームリクエストはモックモックです
-  $request = $this->makeMockFomRequest($data);
-
-  // 保存
-  $this->result = $this->Problem->store($request)->toArray();
-
-  // 保存されたモデルにリクエストデータが含まれているかチェック
-  $this->assertEloquentData($data);
-
-  // テーブルにデータが保存されているかのチェック
-  $after = $this->Problem->all();
-  $this->assertEquals($before->count() + 1, $after->count());
-  $this->assertDatabaseHas((new $this->model_name())->getTable(), $data);
+  //登録処理が完了して、一覧画面にリダイレクトすることを検証
+  $response->assertRedirect();
+  // $response->assertRedirect()->route('songs.index');
  }
 }
