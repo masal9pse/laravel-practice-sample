@@ -39,18 +39,4 @@ class SongControllerTest extends TestCase
   $response->assertStatus(200)
    ->assertViewIs('songs.index');
  }
-
- public function test_store(Problem $problem)
- {
-  //第二引数にPOST値の配列を渡すだけ
-  // error原因はsongsテーブルを参照しちゃってる
-  $response = $problem->post('/problems', [
-   'name' => 'テストユーザー',
-   'problem' => '歌大好き'
-  ]);
-
-  //登録処理が完了して、一覧画面にリダイレクトすることを検証
-  $response->assertRedirect();
-  // $response->assertRedirect()->route('songs.index');
- }
 }

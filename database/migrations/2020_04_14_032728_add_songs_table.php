@@ -14,7 +14,7 @@ class AddSongsTable extends Migration
  public function up()
  {
   Schema::table('songs', function (Blueprint $table) {
-   $table->string('file_name');
+   $table->string('file_name')->nullable();
   });
  }
 
