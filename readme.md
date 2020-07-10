@@ -52,8 +52,13 @@ html/css/PHP/Laravel/MySQL/JavaScript/Vue/Git/Github/
 
 <img width="500" alt="https.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/439295/e4cd5652-66b6-af9b-8a7f-21241e8e05a4.png">
 
-# やりたいこと
+# 作った目的
+1. Laravelの理解度を向上させる
+これを作ろうとした当時はCRUD機能をどう実装すればいいのか分からないレベルでした。
+６割ほど完成しましたが、基本的なPHP/Laravelの理解度は格段に深まったと思います。
+なので、UI部分はそこまで意識せずテンプレートを使いまわしながら少し変えています。
 
+# やりたいこと
 1. ファットコントローラー防止
 2. 意味のある単体テストを記述
 3. 現在は個人開発なので mamp で十分だが、チーム開発する場合、開発環境に Docker を使用したい => macbookPro16GB 使う
