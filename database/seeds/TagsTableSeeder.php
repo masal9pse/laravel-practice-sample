@@ -90,5 +90,21 @@ class TagsTableSeeder extends Seeder
     'updated_at'     => now()
    ]
   );
+
+  Tag::create(
+   [
+    'title' => 'あいみょん',
+    'created_at'     => now(),
+    'updated_at'     => now()
+   ]
+  );
+
+  Tag::create(
+   [
+    'title' => 'Official髭男dism',
+    'created_at'     => now(),
+    'updated_at'     => now()
+   ]
+  );
  }
 }
