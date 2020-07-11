@@ -68,7 +68,7 @@ html/css/PHP/Laravel/MySQL/JavaScript/Vue/Git/Github/
 # やりたいこと
 1. ファットコントローラー防止
 2. 意味のある単体テストを記述
-3. ８GBで使用すると重くなるので、16GBを買ったらローカルでDockerを使用する。
+3. ８GBで使用するとメモリ不足で重くなったので（ https://github.com/masal9pse/docker-laravel-apache ）、16GBを買ったらローカルでDocker,docker-composeを使用する。
 4. UI/UX を整える
 5. S3 に画像を保存する。
 6. テストがある程度かけたら、circleCIとgithubを連携させてCIを導入する
