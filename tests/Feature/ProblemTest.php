@@ -42,4 +42,6 @@ class ProblemTest extends TestCase
 
   $response->assertRedirect('/');
  }
+
+ // 何も書かずに投稿した場合
 }
