@@ -44,4 +44,17 @@ class ProblemTest extends TestCase
  }
 
  // 何も書かずに投稿した場合
+ // 何も書かずに投稿した場合 これで通ってしまう。
+ public function test_バリデーション()
+ {
+  $response = $this->post('/problems', [
+   'name' => 'ユーザー',
+   'problem' => ''
+  ]);
+  // バリデーションメッセージをそのまま記入する
+  $response->assertSessionHasErrors([
+   'problem' => '感想は必須です。',
+  ]);
+  $response->assertRedirect('/');
+ }
 }
