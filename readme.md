@@ -45,6 +45,8 @@ php artisan migrate --seed
 
 · ページネーション機能
 
+· UIは9割Bootstrap使用
+
 # トップページ
 詳細ページで歌詞を閲覧できます。
 ![スクリーンショット 2020-06-25 5 33 33](https://user-images.githubusercontent.com/51937772/85625242-187ea200-b6a6-11ea-914e-f7054c18d92c.png)
