@@ -45,7 +45,7 @@ php artisan migrate --seed
 
 · ページネーション機能
 
-· UIは9割Bootstrap使用
+· CircleCIでテストの自動化（テストコードは現在追記中）
 
 # トップページ
 詳細ページで歌詞を閲覧できます。
@@ -85,4 +85,3 @@ html/css/PHP/Laravel/MySQL/JavaScript/Vue/Git/Github/
 3. ８GBで使用するとメモリ不足で重くなったので（ https://github.com/masal9pse/docker-laravel-apache ）、16GBを買ったらローカルでDocker,docker-composeを使用する。
 4. UI/UX を整える
 5. S3 に画像を保存する。
-6. テストがある程度かけたら、circleCIとgithubを連携させてCIを導入する
