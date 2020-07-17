@@ -12,7 +12,7 @@ jobs:
           key: composer-v1-{{ checksum "composer.lock" }}
           paths:
             - vendor
-　　　 - run: sudo apt-get install build-essential libpng-dev
+      - run: sudo apt-get install build-essential libpng-dev
       - run: npm ci
       - run: npm run dev
       - run:
