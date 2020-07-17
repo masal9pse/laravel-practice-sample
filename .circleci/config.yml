@@ -6,13 +6,13 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-       key: composer-v1-{{ checksum "composer.lock" }}
+          key: composer-v1-{{ checksum "composer.lock" }}
       - run: composer install -n --prefer-dist
       - save_cache:
-       key: composer-v1-{{ checksum "composer.lock" }}
-       paths:
-         - vendor
-      - run: sudo apt-get install build-essential libpng-dev
+          key: composer-v1-{{ checksum "composer.lock" }}
+          paths:
+            - vendor
+　　　 - run: sudo apt-get install build-essential libpng-dev
       - run: npm ci
       - run: npm run dev
       - run:
