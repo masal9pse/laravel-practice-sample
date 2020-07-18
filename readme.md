@@ -105,3 +105,6 @@ php artisan migrate --seed
 - テストコードをさらに追記する。
 - 一緒に開発してくれる人がいれば、フォークしてもらって共同開発してみたい
 - 現在はCircleCIだけで自動デプロイしているので、CodeDeployも使って自動化する
+
+### 開発環境を変更したため使わなくなったリポジトリのURL
+https://github.com/masal9pse/song-picture-text
