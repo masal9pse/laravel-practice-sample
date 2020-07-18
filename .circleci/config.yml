@@ -3,6 +3,19 @@ jobs:
   build:
     docker:
       - image: circleci/php:7.3-node-browsers
+      - image: circleci/postgres:11.6-alpine
+        environment:
+          POSTGRES_DB: song-picture-mamp
+          POSTGRES_USER: default
+          POSTGRES_PASSWORD: secret
+    environment:
+      APP_ENV: testing
+      DB_CONNECTION: pgsql
+      DB_HOST: localhost
+      DB_PORT: 5432
+      DB_DATABASE: song-picture-mamp
+      DB_USERNAME: default
+      DB_PASSWORD: secret
     steps:
       - checkout
       - restore_cache:
@@ -12,7 +25,6 @@ jobs:
           key: composer-v1-{{ checksum "composer.lock" }}
           paths:
             - vendor
-      - run: sudo apt-get install build-essential libpng-dev
       - restore_cache:
           key: npm-v1-{{ checksum "package-lock.json" }}
       - run:
@@ -26,6 +38,13 @@ jobs:
           paths:
             - node_modules
       - run: npm run dev
+      - run:
+          name: get ready for postgres
+          command: |
+            sudo apt-get update
+            sudo apt-get install libpq-dev
+            sudo docker-php-ext-install pdo_pgsql
+            dockerize -wait tcp://localhost:5432 -timeout 1m
       - run:
           name: php test
           command: vendor/bin/phpunit
