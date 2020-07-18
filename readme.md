@@ -1,21 +1,3 @@
-ローカル開発環境: homestead で構築した https://github.com/masal9pse/song-picture-text を mamp 環境に移行した
-
-本番環境 AWS(VPC,EC2,RDS,ELB,一部CloudFormationで構築) https://song-picture-mamp.work/
-
-# 使い方
-
-```
-composer install
-
-npm install
-
-php artisan serve
-
-npm run watch
-
-php artisan migrate --seed
-```
-
 ## 機能一覧
 - 曲一覧表示機能
 
@@ -99,6 +81,20 @@ php artisan migrate --seed
 
 · 認証機能を最低限のものでかつメアドやパスワードを初めから表示してEnterを押すだけにしたり、決済機能や外部サービス認証など確認するのが面倒な機能は避けるようにして、見る人の工数を少なくできるよう工夫しています。
 インフラにAWSを使って読み込みを早くしているのもそのためです。
+
+# インストール方法
+
+```
+composer install
+
+npm install
+
+php artisan serve
+
+npm run watch
+
+php artisan migrate --seed
+```
 
 # やりたいこと
 1. ファットコントローラー防止
