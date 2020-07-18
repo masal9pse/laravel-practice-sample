@@ -59,10 +59,6 @@
 
 - AWS 
   - EC2/RDS/VPC/IAM/Route53/ELB
-  
-# その他
-
-1. github の issue,pullRequest 活用
 
 # インフラ構成図
 
