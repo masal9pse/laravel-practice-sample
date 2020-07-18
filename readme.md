@@ -51,7 +51,7 @@
 
 + Laravel 5.5
 
-- MySQL
+- 手違いでローカルはMySQL、本番はPostgresSQL
 
 - Linux(各種コマンド操作)
 
