@@ -17,35 +17,35 @@ php artisan migrate --seed
 ```
 
 ## 機能一覧
-· 曲一覧表示機能
+- 曲一覧表示機能
 
-· 歌詞詳細機能
+- 歌詞詳細機能
 
-· ユーザー一覧表示機能(view に vue を使用)
+- ユーザー一覧表示機能
 
-· 管理ユーザー認証機能(/admin でアクセスする)=>わかりやすいように遷移できるボタンつけました。
+- 管理ユーザー認証機能(/admin でアクセスする)=>わかりやすいように遷移できるボタンつけました。
 
-· 管理画面から曲を投稿できる
+- 管理画面から曲を投稿できる
 
-· ユーザー認証機能
+- ユーザー認証機能
 
-· ページネーション機能
+- ページネーション機能
 
-· 検索機能
+- 検索機能
 
-· 画像投稿機能
+- 画像投稿機能
 
-· 匿名コメント機能
+- 匿名コメント機能
 
-· ユーザー認証コメント機能
+- ユーザー認証コメント機能
 
-· １つの曲に対して、タグを紐づける機能（多対多）
+- １つの曲に対して、タグを紐づける機能（多対多）
 
-· いいね機能(Vue 化)
+- いいね機能(Vue/Ajax)
 
-· ページネーション機能
+- ページネーション機能
 
-· CircleCIでテストの自動化（テストコードは現在追記中）
+- CircleCIでテストの自動化（テストコードは現在追記中）
 
 # トップページ
 詳細ページで歌詞を閲覧できます。
@@ -57,8 +57,31 @@ php artisan migrate --seed
 
 # 使用技術一覧
 
-html/css/PHP/Laravel/MySQL/JavaScript/Vue/Git/Github/
+* HTML
 
++ CSS
+
+- Javascript / Vue.js / Ajax
+
+* PHP 7.2 
+
++ Laravel 5.5
+
+- MySQL
+
+- Linux(各種コマンド操作)
+
+- Nginx(Web Server)
+
+- Git/GitHub(pull request, Issues 等による擬似チーム開発)
+
+- 本番環境のみDocker使用
+
+-  CircleCI
+
+- AWS 
+  - EC2/RDS/VPC/IAM/Route53/ELB
+  
 # その他
 
 1. github の issue,pullRequest 活用
@@ -84,4 +107,4 @@ html/css/PHP/Laravel/MySQL/JavaScript/Vue/Git/Github/
 2. 意味のある単体テストを記述
 3. ８GBで使用するとメモリ不足で重くなったので（ https://github.com/masal9pse/docker-laravel-apache ）、16GBを買ったらローカルでDocker,docker-composeを使用する。
 4. UI/UX を整える
-5. S3 に画像を保存する。
+5. テストコードをさらに追記する。
