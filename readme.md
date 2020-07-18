@@ -66,7 +66,8 @@
 
 # インフラ構成図
 
-<img width="700" alt="https.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/439295/995098d0-ef70-e0d8-1110-49a166d18862.png">
+![infra-structure2](https://user-images.githubusercontent.com/51937772/87854452-1a5a1f00-c94d-11ea-99a8-9bf43b9f2ad8.png)
+
 
 # 作った目的と意識したこと
 1. Laravelの理解度を向上させる
