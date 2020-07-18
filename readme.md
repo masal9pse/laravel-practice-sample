@@ -75,8 +75,6 @@ php artisan migrate --seed
 
 - Git/GitHub(pull request, Issues 等による擬似チーム開発)
 
-- 本番環境のみDocker使用
-
 -  CircleCI
 
 - AWS 
@@ -88,7 +86,7 @@ php artisan migrate --seed
 
 # インフラ構成図
 
-<img width="500" alt="https.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/439295/e4cd5652-66b6-af9b-8a7f-21241e8e05a4.png">
+<img width="700" alt="https.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/439295/995098d0-ef70-e0d8-1110-49a166d18862.png">
 
 # 作った目的と意識したこと
 1. Laravelの理解度を向上させる
