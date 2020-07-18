@@ -39,9 +39,7 @@
      </table>
      {{ $songs->links() }}
 
-     {{-- コメント機能 --}}
      @include('components.problem')
-     {{-- ここまで --}}
 
     </div>
    </div>
