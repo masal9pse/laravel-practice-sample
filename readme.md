@@ -97,8 +97,9 @@ php artisan migrate --seed
 ```
 
 # やりたいこと
-1. ファットコントローラー防止
-2. 意味のある単体テストを記述
-3. ８GBで使用するとメモリ不足で重くなったので（ https://github.com/masal9pse/docker-laravel-apache ）、16GBを買ったらローカルでDocker,docker-composeを使用する。
-4. UI/UX を整える
-5. テストコードをさらに追記する。
+- ファットコントローラー防止
+- 意味のある単体テストを記述
+- Docker,docker-composeでローカル開発環境を構築
+  - 現在自分が使っている８GBでそれを使うとメモリ不足でまともに開発できなくなるので、16GBを使用する
+- UI/UX を整える
+- テストコードをさらに追記する。
