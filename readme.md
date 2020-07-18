@@ -62,7 +62,7 @@
 -  CircleCI
 
 - AWS 
-  - EC2/RDS/VPC/IAM/Route53/ELB
+  - EC2/RDS/VPC/IAM/Route53/ELB/CloudFormation
 
 # インフラ構成図
 
@@ -74,7 +74,7 @@
 
 · これを作ろうとした当時はCRUD機能をどう実装すればいいのか分からないレベルでした。
 ６割ほど完成しましたが、基本的なPHP/Laravelの理解度は格段に深まったと思います。
-なので、UI部分はそこまで意識せずテンプレートを使いまわしながら少し変えています。
+なので、UI部分はそこまで意識せず、Bootstrapで最低限のviewで完結させています。
 
 2. 閲覧者、採用者の手間を減らす。
 
@@ -106,5 +106,5 @@ php artisan migrate --seed
 - 一緒に開発してくれる人がいれば、フォークしてもらって共同開発してみたい
 - 現在はCircleCIだけで自動デプロイしているので、CodeDeployも使って自動化する
 
-### 開発環境を変更したため使わなくなったリポジトリのURL
+### 以前使用していたが、開発環境を変更したため使わなくなったリポジトリのURL
 https://github.com/masal9pse/song-picture-text
