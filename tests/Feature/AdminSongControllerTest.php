@@ -18,24 +18,20 @@ class AdminSongControllerTest extends TestCase
   parent::setUp();
 
   $this->admin = factory(Admin::class)->create();
-  $this->user = factory(User::class)->create();
  }
- /**
-  * A basic test example.
-  *
-  * @return void
-  */
- public function test_歌詞を投稿に成功した時()
+
+
+ public function test_画像とタグが未入力で歌詞を投稿に成功した時()
  {
   $this->withoutExceptionHandling();
   $response = $this->actingAs($this->admin, 'admin')
    ->post(route('admin.store'), [
     // ダミーファイルを作成して送信している
-    // 'photo' => UploadedFile::fake()->image('photo.jpg'),
     'title' => '国歌',
     'detail' => 'きみがあよおは',
     'file_name' => ''
    ]);;
-  $response->assertStatus(201);
+
+  $response->assertRedirect('/admin/create');
  }
 }
