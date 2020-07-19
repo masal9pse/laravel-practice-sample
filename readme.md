@@ -55,7 +55,7 @@
 
 + Laravel 5.5
 
-- PostgreSQL/MySQL
+- MySQL
 
 - Linux(各種コマンド操作)
 
@@ -66,7 +66,7 @@
 -  CircleCI
 
 - AWS 
-  - EC2/RDS/VPC/IAM/Route53/ELB/CloudFormation
+  - EC2/RDS(PostgreSQL)/VPC/IAM/Route53/ELB/CloudFormation
 
 # インフラ構成図
 
