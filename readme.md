@@ -55,7 +55,7 @@
 
 + Laravel 5.5
 
-- PostgreSQL
+- PostgreSQL/MySQL
 
 - Linux(各種コマンド操作)
 
