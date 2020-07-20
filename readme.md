@@ -78,6 +78,8 @@ https://song-picture-mamp.work/
 
 * CircleCI
 
+- prettier(インデント誤りを自動で補正) 
+
 * AWS
   - EC2/RDS(PostgreSQL)/VPC/IAM/Route53/ELB/CloudFormation
 
@@ -104,7 +106,6 @@ php artisan migrate --seed
 - テストコードをさらに追記する。（優先順位高）
 - 歌詞データが全く足りないので、外部 API からテーブルにシードする
 - ファットコントローラーの防止
-- Docker,docker-compose でローカル開発環境を構築
 - UI/UX を整えて勉強用のサービスから、実サービスとして運用してみる。
   - 広告を入れる、twitter 等で宣伝する
 - 一緒に開発してくれる人がいれば、フォークしてもらって共同開発してみたい
