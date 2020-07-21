@@ -55,15 +55,17 @@ https://song-picture-mamp.work/
 
 # 使用技術一覧
 
-- HTML
-
-* CSS
-
-- Javascript / Vue.js / Ajax
-
 * PHP 7.2
 
 - Laravel 5.5
+
+- HTML(Blade)
+
+- CSS
+
+- Bootstrap 
+
+- Javascript / Vue.js / Ajax
 
 * MySQL
 
@@ -102,6 +104,7 @@ php artisan migrate --seed
 
 - テストコードをさらに追記する。（優先順位高）
 - 歌詞データが全く足りないので、外部 API からテーブルにシードする
+  - 課題: 日本語の曲のJsonURLがなかなか見つからないので取得しようがない。
 - laravelプロジェクト内で、Dockerfile,docker-composeの２ファイルを記載しDocker化させたい(最優先)。
 - ファットコントローラーの防止
 - UI/UX を整えて勉強用のサービスから、実サービスとして運用してみる。
