@@ -102,7 +102,7 @@ php artisan migrate --seed
 
 - テストコードをさらに追記する。（優先順位高）
 - 歌詞データが全く足りないので、外部 API からテーブルにシードする
-- laravelプロジェクト内で、Dockerfile,docker-composeの２ファイルを記載しDocker化させたい。
+- laravelプロジェクト内で、Dockerfile,docker-composeの２ファイルを記載しDocker化させたい(最優先)。
 - ファットコントローラーの防止
 - UI/UX を整えて勉強用のサービスから、実サービスとして運用してみる。
   - 広告を入れる、twitter 等で宣伝する
