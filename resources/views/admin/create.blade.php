@@ -13,15 +13,8 @@
    @endif
 
    @include('components.admin_search')
-
-   <div class="panel-heading">
-    <p class="{{ Request::is('tags', 'tags/*') ? 'active' : '' }}">
-     <a class="btn btn-danger" href="{{ route('tags.index') }}">タグを追加する</a>
-    </p>
-   </div>
-
-   @include('components.song_store')
    <br>
+   @include('components.song_store')
    @include('components.admin_song_table')
    {{ $songs->links() }}
   </div>

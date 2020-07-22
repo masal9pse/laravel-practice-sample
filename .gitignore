@@ -12,3 +12,4 @@ yarn-error.log
 .env
 .vagrant
 ./public/js/app.js
+.env/memo

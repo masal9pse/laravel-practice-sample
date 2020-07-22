@@ -32,9 +32,10 @@
     </div>
     @endforeach
     @endif
-    <textarea name="detail" class="form-control" placeholder="歌詞を入力してください"></textarea>
+    <div class="form-group">
+     <textarea name="detail" class="form-control" rows="10" placeholder="歌詞を入力してください"></textarea>
+    </div>
    </div>
-   <br>
    <br>
    <br>
    @if($errors->has('file_name'))
@@ -59,9 +60,10 @@
     </div>
    </div>
    <br>
-   {{-- <div class="col-md-10"> --}}
    <input type="submit" value="登録する" class="btn btn-info">
-   {{-- </div> --}}
+   <span class="{{ Request::is('tags', 'tags/*') ? 'active' : '' }}">
+    <a class="btn btn-danger" href="{{ route('tags.index') }}">タグを追加する</a>
+   </span>
   </div>
  </div>
 </form>
