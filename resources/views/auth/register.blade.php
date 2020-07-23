@@ -25,11 +25,11 @@
        </div>
       </div>
 
-      <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+      <div class="form-group">
        <label for="email" class="col-md-4 control-label">メールアドレス</label>
 
        <div class="col-md-6">
-        <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
+        <input id="email" type="email" class="form-control" name="email" required>
 
         @if ($errors->has('email'))
         <span class="help-block">
@@ -39,7 +39,7 @@
        </div>
       </div>
 
-      <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+      <div class="form-group">
        <label for="password" class="col-md-4 control-label">パスワード</label>
 
        <div class="col-md-6">
