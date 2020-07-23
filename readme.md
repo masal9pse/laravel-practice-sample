@@ -14,7 +14,7 @@ https://song-picture-mamp.work/
 
 - ユーザーログインと管理ユーザーログイン機能がありますが、すでにテストユーザーをDBに入れて入力もしてあるので、Enterを押すだけで簡単にログインできます。
 
-# Webページサンプル
+## Webページサンプル
 
 ![スクリーンショット 2020-06-25 5 33 33](https://user-images.githubusercontent.com/51937772/85625242-187ea200-b6a6-11ea-914e-f7054c18d92c.png)
 
@@ -87,7 +87,7 @@ https://song-picture-mamp.work/
 * AWS
   - EC2/RDS(PostgreSQL)/VPC/IAM/Route53/ELB/CloudFormation
 
-# インフラ構成図
+## インフラ構成図
 
 ![infra-structure2](https://user-images.githubusercontent.com/51937772/87854452-1a5a1f00-c94d-11ea-99a8-9bf43b9f2ad8.png)
 
