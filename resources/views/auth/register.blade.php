@@ -54,7 +54,7 @@
       </div>
 
       <div class="form-group">
-       <label for="password-confirm" class="col-md-4 control-label"> パスワードを再入力してくだい</label>
+       <label for="password-confirm" class="col-md-4 control-label"> パスワードを再入力</label>
 
        <div class="col-md-6">
         <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
