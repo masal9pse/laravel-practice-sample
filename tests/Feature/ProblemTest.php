@@ -43,9 +43,7 @@ class ProblemTest extends TestCase
   $response->assertRedirect('/');
  }
 
- // 何も書かずに投稿した場合
- // 何も書かずに投稿した場合 これで通ってしまう。
- public function test_バリデーション()
+ public function test_問題点を入力しない()
  {
   $response = $this->post('/problems', [
    'name' => 'ユーザー',
@@ -55,6 +53,5 @@ class ProblemTest extends TestCase
   $response->assertSessionHasErrors([
    'problem' => '感想は必須です。',
   ]);
-  $response->assertRedirect('/');
  }
 }

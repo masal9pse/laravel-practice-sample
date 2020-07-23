@@ -68,7 +68,7 @@ class SongController extends Controller
 
   $song->save();
   $song->tags()->sync($request->tags);
-  return redirect()->route('admin.create')->with(['success' => 'ファイルを保存しました']);;
+  return redirect()->route('admin.create')->with(['success' => 'ファイルを保存しました']);
  }
 
  public function show($id)

@@ -25,18 +25,9 @@ class CreateSongTask extends FormRequest
  public function rules()
  {
   return [
-   'title' => 'required|max:100',
-   'detail' => 'required|max:1000',
+   'title' => 'required|string|max:100',
+   'detail' => 'required|string|max:1000',
    'file_name' => 'nullable|file|image|mimes:jpeg,png,jpg,gif|max:2048'
-  ];
- }
-
- public function attributes()
- {
-  return [
-   // 'title' => 'タイトル',
-   // 'detail' => '歌詞',
-   // 'file_name' => '画像'
   ];
  }
 }
