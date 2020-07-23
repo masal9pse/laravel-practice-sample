@@ -46,7 +46,6 @@ class CommentController extends Controller
   // dd($input);
   $comment = $comment->create($input);
   // dd($comment);
-  // return redirect('/songs/' . $comment->song_id);
   return redirect()->route('songs.show', ['id' => $comment->song_id]);
  }
 

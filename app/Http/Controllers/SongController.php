@@ -4,12 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Song;
 use Illuminate\Http\Request;
-use DB;
-use Illuminate\Support\Facades\Auth;
-use App\Models\Tag;
 use App\Problem;
-use App\Http\Requests\ProblemRequest;
-use App\Like;
 
 class SongController extends Controller
 {
