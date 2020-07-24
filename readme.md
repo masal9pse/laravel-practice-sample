@@ -104,10 +104,10 @@ php artisan migrate --seed
 ``` 
 
 ### 他にやったこと
-- ローカル開発環境を何度も移動した経験
-  1. Vagrant+virtialboxでのHomestead => 
-  2. 起動の手軽さを求めてmamp
-  3. circleCIの設定ファイルに合わせるためにDocker,docker-compose
+- Laravelのローカル開発環境を何度も移動した経験
+  1. Vagrant+virtialboxでのHomesteadで構築 =>
+  2. 起動の手軽さを求めてmampに変更 => 
+  3. circleCIの設定ファイルに合わせるためにDocker,docker-composeで再構築
 
 ### これからの課題
 - テストコードをさらに追記する。（優先順位高）
