@@ -18,8 +18,8 @@ services:
   mysql:
     image: mysql:5.7
     environment:
-      MYSQL_DATABASE: sample
-      MYSQL_USER: user
+      MYSQL_DATABASE: song-picture-mamp
+      MYSQL_USER: default
       MYSQL_PASSWORD: password
       MYSQL_ROOT_PASSWORD: password
     ports:
