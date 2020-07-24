@@ -3,11 +3,7 @@
 namespace Tests\Feature;
 
 use App\Admin;
-use App\Http\Requests\CreateSongTask;
-use App\Models\Song;
-use App\Models\User;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class AdminSongControllerTest extends TestCase

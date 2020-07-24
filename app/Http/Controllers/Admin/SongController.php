@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;  // \Adminを追加
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -8,7 +8,6 @@ use App\Models\Song;
 use App\Http\Requests\CreateSongTask;
 use App\Http\Requests\TagRequest;
 use Illuminate\Support\Facades\DB;
-use Intervention\Image\ImageManagerStatic as Image;
 use App\Models\Tag;
 
 class SongController extends Controller
