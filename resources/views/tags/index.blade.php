@@ -5,13 +5,12 @@
  <div class="row justify-content-center">
   <div class="col-md-12">
    <div class="card">
-    <div class="card-header">タグ一覧</div>
+    <span class="card-header">タグ一覧</span>
+    <a href="{{ route('tags.create') }}" class="btn btn-primary">新規登録</a>
     <div class="card-header">
-     <a href="{{ route('songs.index') }}" class="btn btn-danger mt-5">トップページ</a>
     </div>
     <div class="card-body">
      <div class="mb-3">
-      <a href="{{ route('tags.create') }}" class="btn btn-primary">新規登録</a>
      </div>
      {{-- @include('components.alert') --}}
      <table class="table table-striped">
