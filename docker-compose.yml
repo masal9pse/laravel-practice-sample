@@ -3,7 +3,7 @@ services:
   web:
     image: nginx:1.15.6
     ports:
-      - "8001:80"
+      - "8088:80"
     depends_on:
       - app
     volumes:
