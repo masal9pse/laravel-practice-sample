@@ -31,11 +31,6 @@
        <td class="align-middle">
         <div class="d-flex">
          <a href="{{ route('songs.show', $song) }}" class="btn btn-secondary btn-sm">表示</a>
-         <a href="{{ route('admin.edit', $song->id) }}" class="btn btn-secondary btn-sm ml-1">編集</a>
-         <form method="POST" action="{{ route('songs.destroy', $song) }}">
-          {{ csrf_field() }}
-          <button onclick="return confirm('本当に削除しますか？')" class="btn btn-primary btn-sm ml-1">削除</button>
-         </form>
         </div>
        </td>
       </tr>
