@@ -13,4 +13,8 @@ RUN apt-get update \
  && apt-get install -y libpq-dev \
  && docker-php-ext-install pdo_mysql pdo_pgsql
 
+RUN apt-get install -y gnupg
+RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
+RUN apt-get install -y nodejs
+
 WORKDIR /var/www/html
