@@ -38,13 +38,6 @@
    </div>
    <br>
    <br>
-   @if($errors->has('file_name'))
-   @foreach($errors->get('file_name') as $message)
-   <div class="text-danger">
-    {{ $message }}
-   </div>
-   @endforeach
-   @endif
    <input type="file" class="form-control" name="file_name">
    <br>
    <div>

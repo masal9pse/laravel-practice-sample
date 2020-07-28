@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Admin;
+use App\Models\Song;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -55,10 +56,31 @@ class AdminSongControllerTest extends TestCase
     'title' => '',
     'detail' => '苦いようで甘いような〜',
     'file_name' => ''
-   ]);;
+   ]);
 
   $response->assertSessionHasErrors([
    'title' => 'タイトルは必須です。'
   ]);
+ }
+
+ public function test_歌詞を更新したとき()
+ {
+  $this->withoutExceptionHandling();
+  $song = Song::create([
+   'title' => 'test',
+   'detail' => 'test',
+   'file_name' => false
+  ]);
+
+  $this->assertEquals('test', $song->title);
+  $this->assertEquals('test', $song->detail);
+  $this->assertFalse($song->file_name);
+
+  $song->fill(['title' => 'テスト', 'detail' => 'テスト']);
+  $song->save();
+
+  // $this->assertRedirect('/admin/create');
+  // $task2 = Task::find($song->id);
+  // $this->assertEquals('テスト', $task2->title);
  }
 }

@@ -30,18 +30,6 @@ class Song extends Model
   return $this->BelongsToMany(User::class, 'likes');
  }
 
- public function isLikedBy(?User $user): bool
- {
-  return $user
-   ? (bool) $this->likes->where('id', $user->id)->count()
-   : false;
- }
-
- public function getCountLikesAttribute(): int
- {
-  return $this->likes->count();
- }
-
  public function user()
  {
   return $this->belongsTo(User::class, 'user_id');
@@ -60,21 +48,5 @@ class Song extends Model
  public function tags()
  {
   return $this->belongsToMany(Tag::class);
- }
-
- // これはだめ
- public function titleSearch($search)
- {
-  return where('title', 'like', '%' . $search . '%');
- }
- // error 
- public function isLike(Int $user_id)
- {
-  return $this->where('user_id', $user_id)->first();
- }
-
- public function paginateText()
- {
-  return  orderBy('id', 'desc')->paginate(10);
  }
 }

@@ -88,7 +88,7 @@ class SongController extends Controller
   return view('admin.edit', compact('song', 'tags'));
  }
 
- public function update(CreateSongTask $request, $id, TagRequest $tagRequest)
+ public function update(CreateSongTask $request, $id)
  {
   $song = Song::find($id);
 

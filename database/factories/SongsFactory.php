@@ -5,8 +5,8 @@ use App\Models\Song;
 
 $factory->define(Song::class, function (Faker $faker) {
  return [
-  'title' => $faker->sentence(rand(1, 4)), // 1〜4つの単語で文章
-  'detail' => $faker->realText(512), // 512文字の文章
+  'title' => '今夜このまま',
+  'detail' => '苦いようで甘いような〜',
   'file_name' => '',
  ];
 });
