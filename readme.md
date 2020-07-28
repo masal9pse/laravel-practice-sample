@@ -83,7 +83,7 @@ https://song-picture-mamp.work/
 * CircleCI
 
 * AWS
-  - EC2/RDS(PostgreSQL)/VPC/IAM/Route53/ELB/CloudFormation
+  - EC2/RDS(PostgreSQL)/VPC/IAM/Route53/ELB/CloudFormation(EC２とVPCのみコード化）
 
 ## インフラ構成図
 
