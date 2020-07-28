@@ -28,7 +28,7 @@ class AdminSongControllerTest extends TestCase
     'file_name' => ''
    ]);;
 
-  // $response->assertRedirect('/admin/create');
+  $response->assertRedirect('/admin/create');
  }
 
  public function test_入力必須項目が未入力で歌詞を投稿すると失敗する()
@@ -45,6 +45,7 @@ class AdminSongControllerTest extends TestCase
    'title' => 'タイトルは必須です。',
    'detail' => '歌詞は必須です。'
   ]);
+  // バリデーションはリダイレクトしないみたい。
  }
 
  public function test_タイトルが未入力で歌詞を投稿すると失敗する()
