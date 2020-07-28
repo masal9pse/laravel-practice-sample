@@ -10,6 +10,17 @@ use App\Models\Song;
 class UserViewTest extends TestCase
 {
  use RefreshDatabase;
+ private $song;
+
+ protected function setUp()
+ {
+  parent::setUp();
+  $this->song = Song::create([
+   'title' => 'テストタスク',
+   'detail' => 'ああああ',
+   'file_name' => ''
+  ]);
+ }
  /**
   * A basic test example.
   *
@@ -26,5 +37,12 @@ class UserViewTest extends TestCase
  {
   $song = factory(Song::class)->create();
   $this->assertEquals('苦いようで甘いような〜', $song->detail);
+ }
+
+ public function testGetTaskPath()
+ {
+  $response = $this->get('/songs/' . $this->song->id);
+
+  $response->assertStatus(200);
  }
 }
