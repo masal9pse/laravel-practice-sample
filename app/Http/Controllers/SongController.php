@@ -57,13 +57,6 @@ class SongController extends Controller
   * @param  \Illuminate\Http\Request  $request
   * @return \Illuminate\Http\Response
   */
- // public function store(ProblemRequest $request)
- // {
- //  $problem = Problem::create($request->only(['name', 'problem']));
- //  $problem->save();
- //  return redirect()->route('songs.index');
- //  // return redirect()->route('/');
- // }
 
  /**
   * Display the specified resource.

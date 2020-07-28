@@ -7,7 +7,7 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Admin;
 
-class TopPageTest extends TestCase
+class AdminViewTest extends TestCase
 {
  use RefreshDatabase;
  /**
@@ -15,13 +15,6 @@ class TopPageTest extends TestCase
   *
   * @return void
   */
- public function test_topPageが正常に表示される()
- {
-  $response = $this->get('/');
-
-  $response->assertStatus(200);
- }
-
  public function test_管理認証画面が正常に表示される()
  {
   $response = $this->get('/admin/login');
