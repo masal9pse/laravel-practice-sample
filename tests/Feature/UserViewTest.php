@@ -5,7 +5,7 @@ namespace Tests\Feature;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use App\Admin;
+use App\Models\Song;
 
 class UserViewTest extends TestCase
 {
@@ -22,11 +22,9 @@ class UserViewTest extends TestCase
   $response->assertStatus(200);
  }
 
- // public function test_詳細画面が正常に表示される()
- // {
- //  $this->withoutExceptionHandling();
- //  $response = $this->get('/songs/1');
-
- //  $response->assertStatus(200);
- // }
+ public function test_詳細画面の歌詞内容が正常に表示される()
+ {
+  $song = factory(Song::class)->create();
+  $this->assertEquals('苦いようで甘いような〜', $song->detail);
+ }
 }
