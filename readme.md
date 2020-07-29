@@ -89,20 +89,6 @@ https://song-picture-mamp.work/
 
 ![infra-structure2](https://user-images.githubusercontent.com/51937772/87854452-1a5a1f00-c94d-11ea-99a8-9bf43b9f2ad8.png)
 
-# インストール方法
-
-```
-composer install
-
-npm install
-
-php artisan serve
-
-npm run watch
-
-php artisan migrate --seed
-``` 
-
 ### 他にやったこと
 - Laravelのローカル開発環境を何度も移動した経験
   1. Vagrant+virtialboxでのHomesteadで構築 =>
@@ -122,3 +108,17 @@ php artisan migrate --seed
 ### 以前使用していたが、開発環境を変更したため使わなくなったリポジトリの URL
 
 https://github.com/masal9pse/song-picture-text
+
+# インストール方法
+
+```
+composer install
+
+npm install
+
+php artisan serve
+
+npm run watch
+
+php artisan migrate --seed
+``` 
