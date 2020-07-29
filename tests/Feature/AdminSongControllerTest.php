@@ -41,12 +41,10 @@ class AdminSongControllerTest extends TestCase
     'file_name' => ''
    ]);;
 
-  // dd($response);
   $response->assertSessionHasErrors([
    'title' => 'タイトルは必須です。',
    'detail' => '歌詞は必須です。'
   ]);
-  // バリデーションはリダイレクトしないみたい。
  }
 
  public function test_タイトルが未入力で歌詞を投稿すると失敗する()
@@ -65,22 +63,21 @@ class AdminSongControllerTest extends TestCase
 
  public function test_歌詞を更新したとき()
  {
-  $this->withoutExceptionHandling();
   $song = Song::create([
-   'title' => 'test',
-   'detail' => 'test',
+   'title' => 'pretender',
+   'detail' => '君とのラブストーリー〜',
    'file_name' => false
   ]);
 
-  $this->assertEquals('test', $song->title);
-  $this->assertEquals('test', $song->detail);
+  $this->assertEquals('pretender', $song->title);
+  $this->assertEquals('君とのラブストーリー〜', $song->detail);
   $this->assertFalse($song->file_name);
 
-  $song->fill(['title' => 'テスト', 'detail' => 'テスト']);
+  $song->fill(['title' => 'I Love', 'detail' => '僕が見つける、景色のその中に〜']);
   $song->save();
 
-  // $this->assertRedirect('/admin/create');
-  // $task2 = Task::find($song->id);
-  // $this->assertEquals('テスト', $task2->title);
+  $song_update = Song::find($song->id);
+  $this->assertEquals('I Love', $song_update->title);
+  $this->assertEquals('僕が見つける、景色のその中に〜', $song_update->detail);
  }
 }

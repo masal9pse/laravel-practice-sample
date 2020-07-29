@@ -16,8 +16,8 @@ class UserViewTest extends TestCase
  {
   parent::setUp();
   $this->song = Song::create([
-   'title' => 'テストタスク',
-   'detail' => 'ああああ',
+   'title' => 'pretender',
+   'detail' => '君とのラブストーリー',
    'file_name' => ''
   ]);
  }
@@ -33,13 +33,13 @@ class UserViewTest extends TestCase
   $response->assertStatus(200);
  }
 
- public function test_詳細画面の歌詞内容が正常に表示される()
+ public function test_歌詞内容が正常に表示される()
  {
   $song = factory(Song::class)->create();
   $this->assertEquals('苦いようで甘いような〜', $song->detail);
  }
 
- public function testGetTaskPath()
+ public function test_詳細画面が正常に表示される()
  {
   $response = $this->get('/songs/' . $this->song->id);
 
