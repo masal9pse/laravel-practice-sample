@@ -11,7 +11,6 @@
      </div>
      <table class="table table-striped">
       <thead>
-       @if (!empty($songs['title']))
        <tr>
         <th>タイトル</th>
         <th>タグ</th>
@@ -37,9 +36,6 @@
        </td>
       </tr>
       @endforeach
-      @else
-      <h1 class="align-middle">曲が１件もありません</h1>
-      @endif
      </table>
      {{ $songs->links() }}
 
