@@ -83,7 +83,7 @@ https://song-picture-mamp.work/
 * CircleCI
 
 * AWS
-  - EC2/RDS(PostgreSQL)/VPC/IAM/Route53/ELB/CloudFormation(EC２とVPCのみコード化）
+  - EC2/RDS(PostgreSQL)/VPC/IAM/Route53/ELB/CloudFormation(EC2とVPCのみコード化）
 
 ## インフラ構成図
 
@@ -97,6 +97,7 @@ https://song-picture-mamp.work/
 
 ### これからの課題
 - テストコードをさらに追記する。（優先順位高）
+- コミットメッセージを英語で書く
 - 歌詞データが全く足りないので、外部 API からテーブルにシードする
 - ファットコントローラーの防止
 - UI/UX を整えて勉強用のサービスから、実サービスとして運用してみる。
