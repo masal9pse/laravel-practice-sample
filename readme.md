@@ -93,11 +93,12 @@ https://song-picture-mamp.work/
 - Laravelのローカル開発環境を何度も移動した経験
   1. Vagrant+virtialboxでのHomesteadで構築 =>
   2. 起動の手軽さを求めてmampに変更 => 
-  3. circleCIの設定ファイルに合わせるためにDocker,docker-composeで再構築
+  3. htdocs以外のディレクトリでも作業したいのでMac内にPHPとMySQLを入れてLaravel環境構築
+  4. circleCIの設定ファイルに合わせるためにDocker,docker-composeで再構築
 
 ### これからの課題
 - テストコードをさらに追記する。（優先順位高）
-- コミットメッセージを英語で書く
+- コミットメッセージを英語で書く（すぐやる）
 - 歌詞データが全く足りないので、外部 API からテーブルにシードする
 - ファットコントローラーの防止
 - UI/UX を整えて勉強用のサービスから、実サービスとして運用してみる。
