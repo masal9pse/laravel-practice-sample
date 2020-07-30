@@ -54,4 +54,8 @@ class ProblemTest extends TestCase
    'problem' => '感想は必須です。',
   ]);
  }
+
+ public function test_文字数がオーバーする時のバリデーション()
+ {
+ }
 }
