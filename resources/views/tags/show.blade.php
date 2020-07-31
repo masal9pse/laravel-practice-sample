@@ -10,15 +10,12 @@
      <table class="table table-striped">
       <thead>
        <tr>
-        <th>ID</th>
         <th>タイトル</th>
         <th>タグ</th>
-        <th>アクション</th>
        </tr>
       </thead>
       @foreach($songs as $song)
       <tr>
-       <td class="align-middle">{{ $song->id }}</td>
        <td class="align-middle"><a href="{{ $song->url }}">{{ $song->title }}</a></td>
        <td class="align-middle">
         @foreach($song->tags as $tag)
