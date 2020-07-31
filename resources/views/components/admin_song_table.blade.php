@@ -2,8 +2,6 @@
  <thead>
   <tr>
    <th>タイトル</th>
-   <th>タグ</th>
-   <th>歌詞</th>
   </tr>
  </thead>
  <tr>
