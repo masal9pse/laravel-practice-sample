@@ -37,9 +37,6 @@
       @endforeach
      </table>
      {{ $songs->links() }}
-     <div>
-      <a href="{{ route('tags.index') }}" class="btn btn-secondary">戻る</a>
-     </div>
     </div>
    </div>
   </div>
