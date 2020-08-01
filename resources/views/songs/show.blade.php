@@ -2,7 +2,10 @@
 @section('content')
 <div class="container">
  <div class="row">
-  <div class="form-group">
+  <h3 class="text-center form-group text-success">
+   {{ $song->title }}
+  </h3>
+  <div class="form-group text-primary">
    {{ $song->detail }}
   </div>
 
@@ -34,7 +37,7 @@
    </div>
   </div>
   @endforeach
-  <a href="{{ route('comments.create', ['song_id' => $song->id]) }}" class="btn btn-primary mt-5">コメントする</a>
+  <a href="{{ route('comments.create', ['song_id' => $song->id]) }}" class="btn btn-warning mt-5">コメントする</a>
  </div>
 </div>
 </div>
