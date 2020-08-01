@@ -1,6 +1,6 @@
 <form action="{{ route('problems.store')}}" method="post" class="col-3">
  {{ csrf_field() }}
- <h3>問題や感想があれば報告お願いします</h3>
+ <h3 class="text-danger">問題や感想があれば報告お願いします</h3>
  <div class="form-group">
   @if($errors->has('name'))
   @foreach($errors->get('name') as $message)
