@@ -5,7 +5,7 @@ jobs:
       - image: circleci/php:7.3-node-browsers
       - image: circleci/postgres:11.6-alpine
         environment:
-          POSTGRES_DB: song-picture-mamp
+          POSTGRES_DB: larasns
           POSTGRES_USER: default
           POSTGRES_PASSWORD: secret
     environment:
@@ -13,7 +13,7 @@ jobs:
       DB_CONNECTION: pgsql
       DB_HOST: localhost
       DB_PORT: 5432
-      DB_DATABASE: song-picture-mamp
+      DB_DATABASE: larasns
       DB_USERNAME: default
       DB_PASSWORD: secret
     steps:
@@ -43,8 +43,6 @@ jobs:
           command: |
             sudo apt-get update
             sudo apt-get install libpq-dev
-            sudo apt-get install libpng-dev
-            sudo npm -g install pngquant-bin
             sudo docker-php-ext-install pdo_pgsql
             dockerize -wait tcp://localhost:5432 -timeout 1m
       - run:
