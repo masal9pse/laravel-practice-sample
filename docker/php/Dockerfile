@@ -9,7 +9,6 @@ RUN apt-get update \
  unzip \
  vim
 
-# RUN docker-php-ext-install mbstring pdo pdo_pgsql
 
 RUN apt-get update \
  && apt-get install -y libpq-dev \
