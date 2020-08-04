@@ -68,6 +68,8 @@ https://song-picture-mamp.work/
 
 - Javascript / Vue.js / Ajax
 
+- PostgreSQL
+
 * Linux(各種コマンド操作)
 
 * Nginx(Web Server)
