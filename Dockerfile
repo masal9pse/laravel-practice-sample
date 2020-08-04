@@ -21,6 +21,10 @@ RUN curl -sS https://getcomposer.org/installer | php && \
  mv composer.phar /usr/local/bin/composer && \
  chmod +x /usr/local/bin/composer
 
+RUN apt-get install -y gnupg
+RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
+RUN apt-get install -y nodejs
+
 COPY . /app
 
 WORKDIR /app
