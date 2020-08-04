@@ -11,6 +11,7 @@ RUN apt-get update \
 
 RUN apt-get update \
  && apt-get install -y libpq-dev \
+ && apt-get install -y libpng-dev \
  && docker-php-ext-install pdo_mysql pdo_pgsql
 
 RUN apt-get install -y gnupg
