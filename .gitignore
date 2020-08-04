@@ -12,3 +12,8 @@ yarn-error.log
 .env
 .vagrant
 ./public/js/app.js
+
+# DB data
+docker/db/data/*
+
+!.gitkeep

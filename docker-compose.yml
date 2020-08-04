@@ -12,19 +12,18 @@ services:
   app:
     build: ./docker/php
     depends_on:
-      - mysql
+      - db
     volumes:
       - .:/var/www/html
-  mysql:
-    image: mysql:5.7
+  db:
+    image: postgres:11.6-alpine
     environment:
-      MYSQL_DATABASE: song-picture-mamp
-      MYSQL_USER: default
-      MYSQL_PASSWORD: password
-      MYSQL_ROOT_PASSWORD: password
+      POSTGRES_DB: song-picture-mamp
+      POSTGRES_USER: default
+      POSTGRES_PASSWORD: secret
     ports:
-      - "3306:3306"
+      - "5432:5432"
     volumes:
-      - mysql-data:/var/lib/mysql
+      - postgres-data:/var/lib/mysql
 volumes:
-  mysql-data:
+  postgres-data:
