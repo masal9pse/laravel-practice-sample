@@ -28,10 +28,10 @@ jobs:
       - restore_cache:
           key: npm-v1-{{ checksum "package-lock.json" }}
       - run:
-          name: npm ci
+          name: npm install
           command: |
             if [ ! -d node_modules ]; then
-              npm ci
+              npm install
             fi
       - save_cache:
           key: npm-v1-{{ checksum "package-lock.json" }}
