@@ -37,7 +37,7 @@ https://song-picture-mamp.work/
 
 - 検索機能 
 
-- バリデーションを日本語対応
+- バリデーション機能（日本語化）
 
 - 画像ファイルのアップロード機能
 
@@ -67,8 +67,6 @@ https://song-picture-mamp.work/
 - Bootstrap 
 
 - Javascript / Vue.js / Ajax
-
-* MySQL
 
 * Linux(各種コマンド操作)
 
