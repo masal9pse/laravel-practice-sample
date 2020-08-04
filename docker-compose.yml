@@ -16,11 +16,11 @@ services:
     volumes:
       - .:/var/www/html
   db:
-    image: postgres:11
+    image: postgres:11.6-alpine
     environment:
       POSTGRES_DB: song-picture-mamp
       POSTGRES_USER: default
-      POSTGRES_PASSWORD: password
+      POSTGRES_PASSWORD: secret
     ports:
       - "5432:5432"
     volumes:
