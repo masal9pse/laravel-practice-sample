@@ -55,7 +55,7 @@ class ProblemTest extends TestCase
   ]);
  }
 
- public function test_文字数がオーバーする時のバリデーション()
- {
- }
+ // public function test_文字数がオーバーする時のバリデーション()
+ // {
+ // }
 }
