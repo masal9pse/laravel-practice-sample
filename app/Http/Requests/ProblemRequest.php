@@ -24,8 +24,8 @@ class ProblemRequest extends FormRequest
  public function rules()
  {
   return [
-   'name' => 'required',
-   'problem' => 'required'
+   'name' => 'required|max:30',
+   'problem' => 'required|max:1000'
   ];
  }
 }

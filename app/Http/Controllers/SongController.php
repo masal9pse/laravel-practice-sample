@@ -20,17 +20,10 @@ class SongController extends Controller
   $songs = Song::query()->with('tags');
   // dd($songs);
 
-  // もしキーワードがあったら
-  if ($search !== null) {
-   // 半角スペースを半角に
-   $search_split = mb_convert_kana($search, 's');
-
-   // 空白で区切る
-   $search_split2 = preg_split('/[\s]+/', $search_split, -1, PREG_SPLIT_NO_EMPTY);
-
-   foreach ($search_split2 as $value) {
-    $songs->where('title', 'like', '%' . $value . '%');
-   }
+  if ($request->has('search') && $songs != null) {
+   $songs->where('title', 'like', '%' . $search . '%')->get();
+  } else {
+   $songs->orderBy('id', 'desc')->paginate(4);
   }
 
   $songs = $songs->orderBy('id', 'desc')->paginate(4);
