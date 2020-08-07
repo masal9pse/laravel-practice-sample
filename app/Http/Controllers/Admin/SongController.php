@@ -31,17 +31,9 @@ class SongController extends Controller
  {
   $search = $request->input('search');
   $query = DB::table('songs');
-  // もしキーワードがあったら
-  if ($search !== null) {
-   // 半角スペースを半角に
-   $search_split = mb_convert_kana($search, 's');
-   // s	引数は文字列として扱われ、文字列として表現されます。string
-   // 空白で区切る
-   $search_split2 = preg_split('/[\s]+/', $search_split, -1, PREG_SPLIT_NO_EMPTY);
 
-   foreach ($search_split2 as $value) {
-    $query->where('title', 'like', '%' . $value . '%');
-   }
+  if ($request->has('search') && $query != null) {
+   $query->where('title', $search)->get();
   }
 
   $query->select('id', 'title', 'detail', 'file_name', 'created_at');
