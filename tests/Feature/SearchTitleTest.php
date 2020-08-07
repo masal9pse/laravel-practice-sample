@@ -14,6 +14,12 @@ class SearchTitleTest extends TestCase
   *
   * @return void
   */
+ public function testExample()
+ {
+  $response = $this->get('/');
+
+  $response->assertStatus(200);
+ }
  // public function test_同じタイトルを入力した時()
  // {
  //  $response = $this->get('/', [
