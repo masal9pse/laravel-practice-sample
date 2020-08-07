@@ -15,6 +15,17 @@ class ProblemTest extends TestCase
   *
   * @return void
   */
+
+ public function setUp(): void
+ {
+  parent::setUp();
+
+  $board = new Problem();
+  $board->name = 'name';
+  $board->problem = 'problem';
+  $board->save();
+ }
+
  public function test_問題点を１件登録する()
  {
   $response = $this->post('/problems', [
@@ -55,7 +66,27 @@ class ProblemTest extends TestCase
   ]);
  }
 
- // public function test_文字数がオーバーする時のバリデーション()
- // {
- // }
+ /**
+  *
+  *
+  * @return void
+  */
+ public function rule_文字数がオーバーする時のバリデーション()
+ {
+  $this->withoutExceptionHandling();
+  // $problem = Problem::first();
+  $baseUrl = '/';
+  $params = [
+   'name' => str_repeat('a', 30),
+   'problem' => str_repeat('a', 1000),
+  ];
+  $this
+   ->post($baseUrl . 'problem/', $params)
+   ->assertStatus(302)
+   ->assertRedirect($baseUrl);
+
+  $this->get($baseUrl)
+   ->assertSee('感想がオーバです')
+   ->assertSee('感想がオーバーです');
+ }
 }
