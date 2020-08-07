@@ -36,23 +36,6 @@ class ProblemTest extends TestCase
   $response->assertRedirect('/');
  }
 
- public function test_問題点を複数登録する()
- {
-  $response = $this->post('/problems', [
-   'problems' => [
-    [
-     'name' => 'テストユーザー1',
-     'problem' => '歌大好き'
-    ],
-    [
-     'name' => 'テストユーザー2',
-     'problem' => '歌大嫌い'
-    ],
-   ]
-  ]);
-
-  $response->assertRedirect('/');
- }
 
  public function test_問題点を入力しない()
  {
@@ -71,17 +54,17 @@ class ProblemTest extends TestCase
   * @test
   * @return void
   */
- public function rule_文字数がオーバーする時のバリデーション()
+ public function rule_名前の文字数がオーバーする時のバリデーション()
  {
   // $this->withoutExceptionHandling();
   $data = [
-   'name' => str_repeat('a', 2),
+   'name' => str_repeat('a', 31),
   ];
   // dd($data);
   $response = $this->from('/')
    ->post('/problems', $data);
   // dd($response);
-  $response->assertSessionHasErrors(['name' => '名前は1文字以下にしてください。']);
+  $response->assertSessionHasErrors(['name' => '名前は30文字以下にしてください。']);
 
   $response->assertStatus(302)
    ->assertRedirect('/');
