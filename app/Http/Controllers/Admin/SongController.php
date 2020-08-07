@@ -30,15 +30,17 @@ class SongController extends Controller
  public function create(Request $request)
  {
   $search = $request->input('search');
-  $query = DB::table('songs');
+  $songs = DB::table('songs');
 
-  if ($request->has('search') && $query != null) {
-   $query->where('title', $search)->get();
+  if ($request->has('search') && $songs != null) {
+   $songs->where('title', 'like', '%' . $search . '%')->get();
+  } else {
+   $songs->orderBy('id', 'desc')->paginate(10);
   }
 
-  $query->select('id', 'title', 'detail', 'file_name', 'created_at');
-  $query->orderBy('created_at', 'desc');
-  $songs = $query->paginate(10);
+  $songs->select('id', 'title', 'detail', 'file_name', 'created_at');
+  $songs->orderBy('created_at', 'desc');
+  $songs = $songs->paginate(10);
   $tags = Tag::pluck('title', 'id')->toArray();
   // dd($tags);
   return view('admin.create', [

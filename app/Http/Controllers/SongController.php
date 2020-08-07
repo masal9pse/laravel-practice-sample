@@ -21,7 +21,9 @@ class SongController extends Controller
   // dd($songs);
 
   if ($request->has('search') && $songs != null) {
-   $songs->where('title', $search)->get();
+   $songs->where('title', 'like', '%' . $search . '%')->get();
+  } else {
+   $songs->orderBy('id', 'desc')->paginate(4);
   }
 
   $songs = $songs->orderBy('id', 'desc')->paginate(4);
