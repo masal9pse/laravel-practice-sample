@@ -16,16 +16,6 @@ class ProblemTest extends TestCase
   * @return void
   */
 
- public function setUp(): void
- {
-  parent::setUp();
-
-  $board = new Problem();
-  $board->name = 'name';
-  $board->problem = 'problem';
-  $board->save();
- }
-
  public function test_問題点を１件登録する()
  {
   $response = $this->post('/problems', [
