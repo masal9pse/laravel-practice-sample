@@ -68,25 +68,22 @@ class ProblemTest extends TestCase
 
  /**
   *
-  *
+  * @test
   * @return void
   */
  public function rule_文字数がオーバーする時のバリデーション()
  {
-  $this->withoutExceptionHandling();
-  // $problem = Problem::first();
-  $baseUrl = '/';
-  $params = [
-   'name' => str_repeat('a', 30),
-   'problem' => str_repeat('a', 1000),
+  // $this->withoutExceptionHandling();
+  $data = [
+   'name' => str_repeat('a', 2),
   ];
-  $this
-   ->post($baseUrl . 'problem/', $params)
-   ->assertStatus(302)
-   ->assertRedirect($baseUrl);
+  // dd($data);
+  $response = $this->from('/')
+   ->post('/problems', $data);
+  // dd($response);
+  $response->assertSessionHasErrors(['name' => '名前は1文字以下にしてください。']);
 
-  $this->get($baseUrl)
-   ->assertSee('感想がオーバです')
-   ->assertSee('感想がオーバーです');
+  $response->assertStatus(302)
+   ->assertRedirect('/');
  }
 }
