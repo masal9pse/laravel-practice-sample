@@ -62,7 +62,7 @@ class SongController extends Controller
   $userAuth = \Auth::user();
   $song = Song::find($id);
   $song->load('user', 'comments', 'likes', 'comments.replies');
-  dd($song);
+  // dd($song);
   $defaultCount = count($song->likes);
   $defaultLiked = $song->likes()->where('user_id', $userAuth->id)->first();
   if (count($defaultLiked) == 0) {

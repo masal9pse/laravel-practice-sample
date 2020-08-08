@@ -27,6 +27,7 @@
  <div class="form-group">
   <span>コメント一覧</span>
   <a href="{{ route('comments.create', ['song_id' => $song->id]) }}" class="btn btn-warning mt-5">コメントする</a>
+  <a href="{{ route('replies.create', ['comment_id' => $song->id]) }}" class="btn btn-info mt-5">コメントする</a>
  </div>
 
  @foreach ($song->comments as $comment)
