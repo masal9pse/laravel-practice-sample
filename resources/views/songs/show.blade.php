@@ -36,6 +36,11 @@
    登録者:{{ $comment->user->name }}
   </div>
   <p class="panel-body">{{ $comment->comment }}</p>
+  @foreach ($comment->replies as $reply)
+  <p class="panel-body">
+   {{ $reply->reply }}
+   @endforeach
+  </p>
  </div>
  @endforeach
 </div>
