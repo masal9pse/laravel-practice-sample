@@ -23,7 +23,8 @@ Route::resource('/user', 'UserController');
 
 Route::group(['middleware' => 'auth:user'], function () {
  Route::resource('/songs', 'SongController', ['except' => ['index', 'create', 'store', 'show']]);
- Route::resource('/comments', 'CommentController');
+ Route::resource('/comments', 'CommentController', ['only' => ['create', 'store']]);
+ Route::resource('/replies', 'ReplyController');
  Route::post('/tags/destroy/{id}', 'TagController@destroy')->name('tags.destroy');
  Route::post('/tags/update/{id}', 'TagController@update')->name('tags.update');
 });
