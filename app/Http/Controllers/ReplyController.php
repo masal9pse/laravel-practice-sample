@@ -26,7 +26,7 @@ class ReplyController extends Controller
  {
   $q = \Request::query();
   // dd($q['comment_id']);
-  // dd($q['song_id']);
+  dd($q['song_id']);
   return view('replies.create', [
    'comment_id' => $q['comment_id'],
   ]);
