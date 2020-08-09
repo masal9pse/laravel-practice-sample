@@ -32,27 +32,15 @@
  @foreach ($song->comments as $comment)
  <div class="panel panel-success">
   <div class="panel-heading">
-   <a href="{{ route('replies.create', ['comment_id' => $comment->id]) }}" class="btn btn-info mt-5">コメントする</a>
+   <a href="{{ route('replies.create', ['comment_id' => $comment->id]) }}" class="btn btn-info mt-5">返信する</a>
    登録者:{{ $comment->user->name }}
   </div>
   <p class="panel-body">{{ $comment->comment }}</p>
-  {{ $comment->replies }}
   @foreach($comment->replies as $rep)
   @if($comment->id === $rep->comment_id)
   <div class="well">
-   <i><b> {{ $rep->name }} </b></i>&nbsp;&nbsp;
+   {{-- <i><b> {{ $rep->user->name }} </b></i>&nbsp;&nbsp; --}}
    <span> {{ $rep->reply }} </span>
-   <div style="margin-left:10px;">
-    <a rname="{{ Auth::user()->name }}" rid="{{ $comment->id }}" style="cursor: pointer;" class="reply-to-reply"
-     token="{{ csrf_token() }}">Reply</a>&nbsp;<a did="{{ $rep->id }}" class="delete-reply"
-     token="{{ csrf_token() }}">Delete</a>
-   </div>
-   <div class="reply-to-reply-form">
-
-    <!-- Dynamic Reply form -->
-
-   </div>
-
   </div>
   @endif
   @endforeach

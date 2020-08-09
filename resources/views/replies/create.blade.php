@@ -30,7 +30,6 @@
 
      {{-- <input type="hidden" name="song_id" value="{{ $song_id }}"> --}}
 
-     {{-- どのユーザーがどの曲に対してコメントしているのかを把握できる --}}
      <input type="hidden" name="comment_id" value="{{ $comment_id }}">
 
      <button type="submit" class="btn btn-danger">投稿する</button>

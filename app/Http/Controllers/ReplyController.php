@@ -27,8 +27,6 @@ class ReplyController extends Controller
  public function create()
  {
   $q = \Request::query();
-  // dd($q);
-  // dd($q['song_id']);
   // dd($q['comment_id']);
   return view('replies.create', [
    'comment_id' => $q['comment_id'],
@@ -44,16 +42,9 @@ class ReplyController extends Controller
  public function store(Request $request)
  {
   $reply = new Reply();
-  $song = new Song();
   $input = $request->only($reply->getFillable());
-  // dd($input);
   $reply = $reply->create($input);
-  // dd($reply);
-  // try
-  // return redirect()->route('songs.show', ['id' => $reply->song->id]);
-  return redirect('/');
-  // return redirect()->route('songs.show', ['id' => $reply->song->id]);
-  // return redirect()->route('songs.show', ['id' => $reply->]);
+  return redirect()->route('songs.show', ['id' => $reply->comment->song_id]);
  }
 
  /**
