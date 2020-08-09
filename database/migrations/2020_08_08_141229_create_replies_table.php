@@ -20,7 +20,6 @@ class CreateRepliesTable extends Migration
 
    $table->string('reply')->nullable();
 
-   // $table->foreign('comment_id')->references('id')->on('comments')->onDelete('cascade');
    $table->timestamps();
   });
  }

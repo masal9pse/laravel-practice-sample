@@ -45,7 +45,6 @@ class CommentController extends Controller
   $input = $request->only($comment->getFillable());
   // dd($input);
   $comment = $comment->create($input);
-  // dd($comment);
   return redirect()->route('songs.show', ['id' => $comment->song_id]);
  }
 

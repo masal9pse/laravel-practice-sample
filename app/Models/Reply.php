@@ -15,9 +15,4 @@ class Reply extends Model
  {
   return $this->belongsTo(Comment::class);
  }
-
- public function song()
- {
-  return $this->belongsTo(Song::class, 'song_id', 'id');
- }
 }

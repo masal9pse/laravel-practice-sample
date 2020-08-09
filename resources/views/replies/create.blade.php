@@ -28,8 +28,6 @@
       <textarea class="form-control" rows="5" id="comment" name="reply"></textarea>
      </div>
 
-     {{-- <input type="hidden" name="song_id" value="{{ $song_id }}"> --}}
-
      <input type="hidden" name="comment_id" value="{{ $comment_id }}">
 
      <button type="submit" class="btn btn-danger">投稿する</button>
