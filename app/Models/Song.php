@@ -40,10 +40,10 @@ class Song extends Model
   return $this->hasMany(Comment::class, 'song_id', 'id');
  }
 
- public function replies()
- {
-  return $this->hasMany(Reply::class, 'song_id', 'id');
- }
+ // public function replies()
+ // {
+ //  return $this->hasMany(Reply::class, 'song_id', 'id');
+ // }
 
  public function like_by()
  {

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Reply;
 use Illuminate\Http\Request;
 use App\Comment;
+use App\Models\Song;
 
 class ReplyController extends Controller
 {
@@ -43,12 +44,14 @@ class ReplyController extends Controller
  public function store(Request $request)
  {
   $reply = new Reply();
+  $song = new Song();
   $input = $request->only($reply->getFillable());
   // dd($input);
   $reply = $reply->create($input);
   // dd($reply);
   // try
-  return redirect()->route('songs.show', ['id' => $reply->song_id]);
+  // return redirect()->route('songs.show', ['id' => $reply->song->id]);
+  return redirect('/');
   // return redirect()->route('songs.show', ['id' => $reply->song->id]);
   // return redirect()->route('songs.show', ['id' => $reply->]);
  }

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Reply extends Model
 {
  protected $fillable = [
-  'comment_id', 'reply', 'song_id'
+  'comment_id', 'reply'
  ];
 
  public function comment()

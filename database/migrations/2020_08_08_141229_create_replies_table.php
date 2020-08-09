@@ -17,7 +17,6 @@ class CreateRepliesTable extends Migration
    $table->increments('id');
 
    $table->integer('comment_id')->unsigned();
-   $table->integer('song_id')->unsigned();
 
    $table->string('reply')->nullable();
 
