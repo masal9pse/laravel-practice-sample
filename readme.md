@@ -43,6 +43,7 @@ https://song-picture-mamp.work/
 - 匿名コメント機能
 
 - ユーザー認証コメント機能
+ - リプライ機能
 
 - いいね機能(Vue/Ajax)
 
