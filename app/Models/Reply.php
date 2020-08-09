@@ -8,11 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Reply extends Model
 {
  protected $fillable = [
-  'comment_id', 'reply'
+  'comment_id', 'reply', 'song_id'
  ];
 
  public function comment()
  {
   return $this->belongsTo(Comment::class);
+ }
+
+ public function song()
+ {
+  return $this->belongsTo(Song::class, 'song_id', 'id');
  }
 }

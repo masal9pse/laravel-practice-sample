@@ -45,13 +45,6 @@ class SongController extends Controller
  }
 
  /**
-  * Store a newly created resource in storage.
-  *
-  * @param  \Illuminate\Http\Request  $request
-  * @return \Illuminate\Http\Response
-  */
-
- /**
   * Display the specified resource.
   *
   * @param  \App\Song  $song

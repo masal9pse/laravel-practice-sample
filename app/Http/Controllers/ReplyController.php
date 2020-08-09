@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Reply;
 use Illuminate\Http\Request;
+use App\Comment;
 
 class ReplyController extends Controller
 {
@@ -42,14 +43,14 @@ class ReplyController extends Controller
  public function store(Request $request)
  {
   $reply = new Reply();
-
   $input = $request->only($reply->getFillable());
   // dd($input);
   $reply = $reply->create($input);
   // dd($reply);
   // try
-  // return redirect()->route('songs.show', ['id' => $reply->song_id]);
-  return redirect()->route('songs.show', ['id' => $reply->comment->id]);
+  return redirect()->route('songs.show', ['id' => $reply->song_id]);
+  // return redirect()->route('songs.show', ['id' => $reply->song->id]);
+  // return redirect()->route('songs.show', ['id' => $reply->]);
  }
 
  /**
