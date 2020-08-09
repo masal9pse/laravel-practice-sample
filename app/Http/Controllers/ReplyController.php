@@ -43,8 +43,8 @@ class ReplyController extends Controller
   $reply = new Reply();
   $input = $request->only($reply->getFillable());
   $reply = $reply->create($input);
-  // return redirect()->route('songs.show', ['id' => $reply->comment->song_id]);
-  return redirect()->route('songs.show', ['id' => $reply->comment->song->id]);
+  // dd($reply);
+  return redirect()->route('songs.show', ['id' => $reply->comment->song_id]);
  }
 
  /**
