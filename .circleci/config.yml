@@ -63,7 +63,7 @@ jobs:
               composer install -n --no-dev --prefer-dist && \
               npm ci && \
               npm run prod && \
-              php artisan migrate:rollback --step=1 && \
+              php artisan migrate:rollback --step=1 --force && \
               php artisan migrate --force && \
               php artisan config:cache"
 workflows:
