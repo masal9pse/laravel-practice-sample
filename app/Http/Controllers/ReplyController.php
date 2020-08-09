@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Reply;
 use Illuminate\Http\Request;
-use App\Http\Requests\CommentRequest;
-use App\Comment;
 
-class CommentController extends Controller
+
+class ReplyController extends Controller
 {
  /**
   * Display a listing of the resource.
@@ -26,9 +26,9 @@ class CommentController extends Controller
  public function create()
  {
   $q = \Request::query();
-  // dd($q['song_id']);
-  return view('comments.create', [
-   'song_id' => $q['song_id'],
+  // dd($q['comment_id']);
+  return view('replies.create', [
+   'comment_id' => $q['comment_id'],
   ]);
  }
 
@@ -38,14 +38,12 @@ class CommentController extends Controller
   * @param  \Illuminate\Http\Request  $request
   * @return \Illuminate\Http\Response
   */
- public function store(CommentRequest $request)
+ public function store(Request $request)
  {
-  $comment = new Comment;
-
-  $input = $request->only($comment->getFillable());
-  // dd($input);
-  $comment = $comment->create($input);
-  return redirect()->route('songs.show', ['id' => $comment->song_id]);
+  $reply = new Reply();
+  $input = $request->only($reply->getFillable());
+  $reply = $reply->create($input);
+  return redirect()->route('songs.show', ['id' => $reply->comment->song_id]);
  }
 
  /**

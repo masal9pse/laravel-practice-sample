@@ -32,9 +32,19 @@
  @foreach ($song->comments as $comment)
  <div class="panel panel-success">
   <div class="panel-heading">
+   <a href="{{ route('replies.create', ['comment_id' => $comment->id]) }}" class="btn btn-info mt-5">返信する</a>
    登録者:{{ $comment->user->name }}
   </div>
   <p class="panel-body">{{ $comment->comment }}</p>
+  @foreach($comment->replies as $rep)
+  @if($comment->id === $rep->comment_id)
+  <div class="well">
+   {{-- <i><b> {{ $rep->user->name }} </b></i>&nbsp;&nbsp; --}}
+   <span> {{ $rep->reply }} </span>
+  </div>
+  @endif
+  @endforeach
+  </p>
  </div>
  @endforeach
 </div>

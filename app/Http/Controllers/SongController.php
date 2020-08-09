@@ -45,13 +45,6 @@ class SongController extends Controller
  }
 
  /**
-  * Store a newly created resource in storage.
-  *
-  * @param  \Illuminate\Http\Request  $request
-  * @return \Illuminate\Http\Response
-  */
-
- /**
   * Display the specified resource.
   *
   * @param  \App\Song  $song
@@ -61,8 +54,8 @@ class SongController extends Controller
  {
   $userAuth = \Auth::user();
   $song = Song::find($id);
-  $song->load('user', 'comments', 'likes');
-
+  $song->load('user', 'comments', 'likes', 'comments.replies');
+  // dd($song);
   $defaultCount = count($song->likes);
   $defaultLiked = $song->likes()->where('user_id', $userAuth->id)->first();
   if (count($defaultLiked) == 0) {
