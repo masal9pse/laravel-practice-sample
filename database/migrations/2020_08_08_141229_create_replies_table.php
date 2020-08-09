@@ -17,7 +17,7 @@ class CreateRepliesTable extends Migration
    $table->increments('id');
 
    $table->integer('comment_id')->unsigned();
-
+   $table->string('name');
    $table->string('reply')->nullable();
 
    $table->timestamps();

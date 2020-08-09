@@ -9,13 +9,13 @@ use App\Models\User;
 class Reply extends Model
 {
  protected $fillable = [
-  'comment_id', 'reply'
+  'comment_id', 'reply', 'name'
  ];
 
- // public function user()
- // {
- //  return $this->belongsTo(User::class);
- // }
+ public function user()
+ {
+  return $this->belongsTo(User::class);
+ }
 
  public function comment()
  {

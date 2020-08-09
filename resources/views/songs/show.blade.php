@@ -39,8 +39,7 @@
   @foreach($comment->replies as $rep)
   @if($comment->id === $rep->comment_id)
   <div class="well">
-   登録者：{{ $rep->comment->user->name }} |
-   {{ $rep->user }}
+   登録者：{{ $rep->name }} |
    <span> {{ $rep->reply }} </span>
   </div>
   @endif
