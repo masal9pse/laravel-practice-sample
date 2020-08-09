@@ -2,16 +2,17 @@
 
 namespace App\Models;
 
+use App\Comment;
 use Illuminate\Database\Eloquent\Model;
 
 class Reply extends Model
 {
  protected $fillable = [
-  'user_id', 'comment_id', 'reply'
+  'comment_id', 'reply'
  ];
 
- public function user()
+ public function comment()
  {
-  return $this->belongsTo(User::class, 'user_id');
+  return $this->belongsTo(Comment::class);
  }
 }

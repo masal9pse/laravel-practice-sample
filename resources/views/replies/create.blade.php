@@ -28,7 +28,7 @@
       <textarea class="form-control" rows="5" id="comment" name="reply"></textarea>
      </div>
 
-     <input type="hidden" name="user_id" value="{{ Auth::id() }}">
+     {{-- <input type="hidden" name="user_id" value="{{ Auth::id() }}"> --}}
 
      {{-- どのユーザーがどの曲に対してコメントしているのかを把握できる --}}
      <input type="hidden" name="comment_id" value="{{ $comment_id }}">

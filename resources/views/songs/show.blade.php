@@ -27,19 +27,20 @@
  <div class="form-group">
   <span>コメント一覧</span>
   <a href="{{ route('comments.create', ['song_id' => $song->id]) }}" class="btn btn-warning mt-5">コメントする</a>
-  <a href="{{ route('replies.create', ['comment_id' => $song->id]) }}" class="btn btn-info mt-5">コメントする</a>
  </div>
 
  @foreach ($song->comments as $comment)
  <div class="panel panel-success">
   <div class="panel-heading">
+   <a href="{{ route('replies.create', ['comment_id' => $comment->id]) }}" class="btn btn-info mt-5">コメントする</a>
    登録者:{{ $comment->user->name }}
   </div>
   <p class="panel-body">{{ $comment->comment }}</p>
-  @foreach ($comment->replies as $reply)
+  {{ $comment->replies }}
+  {{-- @foreach ($comment->replies as $reply)
   <p class="panel-body">
    {{ $reply->reply }}
-   @endforeach
+  @endforeach --}}
   </p>
  </div>
  @endforeach

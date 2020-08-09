@@ -49,7 +49,7 @@ class ReplyController extends Controller
   // dd($reply);
   // try
   // return redirect()->route('songs.show', ['id' => $reply->song_id]);
-  return redirect()->route('songs.show', ['id' => $reply->comment_id]);
+  return redirect()->route('songs.show', ['id' => $reply->comment->id]);
  }
 
  /**
