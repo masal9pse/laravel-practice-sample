@@ -14,6 +14,24 @@
  <!-- Styles -->
  <link href="{{ asset('css/app.css') }}" rel="stylesheet">
  <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+ <style>
+  /* .main {
+   display: flex;
+  } */
+  .main {
+   display: flex;
+   justify-content: space-between;
+   margin: 30px;
+  }
+
+  /* .wrap {
+   display: flex;
+  } */
+
+  .image {
+   display: block;
+  }
+ </style>
 </head>
 
 <body>

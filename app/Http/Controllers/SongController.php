@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Song;
 use Illuminate\Http\Request;
 use App\Problem;
+// use Intervention\Image\ImageServiceProvider as Image;
 
 class SongController extends Controller
 {
@@ -22,11 +23,9 @@ class SongController extends Controller
 
   if ($request->has('search') && $songs != null) {
    $songs->where('title', 'like', '%' . $search . '%')->get();
-  } else {
-   $songs->orderBy('id', 'desc')->paginate(4);
   }
 
-  $songs = $songs->orderBy('id', 'desc')->paginate(4);
+  $songs = $songs->orderBy('id', 'desc')->paginate(3);
   $problems = Problem::all();
 
   return view('songs.index', [
