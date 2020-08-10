@@ -49,6 +49,7 @@
       @guest
       <li><a href="{{ route('login') }}">ログインする</a></li>
       <li><a href="{{ route('register') }}">登録する</a></li>
+      <li><a href="https://github.com/masal9pse/song-picture-mamp">ソースコード</a></li>
       @else
       <li class="dropdown">
        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"
@@ -62,14 +63,15 @@
                                                      document.getElementById('logout-form').submit();">
           ログアウトする
          </a>
+        <li><a href="https://github.com/masal9pse/song-picture-mamp">ソースコード</a></li>
 
-         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-          {{ csrf_field() }}
-         </form>
-        </li>
-       </ul>
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+         {{ csrf_field() }}
+        </form>
       </li>
-      @endguest
+     </ul>
+     </li>
+     @endguest
      </ul>
     </div>
    </div>
