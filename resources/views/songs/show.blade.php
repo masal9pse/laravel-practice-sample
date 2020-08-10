@@ -13,10 +13,9 @@
    @if (!empty($song['file_name']))
    <p><img src="{{ asset('/storage/img/'.$song->file_name) }}"></p>
    @else
-   <p class="mb-3">まだ画像は登録されていません</p>
+   <img src="{{ asset('/public_images/black_no_image.png')}}" alt="">
    @endif
   </div>
-
   <div class="form-group">
    <like :song-id="{{ json_encode($song->id) }}" :user-id="{{ json_encode($userAuth->id) }}"
     :default-Liked="{{ json_encode($defaultLiked) }}" :default-Count="{{ json_encode($defaultCount) }}">
