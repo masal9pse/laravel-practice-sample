@@ -13,7 +13,9 @@
       @foreach ($songs as $song)
       @if (!empty($song['file_name']))
       <div>
-       <img src="{{ asset('/storage/img/'.$song->file_name) }}" class="image">
+       <a href="{{ route('songs.show',$song) }}">
+        <img src="{{ asset('/storage/img/'.$song->file_name) }}" class="image">
+       </a>
        タイトル：<a href="{{ route('songs.show',$song) }}">{{ $song->title }}</a>
        <div>
         タグ：
@@ -27,7 +29,9 @@
       </div>
       @else
       <div>
-       <img src="{{ asset('/public_images/black_no_image.png')}}" class="image">
+       <a href="{{ route('songs.show',$song) }}">
+        <img src="{{ asset('/public_images/black_no_image.png')}}" class="image">
+       </a>
        タイトル：<a href="{{ route('songs.show',$song) }}">{{ $song->title }}</a>
        <div>
         タグ：
