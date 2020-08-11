@@ -15,7 +15,7 @@ https://song-picture-mamp.work/
 
 ## Webページサンプル
 
-![スクリーンショット 2020-06-25 5 33 33](https://user-images.githubusercontent.com/51937772/85625242-187ea200-b6a6-11ea-914e-f7054c18d92c.png)
+![screen](https://user-images.githubusercontent.com/51937772/89900258-73e8fd00-dc1e-11ea-88d8-21c39ae379b1.png)
 
 
 ![スクリーンショット 2020-08-10 3 26 03](https://user-images.githubusercontent.com/51937772/89739154-3fa7fc00-dab9-11ea-8306-317996706339.png)
