@@ -20,4 +20,8 @@ body {
   display: flex;
   flex-direction: column;
  }
+
+ .songData {
+  margin-top: 50px;
+ }
 }

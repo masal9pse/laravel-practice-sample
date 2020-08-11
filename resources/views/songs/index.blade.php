@@ -12,7 +12,7 @@
      <div class="main">
       @foreach ($songs as $song)
       @if (!empty($song['file_name']))
-      <div>
+      <div class="songData">
        <a href="{{ route('songs.show',$song) }}">
         <img src="{{ asset('/storage/img/'.$song->file_name) }}" class="image">
        </a>
@@ -28,7 +28,7 @@
        </div>
       </div>
       @else
-      <div>
+      <div class="songData">
        <a href="{{ route('songs.show',$song) }}">
         <img src="{{ asset('/public_images/black_no_image.png')}}" class="image">
        </a>
