@@ -16,7 +16,7 @@
  <link href="{{ asset('css/style.css') }}" rel="stylesheet">
  <style>
   body {
-   background-color: yellowgreen;
+   background-color: #EEFFFF;
   }
  </style>
 </head>
