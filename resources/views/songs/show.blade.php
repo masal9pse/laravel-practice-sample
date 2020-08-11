@@ -11,9 +11,9 @@
 
   <div class="form-group">
    @if (!empty($song['file_name']))
-   <p><img src="{{ asset('/storage/img/'.$song->file_name) }}"></p>
+   <img src="{{ asset('/storage/img/'.$song->file_name) }}">
    @else
-   <img src="{{ asset('/public_images/black_no_image.png')}}" alt="">
+   <img src="{{ asset('/public_images/black_no_image.png')}}">
    @endif
   </div>
   <div class="form-group">
