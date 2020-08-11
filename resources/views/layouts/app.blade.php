@@ -18,6 +18,10 @@
   /* .main {
    display: flex;
   } */
+  body {
+   background-color: #FFFFEE;
+  }
+
   .main {
    display: flex;
    justify-content: space-between;
