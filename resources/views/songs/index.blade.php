@@ -48,7 +48,7 @@
      </div>
     </div>
    </div>
-   <p>
+   <p class="topPaginate">
     {{ $songs->links() }}
    </p>
    @include('components.problem')

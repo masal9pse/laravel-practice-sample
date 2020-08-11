@@ -15,25 +15,33 @@
  <link href="{{ asset('css/app.css') }}" rel="stylesheet">
  <link href="{{ asset('css/style.css') }}" rel="stylesheet">
  <style>
-  /* .main {
-   display: flex;
-  } */
   body {
    background-color: #FFFFEE;
   }
 
-  .main {
-   display: flex;
-   justify-content: space-between;
-   margin: 30px;
-  }
+  @media screen and (max-width:1500px) {
 
-  /* .wrap {
-   display: flex;
-  } */
+   .main {
+    display: flex;
+    justify-content: space-between;
+    margin: 30px;
+   }
+  }
 
   .image {
    display: block;
+  }
+
+  /* .topPaginate {
+   padding: 0px;
+   margin: 30px;
+  } */
+
+  @media screen and (max-width:800px) {
+   .main {
+    display: flex;
+    flex-direction: column;
+   }
   }
  </style>
 </head>
