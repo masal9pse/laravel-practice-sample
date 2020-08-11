@@ -16,46 +16,26 @@
        <a href="{{ route('songs.show',$song) }}">
         <img src="{{ asset('/storage/img/'.$song->file_name) }}" class="image">
        </a>
-       タイトル：<a href="{{ route('songs.show',$song) }}">{{ $song->title }}</a>
-       <div>
-        タグ：
-        @foreach($song->tags as $tag)
-        <a href="{{ route('tags.show', $tag->id) }}">{{ $tag->title }}</a>
-        @unless($loop->last)
-        ,
-        @endunless
-        @endforeach
-       </div>
+       @include('components.song_data')
       </div>
       @else
       <div class="songData">
        <a href="{{ route('songs.show',$song) }}">
         <img src="{{ asset('/public_images/black_no_image.png')}}" class="image">
        </a>
-       タイトル：<a href="{{ route('songs.show',$song) }}">{{ $song->title }}</a>
-       <div>
-        タグ：
-        @foreach($song->tags as $tag)
-        <a href="{{ route('tags.show', $tag->id) }}">{{ $tag->title }}</a>
-        @unless($loop->last)
-        ,
-        @endunless
-        @endforeach
-       </div>
+       @include('components.song_data')
       </div>
       @endif
       @endforeach
      </div>
     </div>
+    <p class="topPaginate">
+     {{ $songs->links() }}
+    </p>
+    @include('components.problem')
    </div>
-   <p class="topPaginate">
-    {{ $songs->links() }}
-   </p>
-   @include('components.problem')
-
   </div>
  </div>
-</div>
 </div>
 </div>
 @endsection
