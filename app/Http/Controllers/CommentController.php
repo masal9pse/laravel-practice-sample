@@ -48,14 +48,26 @@ class CommentController extends Controller
   return redirect()->route('songs.show', ['id' => $comment->song_id]);
  }
 
- public function destroy($id)
+ public function destroy(Comment $comment)
  {
-  $comment = Comment::find($id);
-  dd($comment);
-  $comment->delete();
+  if (Auth::check()) {
 
-  // return redirect()->route('songs.show', ['id' => $comment->song_id]);
-  return redirect()->route('songs.show', ['id' => $comment->song->id]);
+   $reply = Reply::where(['comment_id' => $comment->id]);
+   $comment = Comment::where(['user_id' => Auth::user()->id, 'id' => $comment->id]);
+   if ($reply->count() > 0 && $comment->count() > 0) {
+    $reply->delete();
+    $comment->delete();
+    // return 1;
+    return redirect()->route('songs.show', ['id' => $comment->song->id]);
+   } else if ($comment->count() > 0) {
+    $comment->delete();
+    // return 2;
+    return redirect()->route('songs.show', ['id' => $comment->song->id]);
+   } else {
+    // return 3;
+    return redirect()->route('songs.show', ['id' => $comment->song->id]);
+   }
+  }
  }
 
  /**
