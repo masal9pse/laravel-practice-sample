@@ -48,28 +48,6 @@ class CommentController extends Controller
   return redirect()->route('songs.show', ['id' => $comment->song_id]);
  }
 
- public function destroy(Comment $comment)
- {
-  if (Auth::check()) {
-
-   $reply = Reply::where(['comment_id' => $comment->id]);
-   $comment = Comment::where(['user_id' => Auth::user()->id, 'id' => $comment->id]);
-   if ($reply->count() > 0 && $comment->count() > 0) {
-    $reply->delete();
-    $comment->delete();
-    // return 1;
-    return redirect()->route('songs.show', ['id' => $comment->song->id]);
-   } else if ($comment->count() > 0) {
-    $comment->delete();
-    // return 2;
-    return redirect()->route('songs.show', ['id' => $comment->song->id]);
-   } else {
-    // return 3;
-    return redirect()->route('songs.show', ['id' => $comment->song->id]);
-   }
-  }
- }
-
  /**
   * Display the specified resource.
   *
@@ -102,5 +80,21 @@ class CommentController extends Controller
  public function update(Request $request, $id)
  {
   //
+ }
+
+ /**
+  * Remove the specified resource from storage.
+  *
+  * @param  int  $id
+  * @return \Illuminate\Http\Response
+  */
+ public function destroy($id)
+ {
+  // dd($id);
+  $comment = Comment::find($id);
+  // dd($comment);
+  $comment->delete();
+
+  return redirect()->route('songs.show', ['id' => $comment->song_id]);
  }
 }
