@@ -33,6 +33,11 @@
   <div class="panel-heading">
    登録者:{{ $comment->user->name }}
    <a href="{{ route('replies.create', ['comment_id' => $comment->id]) }}" class="btn btn-info mt-5">返信する</a>
+   {{-- <form action="{{ route('comments.destroy',['song_id' => $song->id]) }}" class="mt-3" method="POST"> --}}
+   <form action="{{ route('comments.destroy') }}" class="mt-3" method="DELETE">
+    {{ csrf_field() }}
+    <button class="btn btn-danger">削除する</button>
+   </form>
   </div>
   <p class="panel-body">{{ $comment->comment }}</p>
   @foreach($comment->replies as $rep)
