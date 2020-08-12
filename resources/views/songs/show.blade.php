@@ -32,8 +32,8 @@
  <div class="panel panel-success">
   <div class="panel-heading">
    登録者:{{ $comment->user->name }}
-   <a href="{{ route('replies.create', ['comment_id' => $comment->id]) }}" class="btn btn-info mt-5">返信する</a>
    {{Form::model($comment, ['route' => ['comments.destroy', $comment->id]])}}
+   <a href="{{ route('replies.create', ['comment_id' => $comment->id]) }}" class="btn btn-info mt-5">返信する</a>
    <button onclick="return confirm('本当に削除しますか？')" class="btn btn-danger">削除する</button>
    {{Form::close()}}
   </div>

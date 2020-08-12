@@ -24,7 +24,7 @@ Route::resource('/user', 'UserController');
 Route::group(['middleware' => 'auth:user'], function () {
  Route::resource('/songs', 'SongController', ['except' => ['index', 'create', 'store', 'show']]);
  // Route::resource('/comments', 'CommentController', ['only' => ['create', 'store', 'destroy']]);
- Route::get('comments/create/{id}', 'CommentController@create')->name('comments.create');
+ Route::get('comments/create', 'CommentController@create')->name('comments.create');
  Route::post('comments', 'CommentController@store')->name('comments.store');
  Route::post('comments/{id}', 'CommentController@destroy')->name('comments.destroy');
  Route::resource('/replies', 'ReplyController');

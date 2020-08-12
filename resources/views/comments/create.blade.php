@@ -11,14 +11,12 @@
 
   <div class="card">
    <div class="card-body">
-    @if ($errors->any())
-    <div class="alert alert-danger">
-     <ul>
-      @foreach ($errors->all() as $error)
-      <li>{{ $error }}</li>
-      @endforeach
-     </ul>
+    @if($errors->has('comment'))
+    @foreach($errors->get('comment') as $message)
+    <div class="text-danger">
+     {{ $message }}
     </div>
+    @endforeach
     @endif
     <form action="{{ route('comments.store') }}" method="POST">
      {{ csrf_field() }}

@@ -102,6 +102,7 @@ return [
   'body' => '本文',
   'file_name' => '画像',
   'problem' => '感想',
-  'detail' => '歌詞'
+  'detail' => '歌詞',
+  'comment' => 'コメント'
  ],
 ];

@@ -40,6 +40,7 @@ class CommentController extends Controller
   */
  public function store(CommentRequest $request)
  {
+  // dd($request);
   $comment = new Comment;
 
   $input = $request->only($comment->getFillable());
