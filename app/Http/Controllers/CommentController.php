@@ -48,6 +48,15 @@ class CommentController extends Controller
   return redirect()->route('songs.show', ['id' => $comment->song_id]);
  }
 
+ public function destroy($id)
+ {
+  $comment = Comment::find($id);
+  // dd($song);
+  $comment->delete();
+
+  return redirect()->route('songs.show', ['id' => $comment->song_id]);
+ }
+
  /**
   * Display the specified resource.
   *
@@ -78,17 +87,6 @@ class CommentController extends Controller
   * @return \Illuminate\Http\Response
   */
  public function update(Request $request, $id)
- {
-  //
- }
-
- /**
-  * Remove the specified resource from storage.
-  *
-  * @param  int  $id
-  * @return \Illuminate\Http\Response
-  */
- public function destroy($id)
  {
   //
  }

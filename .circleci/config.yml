@@ -47,7 +47,7 @@ jobs:
             - node_modules
       - run: npm run dev
       - run:
-          name: php test
+          name: phpunit test
           command: vendor/bin/phpunit
 
   deploy:
