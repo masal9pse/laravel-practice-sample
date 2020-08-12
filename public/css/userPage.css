@@ -1,0 +1,27 @@
+body {
+ background-color: #FFFFEE;
+}
+
+.image {
+ display: block;
+}
+
+@media screen and (max-width:1500px) {
+
+ .main {
+  display: flex;
+  justify-content: space-between;
+  margin: 30px;
+ }
+}
+
+@media screen and (max-width:800px) {
+ .main {
+  display: flex;
+  flex-direction: column;
+ }
+
+ .songData {
+  margin-top: 50px;
+ }
+}
