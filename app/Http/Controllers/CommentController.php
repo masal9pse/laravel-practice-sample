@@ -90,6 +90,11 @@ class CommentController extends Controller
   */
  public function destroy($id)
  {
-  //
+  // dd($id);
+  $comment = Comment::find($id);
+  // dd($comment);
+  $comment->delete();
+
+  return redirect()->route('songs.show', ['id' => $comment->song_id]);
  }
 }
