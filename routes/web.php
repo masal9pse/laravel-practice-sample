@@ -27,7 +27,10 @@ Route::group(['middleware' => 'auth:user'], function () {
  Route::get('comments/create', 'CommentController@create')->name('comments.create');
  Route::post('comments', 'CommentController@store')->name('comments.store');
  Route::post('comments/{id}', 'CommentController@destroy')->name('comments.destroy');
- Route::resource('/replies', 'ReplyController');
+ // Route::resource('/replies', 'ReplyController');
+ Route::get('/replies/create', 'ReplyController@create')->name('replies.create');
+ Route::post('/replies', 'ReplyController@store')->name('replies.store');
+ Route::post('/replies/{id}', 'ReplyController@destroy')->name('replies.destroy');
  Route::post('/tags/destroy/{id}', 'TagController@destroy')->name('tags.destroy');
  Route::post('/tags/update/{id}', 'TagController@update')->name('tags.update');
 });
