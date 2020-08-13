@@ -89,6 +89,14 @@ class ReplyController extends Controller
   */
  public function destroy($id)
  {
-  //
+  // dd($id);
+  $reply = Reply::find($id);
+  // dd($reply);
+  // $reply = Reply::where('id', $comment_id)->firstOrFail();
+  // dd($reply);
+  $reply->delete();
+
+  return redirect()->route('songs.show', ['id' => $reply->comment->song_id]);
+  // return redirect()->route('songs.show', ['id' => $reply->comment_id]);
  }
 }

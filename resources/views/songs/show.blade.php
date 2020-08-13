@@ -43,6 +43,10 @@
   <div class="well">
    登録者：{{ $rep->name }} |
    <span> {{ $rep->reply }} </span>
+   <form action="{{ route('replies.destroy',$rep) }}" method="post">
+    {{ csrf_field() }}
+    <button onclick="return confirm('本当に削除しますか？')" class="btn btn-danger">削除する</button>
+   </form>
   </div>
   @endif
   @endforeach
