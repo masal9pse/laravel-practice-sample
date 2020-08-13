@@ -6,6 +6,14 @@ body {
  display: block;
 }
 
+.well {
+ display: flex;
+}
+
+.reply-rm-button {
+ margin-left: 20px;
+}
+
 @media screen and (max-width:1500px) {
 
  .main {
