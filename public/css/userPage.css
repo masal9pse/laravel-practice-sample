@@ -14,6 +14,10 @@ body {
  margin-left: 20px;
 }
 
+.rep_name {
+ margin-left: 10px;
+}
+
 @media screen and (max-width:1500px) {
 
  .main {
