@@ -44,7 +44,7 @@
    <span>
     登録者：{{ $rep->name }}
    </span>:
-   <span class="rep_name"> {{ $rep->reply }} </span>
+   <span class="rep_reply"> {{ $rep->reply }} </span>
   </div>
   @endif
   @endforeach
@@ -93,7 +93,7 @@
  @if($comment->id === $rep->comment_id)
  <div class="well">
   登録者：{{ $rep->name }} |
-  <span> {{ $rep->reply }} </span>
+  <span class="rep_reply"> {{ $rep->reply }} </span>
   <form action="{{ route('replies.destroy',$rep) }}" method="post">
    {{ csrf_field() }}
    <button onclick="return confirm('本当に削除しますか？')" class="btn btn-danger reply-rm-button">削除する</button>
