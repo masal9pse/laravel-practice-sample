@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\CommentRequest;
 use App\Comment;
+use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
 {
@@ -93,9 +94,12 @@ class CommentController extends Controller
  {
   // dd($id);
   $comment = Comment::find($id);
-  // dd($comment);
-  $comment->delete();
+  if (Auth::user()->id === $comment->user_id) {
+   $comment->delete();
 
-  return redirect()->route('songs.show', ['id' => $comment->song_id]);
+   return redirect()->route('songs.show', ['id' => $comment->song_id]);
+  } else {
+   return "<h1>他人のコメントを削除するな</h1>";
+  }
  }
 }

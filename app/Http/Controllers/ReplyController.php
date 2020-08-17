@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Reply;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 
 class ReplyController extends Controller
 {
@@ -89,14 +89,13 @@ class ReplyController extends Controller
   */
  public function destroy($id)
  {
-  // dd($id);
   $reply = Reply::find($id);
-  // dd($reply);
-  // $reply = Reply::where('id', $comment_id)->firstOrFail();
-  // dd($reply);
-  $reply->delete();
+  if (Auth::user()->id === $reply->comment->user_id) {
+   $reply->delete();
 
-  return redirect()->route('songs.show', ['id' => $reply->comment->song_id]);
-  // return redirect()->route('songs.show', ['id' => $reply->comment_id]);
+   return redirect()->route('songs.show', ['id' => $reply->comment->song_id]);
+  } else {
+   return "<h1 style='color:red;'>センパ〜イ、他人のコメント消しちゃダメじゃないっすか〜</h1>";
+  }
  }
 }
