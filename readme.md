@@ -58,6 +58,8 @@ https://song-picture-mamp.work/
 
 - phpunit で単体テスト
 
+- Bootsrap,CSSを用いてレスポンシブ対応
+
 - CircleCI/CD 自動ビルド・自動テスト・自動デプロイ
 
 # 使用技術一覧
