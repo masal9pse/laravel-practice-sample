@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Song;
 use Illuminate\Http\Request;
 use App\Problem;
-// use Intervention\Image\ImageServiceProvider as Image;
 
 class SongController extends Controller
 {
@@ -16,20 +15,11 @@ class SongController extends Controller
   */
  public function index(Request $request, Song $songInstanse)
  {
-  // dd($songInstanse);
   $search = $request->input('search');
 
   $songs = Song::query()->with('tags');
-  // dd($songs);
 
-  // ここのロジックを分けたい
-  // if ($request->has('search') && $songs != null) {
-  //  $songs->where('title', 'like', '%' . $search . '%')->get();
-  // }
-
-  // $songInstanse->titleSearch($request, $songInstanse, $search);
-  // $songs->titleSearch($request, $songInstanse, $search);
-  $songInstanse->titleSearch($request, $songs, $search); // 動作できた
+  $songInstanse->titleSearch($request, $songs, $search);
 
   $songs = $songs->orderBy('id', 'desc')->paginate(3);
   $problems = Problem::all();

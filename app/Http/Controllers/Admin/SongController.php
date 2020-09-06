@@ -27,16 +27,12 @@ class SongController extends Controller
   *
   * @return \Illuminate\Http\Response
   */
- public function create(Request $request)
+ public function create(Request $request, Song $songInstanse)
  {
   $search = $request->input('search');
   $songs = DB::table('songs');
 
-  if ($request->has('search') && $songs != null) {
-   $songs->where('title', 'like', '%' . $search . '%')->get();
-  } else {
-   $songs->orderBy('id', 'desc')->paginate(10);
-  }
+  $songInstanse->titleSearch($request, $songs, $search); // 動作できた
 
   $songs->select('id', 'title', 'detail', 'file_name', 'created_at');
   $songs->orderBy('created_at', 'desc');
