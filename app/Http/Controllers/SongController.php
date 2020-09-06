@@ -16,14 +16,18 @@ class SongController extends Controller
   */
  public function index(Request $request)
  {
+  // dd($songInstanse);
   $search = $request->input('search');
 
   $songs = Song::query()->with('tags');
   // dd($songs);
 
-  if ($request->has('search') && $songs != null) {
-   $songs->where('title', 'like', '%' . $search . '%')->get();
-  }
+  // ここのロジックを分けたい
+  // if ($request->has('search') && $songs != null) {
+  //  $songs->where('title', 'like', '%' . $search . '%')->get();
+  // }
+
+  $songs->titleSeach($request, $songs, $search);
 
   $songs = $songs->orderBy('id', 'desc')->paginate(3);
   $problems = Problem::all();
