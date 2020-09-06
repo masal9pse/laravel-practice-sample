@@ -14,7 +14,7 @@ class SongController extends Controller
   *
   * @return \Illuminate\Http\Response
   */
- public function index(Request $request)
+ public function index(Request $request, Song $songInstanse)
  {
   // dd($songInstanse);
   $search = $request->input('search');
@@ -27,7 +27,9 @@ class SongController extends Controller
   //  $songs->where('title', 'like', '%' . $search . '%')->get();
   // }
 
-  $songs->titleSeach($request, $songs, $search);
+  // $songInstanse->titleSearch($request, $songInstanse, $search);
+  // $songs->titleSearch($request, $songInstanse, $search);
+  $songInstanse->titleSearch($request, $songs, $search); // 動作できた
 
   $songs = $songs->orderBy('id', 'desc')->paginate(3);
   $problems = Problem::all();
