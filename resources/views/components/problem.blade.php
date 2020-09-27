@@ -26,9 +26,9 @@
   <button type="submit" class="btn btn-warning">投稿</button>
  </div>
 </form>
-@foreach ($problems as $problem)
+{{--@foreach ($problems as $problem)
 <div class="form-group">
  <span>名前: {{ $problem->name }}</span>
- <div class="form-group">感想: {{ $problem->problem }}</div>
+<div class="form-group">感想: {{ $problem->problem }}</div>
 </div>
-@endforeach
+@endforeach--}}
