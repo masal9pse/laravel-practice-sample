@@ -55,11 +55,11 @@ class Song extends Model
   return $this->belongsToMany(Tag::class);
  }
 
- public function titleSearch($search, $songs, $execSearch)
+ public function titleSearch($search, $songs)
  {
   //if ($request->has('search') && $songs != null) {
   if ($search && $songs != null) {
-   $songs->where('title', 'like', '%' . $execSearch . '%')->get();
+   $songs->where('title', 'like', '%' . $search . '%')->get();
   }
  }
 }

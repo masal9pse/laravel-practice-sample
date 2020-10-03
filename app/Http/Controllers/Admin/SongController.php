@@ -32,9 +32,9 @@ class SongController extends Controller
   $search = $request->input('search');
   $songs = DB::table('songs');
 
-  $songInstanse->titleSearch($request, $songs, $search); // 動作できた
+  $songInstanse->titleSearch($search, $songs);
 
-  $songs->select('id', 'title', 'detail', 'file_name', 'created_at');
+  $songs->select('*');
   $songs->orderBy('created_at', 'desc');
   $songs = $songs->paginate(10);
   $tags = Tag::pluck('title', 'id')->toArray();
