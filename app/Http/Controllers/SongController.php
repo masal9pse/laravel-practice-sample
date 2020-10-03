@@ -15,11 +15,12 @@ class SongController extends Controller
   */
  public function index(Request $request, Song $songInstanse)
  {
-  $search = $request->input('search');
+  $search = $request->has('search');
+  $execSearch = $request->input('search');
 
   $songs = Song::query()->with('tags');
 
-  $songInstanse->titleSearch($request, $songs, $search);
+  $songInstanse->titleSearch($search, $songs, $execSearch);
 
   $songs = $songs->orderBy('id', 'desc')->paginate(3);
   $problems = Problem::all();
