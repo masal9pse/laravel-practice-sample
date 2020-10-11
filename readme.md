@@ -129,16 +129,20 @@ https://song-picture-mamp.work/
 
 https://github.com/masal9pse/song-picture-text
 
-# インストール方法
+# クローン方法
 
 ```
+docker-compose up -d --build 
+
+docker-compose exec app bash
+
 composer install
 
 npm install
 
+php artisan migrate --seed
+
 php artisan serve
 
 npm run watch
-
-php artisan migrate --seed
 ```
