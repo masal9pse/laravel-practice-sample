@@ -3,6 +3,7 @@
 <div class="container">
  @guest
  <div class="row">
+  {{--{{ $song->books->title }}--}}
   <h3 class="text-center form-group">
    {{ $song->title }}
   </h3>
@@ -106,4 +107,8 @@
 @endforeach
 </div>
 @endguest
+{{--{{ $song->books->title }}--}}
+{{--@foreach ($song->books as $book)
+{{$book->title}}
+@endforeach--}}
 @endsection

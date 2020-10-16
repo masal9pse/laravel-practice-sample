@@ -24,14 +24,14 @@ class BooksTableSeeder extends Seeder
   // var_dump($books);
   // echo '<pre>';
 
-  $insert_data_sql = "INSERT INTO books (user_id,title,author,thumbnail,description,created_at) VALUES (:user_id,:title,:author,:thumbnail,:description,NOW())";
+  $insert_data_sql = "INSERT INTO books (song_id,title,author,thumbnail,description,created_at) VALUES (:song_id,:title,:author,:thumbnail,:description,NOW())";
   $insert_data = $db->prepare($insert_data_sql);
 
   // 挿入する値を配列に格納する
   foreach ($books as $book) {
    // var_dump($book);  
    // タイトル
-   $user_id = rand(1, 50);
+   $song_id = rand(1, 50);
    $title = $book->volumeInfo->title;
    // 説明
    $description = $book->volumeInfo->description;
@@ -40,7 +40,7 @@ class BooksTableSeeder extends Seeder
    // 著者（配列なのでカンマ区切りに変更）
    $authors = implode(',', $book->volumeInfo->authors);
 
-   $insert = array('user_id' => $user_id, ':title' => $title, ':author' => $authors, ':thumbnail' => $thumbnail, ':description' => $description);
+   $insert = array('song_id' => $song_id, ':title' => $title, ':author' => $authors, ':thumbnail' => $thumbnail, ':description' => $description);
    $insert_data->execute($insert);
    //$insert_data->execute($book);
   }

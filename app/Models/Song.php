@@ -24,6 +24,11 @@ class Song extends Model
  {
   return $this->belongsTo(Admin::class);
  }
+ public function books()
+ {
+  return $this->belongsTo(Book::class, 'song_id');
+  //return $this->belongsTo(Book::class);
+ }
  // 追加
  public function likes(): BelongsToMany
  {

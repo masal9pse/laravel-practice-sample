@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Song;
 use Illuminate\Http\Request;
 use App\Problem;
+use App\Models\Book;
 
 class SongController extends Controller
 {
@@ -52,8 +53,8 @@ class SongController extends Controller
  {
   $userAuth = \Auth::user();
   $song = Song::find($id);
-  $song->load('user', 'comments', 'likes', 'comments.replies.user');
-  // dd($song);
+  $song->load('user', 'books', 'comments', 'likes', 'comments.replies.user');
+  //dd($song);
   $defaultCount = count($song->likes);
   $defaultLiked = $song->likes()->where('user_id', $userAuth->id)->first();
   if (count($defaultLiked) == 0) {
