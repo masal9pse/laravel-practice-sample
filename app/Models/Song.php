@@ -26,7 +26,8 @@ class Song extends Model
  }
  public function books()
  {
-  return $this->belongsTo(Book::class, 'song_id');
+  //return $this->belongsTo(Book::class, 'song_id');
+  return $this->hasMany(Book::class, 'song_id', 'id');
   //return $this->belongsTo(Book::class);
  }
  // 追加
