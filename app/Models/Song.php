@@ -26,11 +26,8 @@ class Song extends Model
  }
  public function books()
  {
-  //return $this->belongsTo(Book::class, 'song_id');
-  return $this->hasMany(Book::class, 'song_id', 'id');
-  //return $this->belongsTo(Book::class);
+  return $this->hasMany(Book::class);
  }
- // 追加
  public function likes(): BelongsToMany
  {
   return $this->BelongsToMany(User::class, 'likes');
@@ -63,7 +60,6 @@ class Song extends Model
 
  public function titleSearch($search, $songs)
  {
-  //if ($request->has('search') && $songs != null) {
   if ($search && $songs != null) {
    $songs->where('title', 'like', '%' . $search . '%')->get();
   }

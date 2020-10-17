@@ -110,5 +110,4 @@
 @endforeach
 </div>
 @endguest
-{{--{{ $song->books->title }}--}}
 @endsection

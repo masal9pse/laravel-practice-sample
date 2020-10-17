@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Song;
 use Illuminate\Http\Request;
 use App\Problem;
-use App\Models\Book;
 
 class SongController extends Controller
 {
@@ -16,13 +15,10 @@ class SongController extends Controller
   */
  public function index(Request $request, Song $songInstanse)
  {
-  //$search = $request->has('search');
-  //$execSearch = $request->input('search');
   $search = $request->input('search');
 
   $songs = Song::query()->with('tags');
 
-  //$songInstanse->titleSearch($search, $songs, $execSearch);
   $songInstanse->titleSearch($search, $songs);
 
   $songs = $songs->orderBy('id', 'desc')->paginate(3);
