@@ -20,6 +20,8 @@ Route::resource('/songs', 'SongController')->only(['show', 'store']);
 Route::resource('/tags', 'TagController', ['only' => ['index', 'create', 'show', 'edit']]);
 Route::resource('/problems', 'ProblemController')->only(['store']);
 Route::resource('/user', 'UserController');
+Route::post('/books', 'UserController@book_store')->name('books.book_store');
+//Route::post('/get', 'UserController@book_index')->name('books.book_store');
 
 Route::group(['middleware' => 'auth:user'], function () {
  Route::resource('/songs', 'SongController', ['except' => ['index', 'create', 'store', 'show']]);
