@@ -57,6 +57,27 @@ class UserController extends Controller
   ]);
  }
 
+
+ public function book_store(Request $request)
+ {
+  $request->validate([
+   'title' => 'required',
+   'author' => 'required',
+   'description' => 'required'
+  ]);
+
+  $book = $request->user()->create([
+   'title' => $request->title,
+   'author' => $request->author,
+   'description' => Hash::make($request->description)
+  ]);
+
+  return response()->json([
+   'book' => $book,
+   'message' => 'task has been created'
+  ]);
+ }
+
  /**
   * Display the specified resource.
   *

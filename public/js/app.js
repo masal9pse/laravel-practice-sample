@@ -1298,10 +1298,8 @@ window.Vue = __webpack_require__(37);
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
-
-Vue.component("example-component", __webpack_require__(41));
-
-Vue.component("user-component", __webpack_require__(44));
+Vue.component("user-component", __webpack_require__(41));
+Vue.component("book-component", __webpack_require__(44));
 
 Vue.component("like", __webpack_require__(47));
 
@@ -45117,7 +45115,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/components/ExampleComponent.vue"
+Component.options.__file = "resources/assets/js/components/UserComponent.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -45126,9 +45124,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-7168fb6a", Component.options)
+    hotAPI.createRecord("data-v-ebaad86a", Component.options)
   } else {
-    hotAPI.reload("data-v-7168fb6a", Component.options)
+    hotAPI.reload("data-v-ebaad86a", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -45160,10 +45158,121 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      user: {
+        name: "",
+        email: "",
+        password: ""
+      },
+      users: [],
+      uri: "http://localhost:8000/user",
+      errors: []
+    };
+  },
+
+  methods: {
+    createModal: function createModal() {
+      $("#create-modal").modal("show");
+    },
+    createUser: function createUser() {
+      var _this = this;
+
+      axios.post(this.uri, {
+        name: this.user.name,
+        email: this.user.email,
+        password: this.user.password
+      }).then(function (response) {
+        _this.users.push(response.data.user);
+        $("#create-modal").modal("hide");
+      }).catch(function (error) {
+        _this.errors = [];
+        if (error.response.data.errors.name) {
+          _this.errors.push(error.response.data.errors.name[0]);
+        }
+
+        if (error.response.data.errors.email) {
+          _this.errors.push(error.response.data.errors.email[0]);
+        }
+
+        if (error.response.data.errors.password) {
+          _this.errors.push(error.response.data.errors.password[0]);
+        }
+      });
+    },
+    loadTasks: function loadTasks() {
+      var _this2 = this;
+
+      axios.get(this.uri).then(function (response) {
+        _this2.users = response.data.users;
+      });
+    }
+  },
   mounted: function mounted() {
-    console.log("Component mounted.");
+    this.loadTasks();
+    console.log(this.loadTasks);
   }
 });
 
@@ -45175,27 +45284,237 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", [
+    _c(
+      "button",
+      {
+        staticClass: "btn btn-primary btn-block",
+        on: { click: _vm.createModal }
+      },
+      [_vm._v("Add New Task")]
+    ),
+    _vm._v(" "),
+    _vm.users
+      ? _c("table", { staticClass: "table" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c(
+            "tbody",
+            _vm._l(_vm.users, function(user, index) {
+              return _c("tr", { key: index }, [
+                _c("td", [_vm._v(_vm._s(index + 1))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(user.name))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(user.email))]),
+                _vm._v(" "),
+                _vm._m(1, true),
+                _vm._v(" "),
+                _vm._m(2, true)
+              ])
+            }),
+            0
+          )
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: {
+          id: "create-modal",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "exampleModalLabel",
+          "aria-hidden": "true"
+        }
+      },
+      [
+        _c(
+          "div",
+          { staticClass: "modal-dialog", attrs: { role: "document" } },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _vm._m(3),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-body" }, [
+                _vm.errors.length > 0
+                  ? _c("div", { staticClass: "alert alert-danger" }, [
+                      _c(
+                        "ul",
+                        _vm._l(_vm.errors, function(error) {
+                          return _c("li", { key: error }, [
+                            _vm._v(_vm._s(error))
+                          ])
+                        }),
+                        0
+                      )
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "name" } }, [_vm._v("Name")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.user.name,
+                        expression: "user.name"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { type: "text", name: "", id: "name" },
+                    domProps: { value: _vm.user.name },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.user, "name", $event.target.value)
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "email" } }, [_vm._v("email")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.user.email,
+                        expression: "user.email"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { type: "text", name: "", id: "email" },
+                    domProps: { value: _vm.user.email },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.user, "email", $event.target.value)
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "password" } }, [
+                    _vm._v("password")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.user.password,
+                        expression: "user.password"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { type: "text", name: "", id: "password" },
+                    domProps: { value: _vm.user.password },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.user, "password", $event.target.value)
+                      }
+                    }
+                  })
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-footer" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-secondary",
+                    attrs: { type: "button", "data-dismiss": "modal" }
+                  },
+                  [_vm._v("Close")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-primary",
+                    attrs: { type: "button" },
+                    on: { click: _vm.createUser }
+                  },
+                  [_vm._v("Save changes")]
+                )
+              ])
+            ])
+          ]
+        )
+      ]
+    )
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-md-8 col-md-offset-2" }, [
-          _c("div", { staticClass: "panel panel-default" }, [
-            _c("div", { staticClass: "panel-heading" }, [
-              _vm._v("Example Component")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "panel-body" }, [
-              _vm._v("\n          I'm an example component!\n        ")
-            ])
-          ])
-        ])
+    return _c("thead", [
+      _c("tr", [
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("id")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Name")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Body")])
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("button", { staticClass: "btn btn-info" }, [_vm._v("Edit")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("button", { staticClass: "btn btn-danger" }, [_vm._v("Delete")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c(
+        "h5",
+        { staticClass: "modal-title", attrs: { id: "exampleModalLabel" } },
+        [_vm._v("Create Modal")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
+        },
+        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+      )
     ])
   }
 ]
@@ -45204,7 +45523,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-7168fb6a", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-ebaad86a", module.exports)
   }
 }
 
@@ -45234,7 +45553,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/components/UserComponent.vue"
+Component.options.__file = "resources/assets/js/components/BookComponent.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -45243,9 +45562,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-ebaad86a", Component.options)
+    hotAPI.createRecord("data-v-5cc9456d", Component.options)
   } else {
-    hotAPI.reload("data-v-ebaad86a", Component.options)
+    hotAPI.reload("data-v-5cc9456d", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -45642,7 +45961,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-ebaad86a", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-5cc9456d", module.exports)
   }
 }
 
@@ -45818,7 +46137,7 @@ if (false) {
 /* 50 */
 /***/ (function(module, exports) {
 
-// removed by extract-text-webpack-plugin
+throw new Error("Module build failed: ModuleBuildError: Module build failed: Error: Missing binding /Users/yamamotohiroto/dev_workspace/laravel/song-picture-laravel/node_modules/node-sass/vendor/darwin-x64-64/binding.node\nNode Sass could not find a binding for your current environment: OS X 64-bit with Node.js 10.x\n\nFound bindings for the following environments:\n  - Linux 64-bit with Node.js 10.x\n\nThis usually happens because your environment has changed since running `npm install`.\nRun `npm rebuild node-sass` to download the binding for your current environment.\n    at module.exports (/Users/yamamotohiroto/dev_workspace/laravel/song-picture-laravel/node_modules/node-sass/lib/binding.js:15:13)\n    at Object.<anonymous> (/Users/yamamotohiroto/dev_workspace/laravel/song-picture-laravel/node_modules/node-sass/lib/index.js:14:35)\n    at Module._compile (internal/modules/cjs/loader.js:776:30)\n    at Object.Module._extensions..js (internal/modules/cjs/loader.js:787:10)\n    at Module.load (internal/modules/cjs/loader.js:653:32)\n    at tryModuleLoad (internal/modules/cjs/loader.js:593:12)\n    at Function.Module._load (internal/modules/cjs/loader.js:585:3)\n    at Module.require (internal/modules/cjs/loader.js:690:17)\n    at require (internal/modules/cjs/helpers.js:25:18)\n    at Object.<anonymous> (/Users/yamamotohiroto/dev_workspace/laravel/song-picture-laravel/node_modules/sass-loader/lib/loader.js:3:14)\n    at Module._compile (internal/modules/cjs/loader.js:776:30)\n    at Object.Module._extensions..js (internal/modules/cjs/loader.js:787:10)\n    at Module.load (internal/modules/cjs/loader.js:653:32)\n    at tryModuleLoad (internal/modules/cjs/loader.js:593:12)\n    at Function.Module._load (internal/modules/cjs/loader.js:585:3)\n    at Module.require (internal/modules/cjs/loader.js:690:17)\n    at require (internal/modules/cjs/helpers.js:25:18)\n    at loadLoader (/Users/yamamotohiroto/dev_workspace/laravel/song-picture-laravel/node_modules/loader-runner/lib/loadLoader.js:18:17)\n    at iteratePitchingLoaders (/Users/yamamotohiroto/dev_workspace/laravel/song-picture-laravel/node_modules/loader-runner/lib/LoaderRunner.js:169:2)\n    at iteratePitchingLoaders (/Users/yamamotohiroto/dev_workspace/laravel/song-picture-laravel/node_modules/loader-runner/lib/LoaderRunner.js:165:10)\n    at /Users/yamamotohiroto/dev_workspace/laravel/song-picture-laravel/node_modules/loader-runner/lib/LoaderRunner.js:176:18\n    at loadLoader (/Users/yamamotohiroto/dev_workspace/laravel/song-picture-laravel/node_modules/loader-runner/lib/loadLoader.js:47:3)\n    at iteratePitchingLoaders (/Users/yamamotohiroto/dev_workspace/laravel/song-picture-laravel/node_modules/loader-runner/lib/LoaderRunner.js:169:2)\n    at iteratePitchingLoaders (/Users/yamamotohiroto/dev_workspace/laravel/song-picture-laravel/node_modules/loader-runner/lib/LoaderRunner.js:165:10)\n    at /Users/yamamotohiroto/dev_workspace/laravel/song-picture-laravel/node_modules/loader-runner/lib/LoaderRunner.js:176:18\n    at loadLoader (/Users/yamamotohiroto/dev_workspace/laravel/song-picture-laravel/node_modules/loader-runner/lib/loadLoader.js:47:3)\n    at iteratePitchingLoaders (/Users/yamamotohiroto/dev_workspace/laravel/song-picture-laravel/node_modules/loader-runner/lib/LoaderRunner.js:169:2)\n    at iteratePitchingLoaders (/Users/yamamotohiroto/dev_workspace/laravel/song-picture-laravel/node_modules/loader-runner/lib/LoaderRunner.js:165:10)\n    at /Users/yamamotohiroto/dev_workspace/laravel/song-picture-laravel/node_modules/loader-runner/lib/LoaderRunner.js:176:18\n    at loadLoader (/Users/yamamotohiroto/dev_workspace/laravel/song-picture-laravel/node_modules/loader-runner/lib/loadLoader.js:47:3)\n    at runLoaders (/Users/yamamotohiroto/dev_workspace/laravel/song-picture-laravel/node_modules/webpack/lib/NormalModule.js:195:19)\n    at /Users/yamamotohiroto/dev_workspace/laravel/song-picture-laravel/node_modules/loader-runner/lib/LoaderRunner.js:367:11\n    at /Users/yamamotohiroto/dev_workspace/laravel/song-picture-laravel/node_modules/loader-runner/lib/LoaderRunner.js:172:11\n    at loadLoader (/Users/yamamotohiroto/dev_workspace/laravel/song-picture-laravel/node_modules/loader-runner/lib/loadLoader.js:32:11)\n    at iteratePitchingLoaders (/Users/yamamotohiroto/dev_workspace/laravel/song-picture-laravel/node_modules/loader-runner/lib/LoaderRunner.js:169:2)\n    at iteratePitchingLoaders (/Users/yamamotohiroto/dev_workspace/laravel/song-picture-laravel/node_modules/loader-runner/lib/LoaderRunner.js:165:10)\n    at /Users/yamamotohiroto/dev_workspace/laravel/song-picture-laravel/node_modules/loader-runner/lib/LoaderRunner.js:176:18\n    at loadLoader (/Users/yamamotohiroto/dev_workspace/laravel/song-picture-laravel/node_modules/loader-runner/lib/loadLoader.js:47:3)\n    at iteratePitchingLoaders (/Users/yamamotohiroto/dev_workspace/laravel/song-picture-laravel/node_modules/loader-runner/lib/LoaderRunner.js:169:2)\n    at iteratePitchingLoaders (/Users/yamamotohiroto/dev_workspace/laravel/song-picture-laravel/node_modules/loader-runner/lib/LoaderRunner.js:165:10)\n    at /Users/yamamotohiroto/dev_workspace/laravel/song-picture-laravel/node_modules/loader-runner/lib/LoaderRunner.js:176:18\n    at loadLoader (/Users/yamamotohiroto/dev_workspace/laravel/song-picture-laravel/node_modules/loader-runner/lib/loadLoader.js:47:3)\n    at iteratePitchingLoaders (/Users/yamamotohiroto/dev_workspace/laravel/song-picture-laravel/node_modules/loader-runner/lib/LoaderRunner.js:169:2)\n    at iteratePitchingLoaders (/Users/yamamotohiroto/dev_workspace/laravel/song-picture-laravel/node_modules/loader-runner/lib/LoaderRunner.js:165:10)\n    at /Users/yamamotohiroto/dev_workspace/laravel/song-picture-laravel/node_modules/loader-runner/lib/LoaderRunner.js:176:18\n    at loadLoader (/Users/yamamotohiroto/dev_workspace/laravel/song-picture-laravel/node_modules/loader-runner/lib/loadLoader.js:47:3)\n    at iteratePitchingLoaders (/Users/yamamotohiroto/dev_workspace/laravel/song-picture-laravel/node_modules/loader-runner/lib/LoaderRunner.js:169:2)\n    at runLoaders (/Users/yamamotohiroto/dev_workspace/laravel/song-picture-laravel/node_modules/loader-runner/lib/LoaderRunner.js:365:2)\n    at NormalModule.doBuild (/Users/yamamotohiroto/dev_workspace/laravel/song-picture-laravel/node_modules/webpack/lib/NormalModule.js:182:3)\n    at NormalModule.build (/Users/yamamotohiroto/dev_workspace/laravel/song-picture-laravel/node_modules/webpack/lib/NormalModule.js:275:15)\n    at Compilation.buildModule (/Users/yamamotohiroto/dev_workspace/laravel/song-picture-laravel/node_modules/webpack/lib/Compilation.js:157:10)\n    at moduleFactory.create (/Users/yamamotohiroto/dev_workspace/laravel/song-picture-laravel/node_modules/webpack/lib/Compilation.js:460:10)\n    at factory (/Users/yamamotohiroto/dev_workspace/laravel/song-picture-laravel/node_modules/webpack/lib/NormalModuleFactory.js:243:5)\n    at applyPluginsAsyncWaterfall (/Users/yamamotohiroto/dev_workspace/laravel/song-picture-laravel/node_modules/webpack/lib/NormalModuleFactory.js:94:13)\n    at /Users/yamamotohiroto/dev_workspace/laravel/song-picture-laravel/node_modules/tapable/lib/Tapable.js:268:11\n    at NormalModuleFactory.params.normalModuleFactory.plugin (/Users/yamamotohiroto/dev_workspace/laravel/song-picture-laravel/node_modules/webpack/lib/CompatibilityPlugin.js:52:5)\n    at NormalModuleFactory.applyPluginsAsyncWaterfall (/Users/yamamotohiroto/dev_workspace/laravel/song-picture-laravel/node_modules/tapable/lib/Tapable.js:272:13)\n    at resolver (/Users/yamamotohiroto/dev_workspace/laravel/song-picture-laravel/node_modules/webpack/lib/NormalModuleFactory.js:69:10)\n    at process.nextTick (/Users/yamamotohiroto/dev_workspace/laravel/song-picture-laravel/node_modules/webpack/lib/NormalModuleFactory.js:196:7)\n    at process._tickCallback (internal/process/next_tick.js:61:11)");
 
 /***/ })
 /******/ ]);
