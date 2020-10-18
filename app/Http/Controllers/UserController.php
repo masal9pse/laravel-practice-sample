@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\Song;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
@@ -21,6 +22,21 @@ class UserController extends Controller
   return response()->json([
    'users' => $users
   ], 200);
+ }
+
+ /**
+  * Remove the specified resource from storage.
+  *
+  * @param  int  $id
+  * @return \Illuminate\Http\Response
+  */
+ //public function destroy($id)
+ public function destroy(User $user)
+ {
+  $deleteUser = $user->delete();
+  return response()->json([
+   'deleteUser' => $deleteUser
+  ]);
  }
 
  /**
@@ -46,11 +62,7 @@ class UserController extends Controller
    'password' => 'required'
   ]);
 
-  $user = $request->user()->create([
-   'name' => $request->name,
-   'email' => $request->email,
-   'password' => Hash::make($request->password)
-  ]);
+  $user = User::create($request->only(['name', 'email', 'password']));
 
   return response()->json([
    'user' => $user,
@@ -108,17 +120,6 @@ class UserController extends Controller
   * @return \Illuminate\Http\Response
   */
  public function update(Request $request, $id)
- {
-  //
- }
-
- /**
-  * Remove the specified resource from storage.
-  *
-  * @param  int  $id
-  * @return \Illuminate\Http\Response
-  */
- public function destroy($id)
  {
   //
  }

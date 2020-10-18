@@ -12,15 +12,15 @@
       </thead>
       <tbody>
         <tr v-for="(user,index) in users" :key="index">
-          <td>{{ index+1 }}</td>
-          <!-- <td>{{ task.id }}</td> -->
+          <td>{{ user.id }}</td>
           <td>{{ user.name }}</td>
           <td>{{ user.email }}</td>
           <td>
             <button class="btn btn-info">Edit</button>
           </td>
           <td>
-            <button class="btn btn-danger">Delete</button>
+            <!--<button class="btn btn-danger" @click.stop.prevent="deleteUser(user.id, index)">Delete</button>-->
+            <button class="btn btn-danger" @click="deleteUser(user.id)">Delete</button>
           </td>
         </tr>
       </tbody>
@@ -117,6 +117,12 @@ export default {
             this.errors.push(error.response.data.errors.password[0]);
           }
         });
+    },
+    deleteUser(id) {
+      axios.delete(this.uri + id).then(() => {
+        //this.$delete(this.user);
+        this.$delete(this.users);
+      });
     },
     loadTasks() {
       axios.get(this.uri).then(response => {
