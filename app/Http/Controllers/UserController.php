@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Book;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
@@ -61,16 +62,15 @@ class UserController extends Controller
  public function book_store(Request $request)
  {
   $request->validate([
+   'song_id' => 'nullable',
    'title' => 'required',
    'author' => 'required',
-   'description' => 'required'
+   'description' => 'nullable',
+   'thumbnail' => 'nullable'
   ]);
 
-  $book = $request->user()->create([
-   'title' => $request->title,
-   'author' => $request->author,
-   'description' => Hash::make($request->description)
-  ]);
+  $book = Book::create($request->only(['song_id', 'title', 'author', 'description', 'thumbnail']));
+  //$book->save(); // なくてもいい
 
   return response()->json([
    'book' => $book,

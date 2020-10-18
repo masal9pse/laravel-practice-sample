@@ -2,7 +2,7 @@
 @section('content')
 <div class="container">
  {{--<user-component></user-component>--}}
- <book-component></book-component>
+ {{--<book-component></book-component>--}}
  <div class="row justify-content-center">
   <div class="col-md-12">
    <div class="card">

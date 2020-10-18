@@ -2,28 +2,14 @@
   <div>
     <button @click="createModal" class="btn btn-primary btn-block">Add New Task</button>
 
-    <table class="table" v-if="users">
+    <table class="table" v-if="books">
       <thead>
         <tr>
           <th scope="col">id</th>
-          <th scope="col">Name</th>
-          <th scope="col">Body</th>
+          <th scope="col">title</th>
+          <th scope="col">author</th>
         </tr>
       </thead>
-      <tbody>
-        <tr v-for="(user,index) in users" :key="index">
-          <td>{{ index+1 }}</td>
-          <!-- <td>{{ task.id }}</td> -->
-          <td>{{ user.name }}</td>
-          <td>{{ user.email }}</td>
-          <td>
-            <button class="btn btn-info">Edit</button>
-          </td>
-          <td>
-            <button class="btn btn-danger">Delete</button>
-          </td>
-        </tr>
-      </tbody>
     </table>
     <!-- create-modal -->
     <div
@@ -49,18 +35,13 @@
               </ul>
             </div>
             <div class="form-group">
-              <label for="name">Name</label>
-              <input v-model="user.name" type="text" name id="name" class="form-control" />
+              <label for="title">title</label>
+              <input v-model="book.title" type="text" name id="title" class="form-control" />
             </div>
 
             <div class="form-group">
-              <label for="email">email</label>
-              <input v-model="user.email" type="text" name id="email" class="form-control" />
-            </div>
-
-            <div class="form-group">
-              <label for="password">password</label>
-              <input v-model="user.password" type="text" name id="password" class="form-control" />
+              <label for="author">author</label>
+              <input v-model="book.author" type="text" name id="author" class="form-control" />
             </div>
           </div>
           <div class="modal-footer">
@@ -78,13 +59,15 @@
 export default {
   data() {
     return {
-      user: {
-        name: "",
-        email: "",
-        password: ""
+      book: {
+        song_id: 1,
+        title: "",
+        author: "",
+        description: "aaa",
+        thumbnail: "test"
       },
-      users: [],
-      uri: "http://localhost:8000/user",
+      books: [],
+      uri: "http://localhost:8000/books",
       errors: []
     };
   },
@@ -95,38 +78,31 @@ export default {
     createUser() {
       axios
         .post(this.uri, {
-          name: this.user.name,
-          email: this.user.email,
-          password: this.user.password
+          song_id: this.book.song_id,
+          title: this.book.title,
+          author: this.book.author,
+          description: this.book.description,
+          thumbnail: this.book.thumbnail
         })
         .then(response => {
-          this.users.push(response.data.user);
+          this.books.push(response.data.book);
           $("#create-modal").modal("hide");
         })
         .catch(error => {
           this.errors = [];
-          if (error.response.data.errors.name) {
-            this.errors.push(error.response.data.errors.name[0]);
+          if (error.response.data.errors.title) {
+            this.errors.push(error.response.data.errors.title[0]);
           }
 
-          if (error.response.data.errors.email) {
-            this.errors.push(error.response.data.errors.email[0]);
+          if (error.response.data.errors.author) {
+            this.errors.push(error.response.data.errors.author[0]);
           }
 
           if (error.response.data.errors.password) {
             this.errors.push(error.response.data.errors.password[0]);
           }
         });
-    },
-    loadTasks() {
-      axios.get(this.uri).then(response => {
-        this.users = response.data.users;
-      });
     }
-  },
-  mounted() {
-    this.loadTasks();
-    console.log(this.loadTasks);
   }
 };
 </script>

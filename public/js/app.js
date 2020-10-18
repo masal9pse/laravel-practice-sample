@@ -45637,36 +45637,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      user: {
-        name: "",
-        email: "",
-        password: ""
+      book: {
+        song_id: 1,
+        title: "",
+        author: "",
+        description: "aaa",
+        thumbnail: "test"
       },
-      users: [],
-      uri: "http://localhost:8000/user",
+      books: [],
+      uri: "http://localhost:8000/books",
       errors: []
     };
   },
@@ -45679,38 +45662,29 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var _this = this;
 
       axios.post(this.uri, {
-        name: this.user.name,
-        email: this.user.email,
-        password: this.user.password
+        song_id: this.book.song_id,
+        title: this.book.title,
+        author: this.book.author,
+        description: this.book.description,
+        thumbnail: this.book.thumbnail
       }).then(function (response) {
-        _this.users.push(response.data.user);
+        _this.books.push(response.data.book);
         $("#create-modal").modal("hide");
       }).catch(function (error) {
         _this.errors = [];
-        if (error.response.data.errors.name) {
-          _this.errors.push(error.response.data.errors.name[0]);
+        if (error.response.data.errors.title) {
+          _this.errors.push(error.response.data.errors.title[0]);
         }
 
-        if (error.response.data.errors.email) {
-          _this.errors.push(error.response.data.errors.email[0]);
+        if (error.response.data.errors.author) {
+          _this.errors.push(error.response.data.errors.author[0]);
         }
 
         if (error.response.data.errors.password) {
           _this.errors.push(error.response.data.errors.password[0]);
         }
       });
-    },
-    loadTasks: function loadTasks() {
-      var _this2 = this;
-
-      axios.get(this.uri).then(function (response) {
-        _this2.users = response.data.users;
-      });
     }
-  },
-  mounted: function mounted() {
-    this.loadTasks();
-    console.log(this.loadTasks);
   }
 });
 
@@ -45732,29 +45706,7 @@ var render = function() {
       [_vm._v("Add New Task")]
     ),
     _vm._v(" "),
-    _vm.users
-      ? _c("table", { staticClass: "table" }, [
-          _vm._m(0),
-          _vm._v(" "),
-          _c(
-            "tbody",
-            _vm._l(_vm.users, function(user, index) {
-              return _c("tr", { key: index }, [
-                _c("td", [_vm._v(_vm._s(index + 1))]),
-                _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(user.name))]),
-                _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(user.email))]),
-                _vm._v(" "),
-                _vm._m(1, true),
-                _vm._v(" "),
-                _vm._m(2, true)
-              ])
-            }),
-            0
-          )
-        ])
-      : _vm._e(),
+    _vm.books ? _c("table", { staticClass: "table" }, [_vm._m(0)]) : _vm._e(),
     _vm._v(" "),
     _c(
       "div",
@@ -45774,7 +45726,7 @@ var render = function() {
           { staticClass: "modal-dialog", attrs: { role: "document" } },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(3),
+              _vm._m(1),
               _vm._v(" "),
               _c("div", { staticClass: "modal-body" }, [
                 _vm.errors.length > 0
@@ -45792,80 +45744,52 @@ var render = function() {
                   : _vm._e(),
                 _vm._v(" "),
                 _c("div", { staticClass: "form-group" }, [
-                  _c("label", { attrs: { for: "name" } }, [_vm._v("Name")]),
+                  _c("label", { attrs: { for: "title" } }, [_vm._v("title")]),
                   _vm._v(" "),
                   _c("input", {
                     directives: [
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.user.name,
-                        expression: "user.name"
+                        value: _vm.book.title,
+                        expression: "book.title"
                       }
                     ],
                     staticClass: "form-control",
-                    attrs: { type: "text", name: "", id: "name" },
-                    domProps: { value: _vm.user.name },
+                    attrs: { type: "text", name: "", id: "title" },
+                    domProps: { value: _vm.book.title },
                     on: {
                       input: function($event) {
                         if ($event.target.composing) {
                           return
                         }
-                        _vm.$set(_vm.user, "name", $event.target.value)
+                        _vm.$set(_vm.book, "title", $event.target.value)
                       }
                     }
                   })
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "form-group" }, [
-                  _c("label", { attrs: { for: "email" } }, [_vm._v("email")]),
+                  _c("label", { attrs: { for: "author" } }, [_vm._v("author")]),
                   _vm._v(" "),
                   _c("input", {
                     directives: [
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.user.email,
-                        expression: "user.email"
+                        value: _vm.book.author,
+                        expression: "book.author"
                       }
                     ],
                     staticClass: "form-control",
-                    attrs: { type: "text", name: "", id: "email" },
-                    domProps: { value: _vm.user.email },
+                    attrs: { type: "text", name: "", id: "author" },
+                    domProps: { value: _vm.book.author },
                     on: {
                       input: function($event) {
                         if ($event.target.composing) {
                           return
                         }
-                        _vm.$set(_vm.user, "email", $event.target.value)
-                      }
-                    }
-                  })
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "form-group" }, [
-                  _c("label", { attrs: { for: "password" } }, [
-                    _vm._v("password")
-                  ]),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.user.password,
-                        expression: "user.password"
-                      }
-                    ],
-                    staticClass: "form-control",
-                    attrs: { type: "text", name: "", id: "password" },
-                    domProps: { value: _vm.user.password },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(_vm.user, "password", $event.target.value)
+                        _vm.$set(_vm.book, "author", $event.target.value)
                       }
                     }
                   })
@@ -45908,26 +45832,10 @@ var staticRenderFns = [
       _c("tr", [
         _c("th", { attrs: { scope: "col" } }, [_vm._v("id")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Name")]),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("title")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Body")])
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("author")])
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", [
-      _c("button", { staticClass: "btn btn-info" }, [_vm._v("Edit")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", [
-      _c("button", { staticClass: "btn btn-danger" }, [_vm._v("Delete")])
     ])
   },
   function() {
