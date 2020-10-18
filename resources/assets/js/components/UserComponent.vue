@@ -12,15 +12,15 @@
       </thead>
       <tbody>
         <tr v-for="(user,index) in users" :key="index">
-          <td>{{ user.id }}</td>
+          <!--<td>{{ user.id }}</td>-->
+          <td>{{ index+1 }}</td>
           <td>{{ user.name }}</td>
           <td>{{ user.email }}</td>
           <td>
             <button class="btn btn-info">Edit</button>
           </td>
           <td>
-            <!--<button class="btn btn-danger" @click.stop.prevent="deleteUser(user.id, index)">Delete</button>-->
-            <button class="btn btn-danger" @click="deleteUser(user.id)">Delete</button>
+            <button class="btn btn-danger" @click="deleteUser(user.id,index)">削除</button>
           </td>
         </tr>
       </tbody>
@@ -118,11 +118,10 @@ export default {
           }
         });
     },
-    deleteUser(id) {
-      axios.delete(this.uri + id).then(() => {
-        //this.$delete(this.user);
-        this.$delete(this.users);
-      });
+    deleteUser(id, index) {
+      // getでbookstableをjsonで取得 => v-forで取得する際に、book.idも取れている。
+      console.log(id);
+      this.users.splice(index, 1);
     },
     loadTasks() {
       axios.get(this.uri).then(response => {

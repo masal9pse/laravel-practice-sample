@@ -45262,19 +45262,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
       });
     },
-    deleteUser: function deleteUser(id) {
-      var _this2 = this;
-
-      axios.delete(this.uri + id).then(function () {
-        //this.$delete(this.user);
-        _this2.$delete(_this2.users);
-      });
+    deleteUser: function deleteUser(id, index) {
+      // getでbookstableをjsonで取得 => v-forで取得する際に、book.idも取れている。
+      console.log(id);
+      this.users.splice(index, 1);
     },
     loadTasks: function loadTasks() {
-      var _this3 = this;
+      var _this2 = this;
 
       axios.get(this.uri).then(function (response) {
-        _this3.users = response.data.users;
+        _this2.users = response.data.users;
       });
     }
   },
@@ -45310,7 +45307,7 @@ var render = function() {
             "tbody",
             _vm._l(_vm.users, function(user, index) {
               return _c("tr", { key: index }, [
-                _c("td", [_vm._v(_vm._s(user.id))]),
+                _c("td", [_vm._v(_vm._s(index + 1))]),
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(user.name))]),
                 _vm._v(" "),
@@ -45325,11 +45322,11 @@ var render = function() {
                       staticClass: "btn btn-danger",
                       on: {
                         click: function($event) {
-                          return _vm.deleteUser(user.id)
+                          return _vm.deleteUser(user.id, index)
                         }
                       }
                     },
-                    [_vm._v("Delete")]
+                    [_vm._v("削除")]
                   )
                 ])
               ])
