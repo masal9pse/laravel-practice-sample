@@ -12,7 +12,8 @@
       </thead>
       <tbody>
         <tr v-for="(user,index) in users" :key="index">
-          <td>{{ user.id }}</td>
+          <!--<td>{{ user.id }}</td>-->
+          <td>{{ index + 1 }}</td>
           <td>{{ user.name }}</td>
           <td>{{ user.email }}</td>
           <td>
@@ -83,7 +84,7 @@ export default {
         password: ""
       },
       users: [],
-      uri: process.env.MIX_VUE_APP_USER_URL,
+      uri: "/user",
       errors: []
     };
   },
@@ -99,8 +100,8 @@ export default {
           password: this.user.password
         })
         .then(response => {
-          //this.users.push(response.data.user);
-          //$("#create-modal").modal("hide");
+          this.users.push(response.data.user);
+          $("#create-modal").modal("hide");
         })
         .catch(error => {
           this.errors = [];

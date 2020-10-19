@@ -45217,6 +45217,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -45227,7 +45228,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         password: ""
       },
       users: [],
-      uri: "http://localhost:8000/user",
+      uri: "/user",
       errors: []
     };
   },
@@ -45244,8 +45245,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         email: this.user.email,
         password: this.user.password
       }).then(function (response) {
-        //this.users.push(response.data.user);
-        //$("#create-modal").modal("hide");
+        _this.users.push(response.data.user);
+        $("#create-modal").modal("hide");
       }).catch(function (error) {
         _this.errors = [];
         if (error.response.data.errors.name) {
@@ -45311,13 +45312,13 @@ var render = function() {
             "tbody",
             _vm._l(_vm.users, function(user, index) {
               return _c("tr", { key: index }, [
-                _c("td", [_vm._v(_vm._s(user.id))]),
+                _c("td", [_vm._v(_vm._s(index + 1))]),
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(user.name))]),
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(user.email))]),
                 _vm._v(" "),
-                _vm._m(1, true),
+                _c("td"),
                 _vm._v(" "),
                 _c("td", [
                   _c(
@@ -45358,7 +45359,7 @@ var render = function() {
           { staticClass: "modal-dialog", attrs: { role: "document" } },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(2),
+              _vm._m(1),
               _vm._v(" "),
               _c("div", { staticClass: "modal-body" }, [
                 _vm.errors.length > 0
@@ -45496,14 +45497,6 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Body")])
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", [
-      _c("button", { staticClass: "btn btn-info" }, [_vm._v("Edit")])
     ])
   },
   function() {
@@ -45663,7 +45656,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         thumbnail: "test"
       },
       books: [],
-      uri: "http://localhost:8000/books",
+      uri: "/books",
       errors: []
     };
   },
