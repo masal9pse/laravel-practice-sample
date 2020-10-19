@@ -67,7 +67,7 @@ export default {
         thumbnail: "test"
       },
       books: [],
-      uri: "http://localhost:8000/books",
+      uri: process.env.MIX_VUE_APP_URL,
       errors: []
     };
   },

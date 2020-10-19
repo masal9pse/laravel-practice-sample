@@ -99,8 +99,8 @@ export default {
           password: this.user.password
         })
         .then(response => {
-          this.users.push(response.data.user);
-          $("#create-modal").modal("hide");
+          //this.users.push(response.data.user);
+          //$("#create-modal").modal("hide");
         })
         .catch(error => {
           this.errors = [];
@@ -122,7 +122,7 @@ export default {
         .delete(this.uri + "/" + id)
         .then(response => {
           console.log(response);
-          this.users.splice(index, 1);
+          this.users.splice(index, 1); // この行をコメントアウトしてもサーバー側では削除される
         })
         .catch(error => {
           console.log(error);

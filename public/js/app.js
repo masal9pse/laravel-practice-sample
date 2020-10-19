@@ -45217,7 +45217,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -45245,8 +45244,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         email: this.user.email,
         password: this.user.password
       }).then(function (response) {
-        _this.users.push(response.data.user);
-        $("#create-modal").modal("hide");
+        //this.users.push(response.data.user);
+        //$("#create-modal").modal("hide");
       }).catch(function (error) {
         _this.errors = [];
         if (error.response.data.errors.name) {
@@ -45263,15 +45262,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       });
     },
     deleteUser: function deleteUser(id, index) {
-      // getでbookstableをjsonで取得 => v-forで取得する際に、book.idも取れている。
-      console.log(id);
-      this.users.splice(index, 1);
-    },
-    loadTasks: function loadTasks() {
       var _this2 = this;
 
+      axios.delete(this.uri + "/" + id).then(function (response) {
+        console.log(response);
+        _this2.users.splice(index, 1); // この行をコメントアウトしてもサーバー側では削除される
+      }).catch(function (error) {
+        console.log(error);
+      });
+    },
+    loadTasks: function loadTasks() {
+      var _this3 = this;
+
       axios.get(this.uri).then(function (response) {
-        _this2.users = response.data.users;
+        _this3.users = response.data.users;
       });
     }
   },
@@ -45307,7 +45311,7 @@ var render = function() {
             "tbody",
             _vm._l(_vm.users, function(user, index) {
               return _c("tr", { key: index }, [
-                _c("td", [_vm._v(_vm._s(index + 1))]),
+                _c("td", [_vm._v(_vm._s(user.id))]),
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(user.name))]),
                 _vm._v(" "),
