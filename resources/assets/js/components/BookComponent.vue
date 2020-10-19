@@ -85,7 +85,10 @@ export default {
           thumbnail: this.book.thumbnail
         })
         .then(response => {
-          this.books.push(response.data.book);
+          const count = this.books.push(response.data.book);
+          console.log(count); // 1
+          console.log(this.books);
+          //exit;
           $("#create-modal").modal("hide");
         })
         .catch(error => {

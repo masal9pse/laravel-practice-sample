@@ -45675,7 +45675,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         description: this.book.description,
         thumbnail: this.book.thumbnail
       }).then(function (response) {
-        _this.books.push(response.data.book);
+        var count = _this.books.push(response.data.book);
+        console.log(count); // 1
+        console.log(_this.books);
+        //exit;
         $("#create-modal").modal("hide");
       }).catch(function (error) {
         _this.errors = [];
