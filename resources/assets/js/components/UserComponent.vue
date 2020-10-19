@@ -1,13 +1,13 @@
 <template>
   <div>
-    <button @click="createModal" class="btn btn-primary btn-block">Add New Task</button>
+    <button @click="createModal" class="btn btn-primary btn-block">ユーザーを追加する</button>
 
     <table class="table" v-if="users">
       <thead>
         <tr>
           <th scope="col">id</th>
-          <th scope="col">Name</th>
-          <th scope="col">Body</th>
+          <th scope="col">名前</th>
+          <th scope="col">メールアドレス</th>
         </tr>
       </thead>
       <tbody>
@@ -37,7 +37,7 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Create Modal</h5>
+            <h5 class="modal-title" id="exampleModalLabel">非同期ユーザー追加リスト</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>

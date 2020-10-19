@@ -45301,7 +45301,7 @@ var render = function() {
         staticClass: "btn btn-primary btn-block",
         on: { click: _vm.createModal }
       },
-      [_vm._v("Add New Task")]
+      [_vm._v("ユーザーを追加する")]
     ),
     _vm._v(" "),
     _vm.users
@@ -45493,9 +45493,9 @@ var staticRenderFns = [
       _c("tr", [
         _c("th", { attrs: { scope: "col" } }, [_vm._v("id")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Name")]),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("名前")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Body")])
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("メールアドレス")])
       ])
     ])
   },
@@ -45507,7 +45507,7 @@ var staticRenderFns = [
       _c(
         "h5",
         { staticClass: "modal-title", attrs: { id: "exampleModalLabel" } },
-        [_vm._v("Create Modal")]
+        [_vm._v("非同期ユーザー追加リスト")]
       ),
       _vm._v(" "),
       _c(
