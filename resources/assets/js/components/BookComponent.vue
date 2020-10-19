@@ -67,7 +67,7 @@ export default {
         thumbnail: "test"
       },
       books: [],
-      uri: process.env.MIX_VUE_APP_URL,
+      uri: process.env.MIX_VUE_APP_BOOK_URL,
       errors: []
     };
   },

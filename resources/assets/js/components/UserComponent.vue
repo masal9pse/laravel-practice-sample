@@ -16,7 +16,7 @@
           <td>{{ user.name }}</td>
           <td>{{ user.email }}</td>
           <td>
-            <button class="btn btn-info">Edit</button>
+            <!--<button class="btn btn-info">Edit</button>-->
           </td>
           <td>
             <button class="btn btn-danger" @click="deleteUser(user.id,index)">削除</button>
@@ -83,7 +83,7 @@ export default {
         password: ""
       },
       users: [],
-      uri: "http://localhost:8000/user",
+      uri: process.env.MIX_VUE_APP_USER_URL,
       errors: []
     };
   },
