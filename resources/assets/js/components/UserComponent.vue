@@ -67,8 +67,8 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button @click="createUser" type="button" class="btn btn-primary">Save changes</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+            <button @click="createUser" type="button" class="btn btn-primary">登録する</button>
           </div>
         </div>
       </div>
@@ -169,6 +169,8 @@ export default {
           password: this.user.password
         })
         .then(response => {
+          console.log(response);
+          console.log(response.data.user.password);
           this.users.push(response.data.user);
           $("#create-modal").modal("hide");
         })
