@@ -168,15 +168,17 @@ export default {
         });
     },
     deleteUser(id, index) {
-      axios
-        .delete(this.uri + "/" + id)
-        .then(response => {
-          console.log(response);
-          this.users.splice(index, 1); // この行をコメントアウトしてもサーバー側では削除される
-        })
-        .catch(error => {
-          console.log(error);
-        });
+      if (confirm("削除しますか？")) {
+        axios
+          .delete(this.uri + "/" + id)
+          .then(response => {
+            console.log(response);
+            this.users.splice(index, 1); // この行をコメントアウトしてもサーバー側では削除される
+          })
+          .catch(error => {
+            console.log(error);
+          });
+      }
     },
     loadTasks() {
       axios.get(this.uri).then(response => {

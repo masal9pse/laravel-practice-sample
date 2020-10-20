@@ -45314,12 +45314,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     deleteUser: function deleteUser(id, index) {
       var _this2 = this;
 
-      axios.delete(this.uri + "/" + id).then(function (response) {
-        console.log(response);
-        _this2.users.splice(index, 1); // この行をコメントアウトしてもサーバー側では削除される
-      }).catch(function (error) {
-        console.log(error);
-      });
+      if (confirm("削除しますか？")) {
+        axios.delete(this.uri + "/" + id).then(function (response) {
+          console.log(response);
+          _this2.users.splice(index, 1); // この行をコメントアウトしてもサーバー側では削除される
+        }).catch(function (error) {
+          console.log(error);
+        });
+      }
     },
     loadTasks: function loadTasks() {
       var _this3 = this;
