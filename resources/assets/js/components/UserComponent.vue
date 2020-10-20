@@ -17,7 +17,7 @@
           <td>{{ user.name }}</td>
           <td>{{ user.email }}</td>
           <td>
-            <!--<button class="btn btn-info">Edit</button>-->
+            <button class="btn btn-info" @click="updateModal">編集する</button>
           </td>
           <td>
             <button class="btn btn-danger" @click="deleteUser(user.id,index)">削除</button>
@@ -29,6 +29,52 @@
     <div
       class="modal fade"
       id="create-modal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title text-danger" id="exampleModalLabel">非同期ユーザー編集リスト</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="alert alert-danger" v-if="errors.length > 0">
+              <ul>
+                <li v-for="error in errors" :key="error">{{ error }}</li>
+              </ul>
+            </div>
+            <div class="form-group">
+              <label for="name">名前</label>
+              <input v-model="user.name" type="text" name id="name" class="form-control" />
+            </div>
+
+            <div class="form-group">
+              <label for="email">メール</label>
+              <input v-model="user.email" type="text" name id="email" class="form-control" />
+            </div>
+
+            <div class="form-group">
+              <label for="password">パスワード</label>
+              <input v-model="user.password" type="text" name id="password" class="form-control" />
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button @click="createUser" type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- update modal -->
+    <div
+      class="modal fade"
+      id="update-modal"
       tabindex="-1"
       role="dialog"
       aria-labelledby="exampleModalLabel"
@@ -90,6 +136,9 @@ export default {
   },
   methods: {
     createModal() {
+      $("#create-modal").modal("show");
+    },
+    updateModal() {
       $("#create-modal").modal("show");
     },
     createUser() {
