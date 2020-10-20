@@ -17,7 +17,10 @@
           <td>{{ user.name }}</td>
           <td>{{ user.email }}</td>
           <td>
-            <button class="btn btn-info" @click="updateModal">編集する</button>
+            <button
+              class="btn btn-info"
+              @click="updateModal(user.name,user.email,user.password)"
+            >編集する</button>
           </td>
           <td>
             <button class="btn btn-danger" @click="deleteUser(user.id,index)">削除</button>
@@ -37,7 +40,7 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title text-danger" id="exampleModalLabel">非同期ユーザー編集リスト</h5>
+            <h5 class="modal-title text-danger" id="exampleModalLabel">非同期ユーザー追加リスト</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -83,7 +86,7 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">非同期ユーザー追加リスト</h5>
+            <h5 class="modal-title" id="exampleModalLabel">非同期ユーザー編集リスト</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -95,23 +98,30 @@
               </ul>
             </div>
             <div class="form-group">
-              <label for="name">Name</label>
-              <input v-model="user.name" type="text" name id="name" class="form-control" />
+              <label for="name">名前</label>
+              <input v-model="user.updateName" type="text" name id="name" class="form-control" />
+              <!--<input v-model="user.name" type="text" name id="name" class="form-control" />-->
             </div>
 
             <div class="form-group">
-              <label for="email">email</label>
-              <input v-model="user.email" type="text" name id="email" class="form-control" />
+              <label for="email">メールアドレス</label>
+              <input v-model="user.updateEmail" type="text" name id="email" class="form-control" />
             </div>
 
             <div class="form-group">
-              <label for="password">password</label>
-              <input v-model="user.password" type="text" name id="password" class="form-control" />
+              <label for="password">パスワード</label>
+              <input
+                v-model="user.updatePassword"
+                type="text"
+                name
+                id="password"
+                class="form-control"
+              />
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button @click="createUser" type="button" class="btn btn-primary">Save changes</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+            <button @click="createUser" type="button" class="btn btn-primary">保存する</button>
           </div>
         </div>
       </div>
@@ -127,7 +137,10 @@ export default {
       user: {
         name: "",
         email: "",
-        password: ""
+        password: "",
+        updateName: "",
+        updateEmail: "",
+        updatePassword: ""
       },
       users: [],
       uri: "/user",
@@ -138,8 +151,15 @@ export default {
     createModal() {
       $("#create-modal").modal("show");
     },
-    updateModal() {
-      $("#create-modal").modal("show");
+    updateModal(name, email, password) {
+      $("#update-modal").modal("show");
+      //let this = self;
+      //console.log(name);
+      console.log(password);
+      //this.message = "";
+      this.user.updateName = name;
+      this.user.updateEmail = email;
+      this.user.updatePassword = password;
     },
     createUser() {
       axios
