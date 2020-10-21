@@ -1,6 +1,10 @@
 <template>
   <div>
-    <button @click="createModal" class="btn btn-primary btn-block">ユーザーを追加する</button>
+    {{ users.length }}人の一般ユーザーが在籍しています。
+    <button
+      @click="createModal"
+      class="btn btn-primary btn-block"
+    >ユーザーを追加する</button>
 
     <table class="table" v-if="users">
       <thead>
@@ -204,7 +208,9 @@ export default {
     },
     loadUsers() {
       axios.get(this.uri).then(response => {
+        //console.log(response);
         this.users = response.data.users;
+        console.log(this.users.length);
       });
     }
   },
