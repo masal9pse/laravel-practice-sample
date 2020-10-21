@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
-use App\Models\Song;
 use Illuminate\Http\Request;
 use App\Models\User;
-use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -18,7 +16,8 @@ class UserController extends Controller
  public function index()
  {
   $users = User::all();
-  // dd($users);
+  $users->load('songs');
+
   return response()->json([
    'users' => $users
   ], 200);
@@ -127,6 +126,23 @@ class UserController extends Controller
   */
  public function update(Request $request, $id)
  {
-  //
+  $request->validate([
+   'name' => 'required',
+   'email' => 'required',
+   //'password' => 'required'
+   'password' => 'required|min:6|'
+  ]);
+
+  $user = User::create([
+   'name' => $request->name,
+   'email' => $request->email,
+   //'password' => bcrypt($request->password)
+   'password' => password_hash($request->password, PASSWORD_DEFAULT)
+  ]);
+
+  return response()->json([
+   'user' => $user,
+   'message' => 'task has been created'
+  ]);
  }
 }
