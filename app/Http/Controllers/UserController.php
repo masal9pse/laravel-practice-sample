@@ -91,7 +91,7 @@ class UserController extends Controller
 
   return response()->json([
    'book' => $book,
-   'message' => 'task has been created'
+   'message' => 'user has been created'
   ]);
  }
 
@@ -133,16 +133,15 @@ class UserController extends Controller
    'password' => 'required|min:6|'
   ]);
 
-  $user = User::create([
-   'name' => $request->name,
-   'email' => $request->email,
-   //'password' => bcrypt($request->password)
-   'password' => password_hash($request->password, PASSWORD_DEFAULT)
-  ]);
+  $user = User::find($id);
+  $user->name = $request->name;
+  $user->email = $request->email;
+  $user->password = password_hash($request->password, PASSWORD_DEFAULT);
+  $user->save();
 
   return response()->json([
    'user' => $user,
-   'message' => 'task has been created'
+   'message' => 'user has been update'
   ]);
  }
 }
