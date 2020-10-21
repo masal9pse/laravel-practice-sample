@@ -209,7 +209,7 @@ export default {
     loadUsers() {
       axios.get(this.uri).then(response => {
         console.log(response);
-        console.log(response.data.users[2].songs[0].title); // songsTableの一番目を取得
+        //console.log(response.data.users[1].songs[0].title); // songsTableの一番目を取得
         this.users = response.data.users;
         console.log(this.users.length);
       });
