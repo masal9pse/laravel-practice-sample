@@ -67,7 +67,7 @@ export default {
         thumbnail: "test"
       },
       books: [],
-      uri: "/books",
+      uri: "/api/books",
       errors: []
     };
   },

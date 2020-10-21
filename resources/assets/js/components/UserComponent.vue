@@ -147,7 +147,7 @@ export default {
         updatePassword: ""
       },
       users: [],
-      uri: "/user",
+      uri: "/api/user",
       errors: []
     };
   },
