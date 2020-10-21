@@ -15,8 +15,12 @@ class UserController extends Controller
   */
  public function index()
  {
-  $users = User::all();
-  $users->load('songs');
+  //$users = User::all();
+  if (User::all()->load('songs')) {
+   $users = User::all()->load('songs');
+  } else {
+   $users = User::all();
+  };
 
   return response()->json([
    'users' => $users
