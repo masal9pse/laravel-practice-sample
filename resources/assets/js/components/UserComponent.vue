@@ -20,7 +20,7 @@
             <button
               class="btn btn-info"
               @click="updateModal(user.name,user.email,user.password)"
-            >編集する</button>
+            >詳細を見る</button>
           </td>
           <td>
             <button class="btn btn-danger" @click="deleteUser(user.id,index)">削除</button>
@@ -121,7 +121,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
-            <button @click="createUser" type="button" class="btn btn-primary">保存する</button>
+            <!--<button @click="createUser" type="button" class="btn btn-primary">保存する</button>-->
           </div>
         </div>
       </div>
@@ -202,15 +202,15 @@ export default {
           });
       }
     },
-    loadTasks() {
+    loadUsers() {
       axios.get(this.uri).then(response => {
         this.users = response.data.users;
       });
     }
   },
-  mounted() {
-    this.loadTasks();
-    console.log(this.loadTasks);
+  created() {
+    this.loadUsers();
+    //console.log(this.loadUsers);
   }
 };
 </script>
