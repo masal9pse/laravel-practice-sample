@@ -101,10 +101,10 @@
                 <li v-for="error in errors" :key="error">{{ error }}</li>
               </ul>
             </div>
-            <div class="form-group">
+            <!--<div class="form-group">
               <label for="id">id</label>
               <input v-model="user.updateId" type="text" name id="id" class="form-control" />
-            </div>
+            </div>-->
 
             <div class="form-group">
               <label for="name">名前</label>
@@ -129,9 +129,6 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
-            <!--<tr v-for="(user,index) in users" :key="index">-->
-            <!--<button @click="updateUser(index)" type="button" class="btn btn-primary">保存する</button>-->
-            <!--</tr>-->
             <button @click="updateUser" type="button" class="btn btn-primary">編集する</button>
           </div>
         </div>
