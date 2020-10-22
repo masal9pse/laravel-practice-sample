@@ -16,14 +16,14 @@
       </thead>
       <tbody>
         <tr v-for="(user,index) in users" :key="index">
-          <!--<td>{{ user.id }}</td>-->
-          <td>{{ index + 1 }}</td>
+          <td>{{ user.id }}</td>
+          <!--<td>{{ index + 1 }}</td>-->
           <td>{{ user.name }}</td>
           <td>{{ user.email }}</td>
           <td>
             <button
               class="btn btn-info"
-              @click="updateModal(user.name,user.email,user.password)"
+              @click="updateModal(user.id,user.name,user.email,user.password)"
             >編集する</button>
           </td>
           <td>
@@ -102,9 +102,13 @@
               </ul>
             </div>
             <div class="form-group">
+              <label for="id">id</label>
+              <input v-model="user.updateId" type="text" name id="id" class="form-control" />
+            </div>
+
+            <div class="form-group">
               <label for="name">名前</label>
               <input v-model="user.updateName" type="text" name id="name" class="form-control" />
-              <!--<input v-model="user.name" type="text" name id="name" class="form-control" />-->
             </div>
 
             <div class="form-group">
@@ -125,8 +129,10 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
-            <!--<button @click="updateUser(user.id)" type="button" class="btn btn-primary">保存する</button>-->
-            <button @click="updateUser" type="button" class="btn btn-primary">保存する</button>
+            <!--<tr v-for="(user,index) in users" :key="index">-->
+            <!--<button @click="updateUser(index)" type="button" class="btn btn-primary">保存する</button>-->
+            <!--</tr>-->
+            <button @click="updateUser" type="button" class="btn btn-primary">編集する</button>
           </div>
         </div>
       </div>
@@ -140,9 +146,11 @@ export default {
   data() {
     return {
       user: {
+        id: "",
         name: "",
         email: "",
         password: "",
+        updateId: "",
         updateName: "",
         updateEmail: "",
         updatePassword: ""
@@ -152,16 +160,18 @@ export default {
       errors: []
     };
   },
+  created() {
+    this.loadUsers();
+  },
   methods: {
     createModal() {
       $("#create-modal").modal("show");
     },
-    updateModal(name, email, password) {
+    updateModal(id, name, email, password) {
       $("#update-modal").modal("show");
-      //let this = self;
-      //console.log(name);
       console.log(password);
       //this.message = "";
+      this.user.updateId = id;
       this.user.updateName = name;
       this.user.updateEmail = email;
       this.user.updatePassword = password;
@@ -196,12 +206,11 @@ export default {
     },
     updateUser() {
       axios
-        //.put(this.uri + "/" + this.user.id, {
-        .put(this.uri + "/" + 54, {
+        .put(this.uri + "/" + this.user.updateId, {
+          //.put(this.uri + "/" + 54, {
           name: this.user.updateName,
           email: this.user.updateEmail,
           password: this.user.updatePassword
-          //_method: PUT
         })
         .then(response => {
           console.log(response);
@@ -225,16 +234,12 @@ export default {
     },
     loadUsers() {
       axios.get(this.uri).then(response => {
-        //console.log(response);
+        console.log(response);
         //console.log(response.data.users[1].songs[0].title); // songsTableの一番目を取得
         this.users = response.data.users;
         console.log(this.users.length);
       });
     }
-  },
-  created() {
-    this.loadUsers();
-    //console.log(this.loadUsers);
   }
 };
 </script>
