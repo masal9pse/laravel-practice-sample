@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Http\Request;
+//use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,10 +13,9 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
- return $request->user();
+Route::group(['middleware' => ['api']], function () {
+ Route::resource('user', 'Api\UserController', ['except' => ['create', 'edit']]);
+ Route::post('/books', 'Api\UserController@book_store')->name('books.book_store');
+ Route::post('/posts/{song}/like', 'Api\LikesController@like');
+ Route::post('/posts/{song}/unlike', 'Api\LikesController@unlike');
 });
-Route::resource('/user', 'UserController');
-Route::post('/books', 'UserController@book_store')->name('books.book_store');
-Route::post('/posts/{song}/like', 'LikesController@like');
-Route::post('/posts/{song}/unlike', 'LikesController@unlike');

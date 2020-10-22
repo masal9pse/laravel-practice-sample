@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Like;
 use App\Models\Song;
+use App\Http\Controllers\Controller; // 大事！！
 
 class LikesController extends Controller
 {
