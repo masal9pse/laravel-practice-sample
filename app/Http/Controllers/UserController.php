@@ -134,7 +134,8 @@ class UserController extends Controller
    'name' => 'nullable',
    'email' => 'nullable',
    //'password' => 'required'
-   'password' => 'required|min:6|'
+   //'password' => 'required|min:6|'
+   'password' => 'nullable'
   ]);
 
   $user = User::find($id);

@@ -24,7 +24,7 @@
             <button
               class="btn btn-info"
               @click="updateModal(user.name,user.email,user.password)"
-            >詳細を見る</button>
+            >編集する</button>
           </td>
           <td>
             <button class="btn btn-danger" @click="deleteUser(user.id,index)">削除</button>
@@ -125,7 +125,8 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
-            <!--<button @click="createUser" type="button" class="btn btn-primary">保存する</button>-->
+            <!--<button @click="updateUser(user.id)" type="button" class="btn btn-primary">保存する</button>-->
+            <button @click="updateUser" type="button" class="btn btn-primary">保存する</button>
           </div>
         </div>
       </div>
@@ -191,6 +192,22 @@ export default {
           if (error.response.data.errors.password) {
             this.errors.push(error.response.data.errors.password[0]);
           }
+        });
+    },
+    updateUser() {
+      axios
+        //.put(this.uri + "/" + this.user.id, {
+        .put(this.uri + "/" + 54, {
+          name: this.user.updateName,
+          email: this.user.updateEmail,
+          password: this.user.updatePassword
+          //_method: PUT
+        })
+        .then(response => {
+          console.log(response);
+        })
+        .catch(error => {
+          console.log(error);
         });
     },
     deleteUser(id, index) {
