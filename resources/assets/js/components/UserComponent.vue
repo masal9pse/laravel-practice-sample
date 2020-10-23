@@ -16,8 +16,8 @@
       </thead>
       <tbody>
         <tr v-for="(user,index) in users" :key="index">
-          <td>{{ user.id }}</td>
-          <!--<td>{{ index + 1 }}</td>-->
+          <!--<td>{{ user.id }}</td>-->
+          <td>{{ index + 1 }}</td>
           <td>{{ user.name }}</td>
           <td>{{ user.email }}</td>
           <td>
@@ -116,7 +116,7 @@
               <input v-model="user.updateEmail" type="text" name id="email" class="form-control" />
             </div>
 
-            <div class="form-group">
+            <!--<div class="form-group">
               <label for="password">パスワード</label>
               <input
                 v-model="user.updatePassword"
@@ -125,7 +125,7 @@
                 id="password"
                 class="form-control"
               />
-            </div>
+            </div>-->
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
@@ -210,7 +210,9 @@ export default {
           password: this.user.updatePassword
         })
         .then(response => {
-          console.log(response);
+          //console.log(response);
+          this.users.push(response.data.user);
+          $("#update-modal").modal("hide");
         })
         .catch(error => {
           console.log(error);
