@@ -16,8 +16,7 @@
 Route::group(['middleware' => ['api']], function () {
  Route::resource('user', 'Api\UserController', ['except' => ['create', 'edit']]);
  Route::post('/books', 'Api\UserController@book_store')->name('books.book_store');
- //Route::get('/user/search', 'Api\UserController@search')->name('user.search');
- Route::get('/user', 'Api\UserController@search')->name('user.search');
+ Route::get('/user?name={name}', 'Api\UserController@search')->name('user.search');
  Route::post('/posts/{song}/like', 'Api\LikesController@like');
  Route::post('/posts/{song}/unlike', 'Api\LikesController@unlike');
 });
