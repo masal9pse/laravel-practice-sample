@@ -6,6 +6,7 @@ use App\Models\Book;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Input;
 
 class UserController extends Controller
 {
@@ -26,6 +27,18 @@ class UserController extends Controller
   return response()->json([
    'users' => $users
   ], 200);
+ }
+
+ public function search()
+ {
+  if (!empty(Input::get('name'))) {
+   $queryName = Input::get('name');
+   return User::select('*')
+    //return User::select('id', 'name')
+    ->where('name', 'LIKE', "%$queryName%")
+    ->limit(1)->get();
+  }
+  return [];
  }
 
  /**
