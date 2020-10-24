@@ -17,28 +17,17 @@ class UserController extends Controller
   */
  public function index()
  {
-  //$users = User::all();
-  if (User::all()->load('songs')) {
-   $users = User::all()->load('songs');
+  if (!empty(Input::get('name'))) {
+   $queryName = Input::get('name');
+   $users = User::select('*')
+    ->where('name', 'LIKE', "%$queryName%")
+    ->limit(1)->get();
   } else {
-   $users = User::all();
+   $users = User::select('*')->get();
   };
-
   return response()->json([
    'users' => $users
   ], 200);
- }
-
- public function search()
- {
-  if (!empty(Input::get('name'))) {
-   $queryName = Input::get('name');
-   return User::select('*')
-    //return User::select('id', 'name')
-    ->where('name', 'LIKE', "%$queryName%")
-    ->limit(1)->get();
-  }
-  return [];
  }
 
  /**
