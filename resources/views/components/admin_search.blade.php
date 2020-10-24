@@ -2,4 +2,5 @@
 <input class="form-control mr-sm-2" name="search" type="search" placeholder="タイトルを入力してください" aria-label="Search">
 <button class="btn btn-success my-2 my-sm-0" type="submit">検索する</button>
 <a href="{{ route('songs.index')}}" class="btn btn-primary">トップページに移動</a>
+<a href="{{ route('admin.userList')}}" class="btn btn-danger">登録ユーザー全件ページ(APIでやりとり)</a>
 {{Form::close()}}

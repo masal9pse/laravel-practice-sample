@@ -104,4 +104,9 @@ class SongController extends Controller
 
   return redirect()->route('admin.create');
  }
+
+ public function userList()
+ {
+  return view('admin.userList');
+ }
 }

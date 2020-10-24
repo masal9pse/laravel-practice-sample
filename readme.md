@@ -62,7 +62,7 @@ https://song-picture-mamp.work/
 
 - いいね機能(Vue/Ajax/Laravel で API を作成)
 
-- ユーザーの CRD 機能(API 連携、update はまだ)
+- ユーザーの CRUD 機能(管理者のみ、API 連携)
 
 - タグ付け機能
 
