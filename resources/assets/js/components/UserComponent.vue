@@ -1,7 +1,8 @@
 <template>
   <div>
-    <input type="text" v-model="user.keyword" placeholder="名前を検索できます" class="form-control" />
-    <button class="btn btn-success" @click="search">名前を検索する</button>
+    <input type="text" v-model="user.name" placeholder="名前を検索できます" class="form-control" />
+    <input type="text" v-model="user.email" placeholder="メールアドレスで検索できます" class="form-control" />
+    <button class="btn btn-success" @click="search">検索する</button>
     <p>{{ users.length }}人の一般ユーザーが在籍しています。</p>
     <button @click="createModal" class="btn btn-primary btn-block">ユーザーを追加する</button>
 
@@ -143,8 +144,7 @@ export default {
         updateId: "",
         updateName: "",
         updateEmail: "",
-        updatePassword: "",
-        keyword: ""
+        updatePassword: ""
       },
       users: [],
       uri: "/api/user",
@@ -156,11 +156,13 @@ export default {
   },
   methods: {
     search() {
-      axios.get(this.uri + "?name=" + this.user.keyword).then(response => {
-        //console.log(response);
+      const params = {
+        name: this.user.name,
+        email: this.user.email
+      };
+      axios.get(this.uri, { params }).then(response => {
         this.users = response.data.users;
         console.log(response.data.users);
-        //console.log(response.data.users[0].name);
       });
     },
     createModal() {
