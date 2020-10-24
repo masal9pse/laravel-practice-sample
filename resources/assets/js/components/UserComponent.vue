@@ -9,6 +9,7 @@
     <table class="table" v-if="users">
       <thead>
         <tr>
+          <th scope="col">並び順</th>
           <th scope="col">id</th>
           <th scope="col">名前</th>
           <th scope="col">メールアドレス</th>
@@ -16,8 +17,9 @@
       </thead>
       <tbody>
         <tr v-for="(user,index) in users" :key="index">
-          <td>{{ user.id }}</td>
           <!--<td>{{ index + 1 }}</td>-->
+          <td>{{ index }}</td>
+          <td>{{ user.id }}</td>
           <td>{{ user.name }}</td>
           <td>{{ user.email }}</td>
           <td>
@@ -115,21 +117,12 @@
               <label for="email">メールアドレス</label>
               <input v-model="user.updateEmail" type="text" name id="email" class="form-control" />
             </div>
-
-            <!--<div class="form-group">
-              <label for="password">パスワード</label>
-              <input
-                v-model="user.updatePassword"
-                type="text"
-                name
-                id="password"
-                class="form-control"
-              />
-            </div>-->
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
-            <button @click="updateUser" type="button" class="btn btn-primary">編集する</button>
+            <!-- 　ここをアップデートしている配列のインデックスを取得できるようにしたい -->
+            <button @click="updateUser(0)" type="button" class="btn btn-primary">編集する</button>
+            <!--<button @click="updateUser(users[index])" type="button" class="btn btn-primary">編集する</button>-->
           </div>
         </div>
       </div>
@@ -201,7 +194,7 @@ export default {
           }
         });
     },
-    updateUser(id) {
+    updateUser(index) {
       axios
         .put(this.uri + "/" + this.user.updateId, {
           name: this.user.updateName,
@@ -210,8 +203,10 @@ export default {
         })
         .then(response => {
           console.log(this.users);
-          this.users[0].name = this.user.updateName;
-          console.log(this.users[0]);
+          //this.users[index].id = this.user.updateId;
+          this.users[index].id = 17;
+          this.users[index].name = this.user.updateName;
+          console.log(this.users[index]);
           $("#update-modal").modal("hide");
         })
         .catch(error => {
