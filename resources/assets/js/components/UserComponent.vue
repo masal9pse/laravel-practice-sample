@@ -203,6 +203,7 @@ export default {
         })
         .then(response => {
           console.log(this.users);
+          console.log(Object.keys(this.users));
           //this.users[index].id = this.user.updateId;
           this.users[index].id = 17;
           this.users[index].name = this.user.updateName;
