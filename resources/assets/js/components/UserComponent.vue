@@ -1,10 +1,14 @@
 <template>
   <div>
-    {{ users.length }}人の一般ユーザーが在籍しています。
-    <button
-      @click="createModal"
-      class="btn btn-primary btn-block"
-    >ユーザーを追加する</button>
+    <input
+      type="text"
+      v-model="user.keyword"
+      placeholder="まだconsoleにしか結果を表示できません"
+      class="form-control"
+    />
+    <button class="btn btn-success" @click="search">検索する（コンソールに結果を表示）</button>
+    <p>{{ users.length }}人の一般ユーザーが在籍しています。</p>
+    <button @click="createModal" class="btn btn-primary btn-block">ユーザーを追加する</button>
 
     <table class="table" v-if="users">
       <thead>
@@ -143,7 +147,8 @@ export default {
         updateId: "",
         updateName: "",
         updateEmail: "",
-        updatePassword: ""
+        updatePassword: "",
+        keyword: "a"
       },
       users: [],
       uri: "/api/user",
@@ -154,6 +159,12 @@ export default {
     this.loadUsers();
   },
   methods: {
+    search() {
+      axios.get(this.uri + "?name=" + this.user.keyword).then(response => {
+        //console.log(response);
+        console.log(response.data.users[0].name);
+      });
+    },
     createModal() {
       $("#create-modal").modal("show");
     },
