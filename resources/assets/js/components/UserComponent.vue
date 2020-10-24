@@ -120,7 +120,8 @@
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
             <!-- 　ここをアップデートしている配列のインデックスを取得できるようにしたい -->
-            <button @click="updateUser(0)" type="button" class="btn btn-primary">編集する</button>
+            <!--<button @click="updateUser(0)" type="button" class="btn btn-primary">編集する</button>-->
+            <button @click="updateUser" type="button" class="btn btn-primary">編集する</button>
             <!--<button @click="updateUser(users[index])" type="button" class="btn btn-primary">編集する</button>-->
           </div>
         </div>
@@ -202,7 +203,7 @@ export default {
           }
         });
     },
-    updateUser(index) {
+    updateUser() {
       axios
         .put(this.uri + "/" + this.user.updateId, {
           name: this.user.updateName,
@@ -210,12 +211,13 @@ export default {
           password: this.user.updatePassword
         })
         .then(response => {
-          console.log(this.users);
-          console.log(Object.keys(this.users));
-          //this.users[index].id = this.user.updateId;
-          this.users[index].id = 17;
-          this.users[index].name = this.user.updateName;
-          console.log(this.users[index]);
+          //console.log(this.users);
+          //console.log(Object.keys(this.users));
+          ////this.users[index].id = this.user.updateId;
+          //this.users[index].id = 17;
+          //this.users[index].name = this.user.updateName;
+          //console.log(this.users[index]);
+          this.users = response.data.users;
           $("#update-modal").modal("hide");
         })
         .catch(error => {

@@ -17,14 +17,21 @@ class UserController extends Controller
   */
  public function index()
  {
-  if (!empty(Input::get('name'))) {
-   $queryName = Input::get('name');
+  $name = Input::get('name');
+  $email = Input::get('email');
+  if (!empty($name)) {
+   $queryName = $name;
    $users = User::select('*')
     ->where('name', 'LIKE', "%$queryName%")
     ->get();
-  } else {
+  } elseif (!empty($email)) {
+   $queryEmail = $email;
+   $users = User::select('*')
+    ->where('email', 'LIKE', "%$queryEmail%")
+    ->get();
+  } elseif (empty($name && $email)) {
    $users = User::select('*')->get();
-  };
+  }
   return response()->json([
    'users' => $users
   ], 200);
