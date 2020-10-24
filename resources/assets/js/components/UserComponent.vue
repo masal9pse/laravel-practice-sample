@@ -16,8 +16,8 @@
       </thead>
       <tbody>
         <tr v-for="(user,index) in users" :key="index">
-          <!--<td>{{ user.id }}</td>-->
-          <td>{{ index + 1 }}</td>
+          <td>{{ user.id }}</td>
+          <!--<td>{{ index + 1 }}</td>-->
           <td>{{ user.name }}</td>
           <td>{{ user.email }}</td>
           <td>
@@ -201,17 +201,16 @@ export default {
           }
         });
     },
-    updateUser() {
+    updateUser(id) {
       axios
         .put(this.uri + "/" + this.user.updateId, {
-          //.put(this.uri + "/" + 54, {
           name: this.user.updateName,
           email: this.user.updateEmail,
           password: this.user.updatePassword
         })
         .then(response => {
-          //console.log(response);
-          this.users.push(response.data.user);
+          this.users[0].id = 12345;
+          console.log(this.users[0]);
           $("#update-modal").modal("hide");
         })
         .catch(error => {
@@ -233,10 +232,10 @@ export default {
     },
     loadUsers() {
       axios.get(this.uri).then(response => {
-        console.log(response);
+        //console.log(response);
         //console.log(response.data.users[1].songs[0].title); // songsTableの一番目を取得
         this.users = response.data.users;
-        console.log(this.users.length);
+        //console.log(this.users.length);
       });
     }
   }
