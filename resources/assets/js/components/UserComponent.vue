@@ -148,7 +148,7 @@ export default {
         updateName: "",
         updateEmail: "",
         updatePassword: "",
-        keyword: "a"
+        keyword: ""
       },
       users: [],
       uri: "/api/user",
@@ -162,7 +162,8 @@ export default {
     search() {
       axios.get(this.uri + "?name=" + this.user.keyword).then(response => {
         //console.log(response);
-        console.log(response.data.users[0].name);
+        console.log(response.data.users);
+        //console.log(response.data.users[0].name);
       });
     },
     createModal() {

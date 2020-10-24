@@ -21,7 +21,7 @@ class UserController extends Controller
    $queryName = Input::get('name');
    $users = User::select('*')
     ->where('name', 'LIKE', "%$queryName%")
-    ->limit(1)->get();
+    ->get();
   } else {
    $users = User::select('*')->get();
   };
