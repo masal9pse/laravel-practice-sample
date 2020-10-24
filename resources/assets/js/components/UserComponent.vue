@@ -1,12 +1,7 @@
 <template>
   <div>
-    <input
-      type="text"
-      v-model="user.keyword"
-      placeholder="まだconsoleにしか結果を表示できません"
-      class="form-control"
-    />
-    <button class="btn btn-success" @click="search">検索する（コンソールに結果を表示）</button>
+    <input type="text" v-model="user.keyword" placeholder="名前を検索できます" class="form-control" />
+    <button class="btn btn-success" @click="search">名前を検索する</button>
     <p>{{ users.length }}人の一般ユーザーが在籍しています。</p>
     <button @click="createModal" class="btn btn-primary btn-block">ユーザーを追加する</button>
 
@@ -162,6 +157,7 @@ export default {
     search() {
       axios.get(this.uri + "?name=" + this.user.keyword).then(response => {
         //console.log(response);
+        this.users = response.data.users;
         console.log(response.data.users);
         //console.log(response.data.users[0].name);
       });
