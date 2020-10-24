@@ -209,7 +209,8 @@ export default {
           password: this.user.updatePassword
         })
         .then(response => {
-          this.users[0].id = 12345;
+          console.log(this.users);
+          this.users[0].name = this.user.updateName;
           console.log(this.users[0]);
           $("#update-modal").modal("hide");
         })
