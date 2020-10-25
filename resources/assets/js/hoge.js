@@ -1,3 +1,5 @@
+//require('axios');
+import axios from 'axios';
 console.log('hello masato');
 
 axios.get('api/user')

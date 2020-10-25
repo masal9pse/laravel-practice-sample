@@ -38,4 +38,4 @@
  </div>
 </div>
 @endsection
-{{--<script src="{{ mix('js/app.js') }}">--}}
+<script src="{{ mix('js/hoge.js') }}"></script>
