@@ -27,4 +27,22 @@ class UserTest extends TestCase
     'email' => 'user@example.com',
    ]);
  }
+
+ // いいねテストエラー
+ public function testLikeStore()
+ {
+  $data = [ # 登録用のデータ   
+   'user_id' => 55,
+   'song_id' => 49,
+  ];
+
+  // POST リクエスト
+  $response = $this->withExceptionHandling()->post('api/posts/49/like', $data);
+
+  // レスポンス検証
+  $response->assertStatus(200)
+   ->assertJsonFragment([
+    'likeCount' => 1
+   ]);
+ }
 }
