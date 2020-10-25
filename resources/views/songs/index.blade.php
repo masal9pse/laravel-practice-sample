@@ -38,6 +38,4 @@
  </div>
 </div>
 @endsection
-<script>
- console.log('hello world')
-</script>
+{{--<script src="{{ mix('js/app.js') }}">--}}

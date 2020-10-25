@@ -6,6 +6,7 @@
 
 require("./bootstrap");
 require("./users");
+require('./hoge');
 window.Vue = require("vue");
 
 /**
