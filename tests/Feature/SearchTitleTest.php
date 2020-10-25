@@ -20,14 +20,4 @@ class SearchTitleTest extends TestCase
 
   $response->assertStatus(200);
  }
- // public function test_同じタイトルを入力した時()
- // {
- //  $response = $this->get('/', [
- //   'search' => 'pretender',
- //  ]);
-
- //  $response->assertStatus(200)
- //   // ->assertViewIs('songs.index')
- //   ->assertSee('pretender');
- // }
 }

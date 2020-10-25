@@ -72,21 +72,19 @@ class UserController extends Controller
   $request->validate([
    'name' => 'required',
    'email' => 'required',
-   //'password' => 'required'
    'password' => 'required|min:6|'
   ]);
 
   $user = User::create([
    'name' => $request->name,
    'email' => $request->email,
-   //'password' => bcrypt($request->password)
    'password' => password_hash($request->password, PASSWORD_DEFAULT)
   ]);
 
   return response()->json([
    'user' => $user,
-   'message' => 'task has been created'
-  ]);
+   'message' => '投稿に成功しました。'
+  ], 200);
  }
 
 
@@ -105,7 +103,7 @@ class UserController extends Controller
 
   return response()->json([
    'book' => $book,
-   'message' => 'user has been created'
+   'message' => '本を投稿しました。'
   ]);
  }
 
@@ -143,8 +141,6 @@ class UserController extends Controller
   $request->validate([
    'name' => 'nullable',
    'email' => 'nullable',
-   //'password' => 'required'
-   //'password' => 'required|min:6|'
    'password' => 'nullable'
   ]);
 
@@ -156,7 +152,7 @@ class UserController extends Controller
 
   return response()->json([
    'user' => $user,
-   'message' => 'user has been update'
+   'message' => '投稿を更新しました。'
   ]);
  }
 }
