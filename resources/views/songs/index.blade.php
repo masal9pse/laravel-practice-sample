@@ -37,5 +37,7 @@
   </div>
  </div>
 </div>
-</div>
 @endsection
+<script>
+ console.log('hello world')
+</script>
