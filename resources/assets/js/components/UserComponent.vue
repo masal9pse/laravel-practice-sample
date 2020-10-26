@@ -7,14 +7,14 @@
     </div>
 
     <div v-else>
-      <button @click="loadCreateModal" class="btn btn-primary btn-block">Add New user</button>
+      <button @click="loadCreateModal" class="btn btn-primary btn-block">ユーザーを追加</button>
       <table class="table" v-if="users">
         <thead>
           <tr>
             <th>並び順</th>
             <th>id</th>
-            <th>Name</th>
-            <th>Body</th>
+            <th>名前</th>
+            <th>メールアドレス</th>
           </tr>
         </thead>
         <tbody>
@@ -45,7 +45,7 @@
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Create Modal</h5>
+              <h5 class="modal-title" id="exampleModalLabel">新規投稿</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -58,13 +58,18 @@
               </div>
 
               <div class="form-group">
-                <label for="name">Name</label>
+                <label for="name">名前</label>
                 <input v-model="user.name" type="text" id="name" class="form-control" />
               </div>
 
               <div class="form-group">
-                <label for="description">Description</label>
+                <label for="description">メールアドレス</label>
                 <input v-model="user.email" type="text" id="description" class="form-control" />
+              </div>
+
+              <div class="form-group">
+                <label for="password">パスワード</label>
+                <input v-model="user.password" type="text" name id="password" class="form-control" />
               </div>
             </div>
             <div class="modal-footer">
@@ -75,7 +80,7 @@
         </div>
       </div>
 
-      <!-- Create Modal -->
+      <!-- update Modal -->
       <div
         class="modal fade"
         id="update-modal"
@@ -87,7 +92,7 @@
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Update Modal</h5>
+              <h5 class="modal-title" id="exampleModalLabel">更新画面</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -105,7 +110,7 @@
               </div>
 
               <div class="form-group">
-                <label for="description">Description</label>
+                <label for="description">メールアドレス</label>
                 <input
                   v-model="new_update_user.email"
                   type="text"
@@ -126,21 +131,23 @@
 </template>
 
 <script>
+import toastr from "toastr";
 export default {
   data() {
     return {
       user: {
         name: "",
-        email: ""
+        email: "",
+        password: ""
       },
       users: [],
       uri: "/api/user/",
       errors: [],
+      // 更新の答え、更新用の配列をつくる
       new_update_user: [],
       image: "public_images/loader1.gif",
-      //image: "./loader1.gif",
-      loading: false
-      //toastr: (toastr.options = { positionClass: "toast-top-full-width" })
+      loading: false,
+      toastr: (toastr.options = { positionClass: "toast-top-full-width" })
     };
   },
 
@@ -158,7 +165,11 @@ export default {
 
     createTask() {
       axios
-        .post(this.uri, { name: this.user.name, email: this.user.email })
+        .post(this.uri, {
+          name: this.user.name,
+          email: this.user.email,
+          password: this.user.password
+        })
 
         .then(response => {
           this.users.push(response.data.user);
@@ -190,7 +201,7 @@ export default {
         })
         .then(response => {
           $("#update-modal").modal("hide");
-          //toastr.success(response.data.message);
+          toastr.success(response.data.message);
         })
         .catch(error => {
           if (error.response.data.errors.name) {
@@ -222,7 +233,6 @@ export default {
     loadTasks() {
       axios.get(this.uri).then(response => {
         this.users = response.data.users;
-        //console.log(response);
         this.loading = true;
       });
     },
