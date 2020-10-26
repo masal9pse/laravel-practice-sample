@@ -1,7 +1,8 @@
 <template>
   <div>
     <div v-if="!loading">
-      <img class="rounded mx-auto d-block" :src="image" alt="loader" />
+      <!--<img class="rounded mx-auto d-block" :src="image" alt="loader" />-->
+      <img class="rounded mx-auto d-block" :src="'/public_images/loader1.gif'" alt="loader" />
       <!--<img :src="image" alt="loader" />-->
     </div>
 
@@ -10,6 +11,7 @@
       <table class="table" v-if="users">
         <thead>
           <tr>
+            <th>並び順</th>
             <th>id</th>
             <th>Name</th>
             <th>Body</th>
@@ -18,6 +20,7 @@
         <tbody>
           <tr v-for="(user, index) in users" :key="index">
             <td>{{index + 1}}</td>
+            <td>{{ user.id }}</td>
             <td>{{user.name}}</td>
             <td>{{user.email}}</td>
             <td>
@@ -92,7 +95,7 @@
             <div class="modal-email">
               <div class="alert alert-danger" v-if="errors.length > 0">
                 <ul>
-                  <li v-for="error in errors">{{error}}</li>
+                  <li v-for="error in errors" :key="error">{{error}}</li>
                 </ul>
               </div>
 
@@ -131,10 +134,11 @@ export default {
         email: ""
       },
       users: [],
-      uri: "/api/user",
+      uri: "/api/user/",
       errors: [],
       new_update_user: [],
       image: "public_images/loader1.gif",
+      //image: "./loader1.gif",
       loading: false
       //toastr: (toastr.options = { positionClass: "toast-top-full-width" })
     };
@@ -149,6 +153,7 @@ export default {
       this.errors = [];
       $("#update-modal").modal("show");
       this.new_update_user = this.users[index];
+      console.log(this.new_update_user);
     },
 
     createTask() {
@@ -185,7 +190,7 @@ export default {
         })
         .then(response => {
           $("#update-modal").modal("hide");
-          toastr.success(response.data.message);
+          //toastr.success(response.data.message);
         })
         .catch(error => {
           if (error.response.data.errors.name) {
@@ -217,7 +222,7 @@ export default {
     loadTasks() {
       axios.get(this.uri).then(response => {
         this.users = response.data.users;
-        console.log(response);
+        //console.log(response);
         this.loading = true;
       });
     },
