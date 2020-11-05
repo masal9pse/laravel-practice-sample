@@ -7,4 +7,14 @@
  ,
  @endunless
  @endforeach
+ {{--<div class="col-md-3">--}}
+ <form action="">
+  <input type="submit" value="&#xf164;いいね" class="fas btn btn-success">
+ </form>
+ {{--</div>--}}
+ {{--<div class="col-md-3">--}}
+ <form action="">
+  <input type="submit" value="&#xf164;いいね取り消す" class="fas btn btn-danger">
+ </form>
+ {{--</div>--}}
 </div>
