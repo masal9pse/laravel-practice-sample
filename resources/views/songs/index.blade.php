@@ -5,6 +5,10 @@
   <div class="col-md-12">
    <div class="card">
     <div class="card-header">曲名一覧</div>
+    <?php 
+    $_SESSION['name'] = 'test';
+    var_dump($_SESSION);
+    ?>
     <div class="card-body">
      <div class="mb-3">
       @include('components.top_search')
