@@ -29,13 +29,13 @@ class User extends Authenticatable
   'remember_token',
  ];
 
- public function likes()
- {
-  return $this->hasMany(Like::class);
- }
-
  public function songs()
  {
   return $this->hasMany(Song::class);
+ }
+
+ public function favorites()
+ {
+  return $this->belongsToMany(Like::class)->withTimestamps();
  }
 }
