@@ -38,6 +38,12 @@ class Song extends Model
   return $this->belongsTo(User::class, 'user_id');
  }
 
+ public function users()
+ {
+  //return $this->belongsToMany(User::class)->withTimestamps();
+  return $this->belongsToMany(User::class)->using(Like::class)->withTimestamps();
+ }
+
  public function comments()
  {
   return $this->hasMany(Comment::class, 'song_id', 'id');
