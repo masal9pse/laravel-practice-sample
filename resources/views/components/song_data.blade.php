@@ -7,14 +7,12 @@
  ,
  @endunless
  @endforeach
- <div>
-  <?php var_dump($song->is_liked_by_auth_user()); ?>
-  @if($song->is_liked_by_auth_user())
-  <a href="{{ route('likes.store', ['id' => $song->id]) }}" class="btn btn-success btn-sm">いいね<span
-    class="badge">{{ $song->likes->count() }}</span></a>
-  @else
-  <a href="{{ route('likes.destroy', ['id' => $song->id]) }}" class="btn btn-danger btn-sm">いいね<span
-    class="badge">{{ $song->likes->count() }}</span></a>
-  @endif
- </div>
-</div>
+ {{--<div>--}}
+ @if($song->is_liked_by_auth_user())
+ <a href="{{ route('likes.destroy', ['id' => $song->id]) }}" class="btn btn-success btn-sm">いいね<span
+   class="badge">{{ $song->likes->count() }}</span></a>
+ @else
+ <a href="{{ route('likes.store', ['id' => $song->id]) }}" class="btn btn-danger btn-sm">いいね<span
+   class="badge">{{ $song->likes->count() }}</span></a>
+ @endif
+ {{--</div>--}}

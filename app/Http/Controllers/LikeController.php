@@ -94,7 +94,7 @@ class LikeController extends Controller
  {
   $like = Like::where('song_id', $id)->where('user_id', Auth::id())->first();
   $like->delete();
-  dd($like);
+  //dd($like);
 
   session()->flash('success', 'You Unliked the Reply.');
 
