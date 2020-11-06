@@ -7,16 +7,14 @@
  ,
  @endunless
  @endforeach
- {{--<div class="col-md-3">--}}
- <form action="{{ route('like.store',$song->id) }}" method="POST">
-  {{ csrf_field() }}
-  <input type="submit" value="&#xf164;いいね" class="fas btn btn-success">
- </form>
- {{--</div>--}}
- {{--<div class="col-md-3">--}}
- <form action="{{ route('unlike.destroy', $song) }}" method="POST">
-  {{ csrf_field() }}
-  <input type="submit" value="&#xf164;いいね取り消す" class="fas btn btn-danger">
- </form>
- {{--</div>--}}
+ <div>
+  <?php var_dump($song->is_liked_by_auth_user()); ?>
+  @if($song->is_liked_by_auth_user())
+  <a href="{{ route('likes.store', ['id' => $song->id]) }}" class="btn btn-success btn-sm">いいね<span
+    class="badge">{{ $song->likes->count() }}</span></a>
+  @else
+  <a href="{{ route('likes.destroy', ['id' => $song->id]) }}" class="btn btn-danger btn-sm">いいね<span
+    class="badge">{{ $song->likes->count() }}</span></a>
+  @endif
+ </div>
 </div>

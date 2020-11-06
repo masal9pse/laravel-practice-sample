@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Comment;
 use App\Models\Tag;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Auth;
 
 class Song extends Model
 {
@@ -28,9 +29,14 @@ class Song extends Model
  {
   return $this->hasMany(Book::class);
  }
- public function likes(): BelongsToMany
+ //public function likes(): BelongsToMany
+ //{
+ // return $this->BelongsToMany(User::class, 'likes');
+ //}
+
+ public function likes()
  {
-  return $this->BelongsToMany(User::class, 'likes');
+  return $this->hasMany(Like::class, 'song_id');
  }
 
  public function user()
@@ -68,6 +74,22 @@ class Song extends Model
  {
   if ($search && $songs != null) {
    $songs->where('title', 'like', '%' . $search . '%')->get();
+  }
+ }
+
+ function is_liked_by_auth_user()
+ {
+  $id = Auth::id();
+
+  $likers = array();
+  foreach ($this->likes as $like) {
+   array_push($likers, $like->user_id);
+  }
+
+  if (in_array($id, $likers)) {
+   return true;
+  } else {
+   return false;
   }
  }
 }

@@ -27,8 +27,8 @@ Route::group(['middleware' => 'auth:user'], function () {
  Route::post('comments', 'CommentController@store')->name('comments.store');
  Route::post('comments/{id}', 'CommentController@destroy')->name('comments.destroy');
  // Route::resource('/replies', 'ReplyController');
- Route::post('posts/{post}/like', 'LikeController@store')->name('like.store');
- Route::post('posts/{post}/unlike', 'LikeController@destroy')->name('unlike.destroy');
+ Route::get('/songs/like/{id}', 'LikeController@store')->name('likes.store');
+ Route::get('/songs/unlike/{id}', 'LikeController@destroy')->name('likes.destroy');
  Route::get('/replies/create', 'ReplyController@create')->name('replies.create');
  Route::post('/replies', 'ReplyController@store')->name('replies.store');
  Route::post('/replies/{id}', 'ReplyController@destroy')->name('replies.destroy');

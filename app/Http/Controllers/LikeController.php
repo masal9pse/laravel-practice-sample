@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Song;
 use Illuminate\Http\Request;
 use Auth;
+use DB;
+use App\Like;
 
 class LikeController extends Controller
 {
@@ -34,11 +36,17 @@ class LikeController extends Controller
   * @param  \Illuminate\Http\Request  $request
   * @return \Illuminate\Http\Response
   */
- public function store(Song $song)
+ //public function store(Song $song)
+ public function store($id)
  {
-  $song->users()->attach(Auth::id());
+  Like::create([
+   'song_id' => $id,
+   'user_id' => Auth::id(),
 
-  return redirect()->route('songs.index');
+  ]);
+  session()->flash('success', 'You Liked the Reply.');
+
+  return redirect()->back();
  }
 
 
@@ -84,6 +92,12 @@ class LikeController extends Controller
   */
  public function destroy($id)
  {
-  //
+  $like = Like::where('song_id', $id)->where('user_id', Auth::id())->first();
+  $like->delete();
+  dd($like);
+
+  session()->flash('success', 'You Unliked the Reply.');
+
+  return redirect()->back();
  }
 }
