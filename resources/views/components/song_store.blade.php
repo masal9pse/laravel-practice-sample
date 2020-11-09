@@ -43,6 +43,8 @@
    <div>
     <div class="form-check form-check-inline">
      @foreach($tags as $key => $tag)
+     <?php /* var_dump($tag); */?>
+     {{-- pluckメソッドですでにキーとバリューを使用しているのでtitleを指定する必要はない --}}
      <input type="checkbox" name="tags[]" value="{{ $key }}" id="tag{{ $key }}" @if(isset($song->tags) &&
      $song->tags->contains($key))
      checked

@@ -47,9 +47,7 @@ jobs:
             - node_modules
       - run:
           name: npm run dev
-          command: |
-            npm rebuild node-sass
-            npm run dev
+          command: npm run dev
       - run:
           name: phpunit test
           command: vendor/bin/phpunit
