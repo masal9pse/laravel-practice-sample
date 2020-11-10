@@ -27,7 +27,13 @@ class AdminSongControllerTest extends TestCase
     'title' => '今夜このまま',
     'detail' => '苦いようで甘いような〜',
     'file_name' => ''
-   ]);;
+   ]);
+  // 公式ドキュメントを読もう
+  $this->assertDatabaseHas('songs', [
+   'title' => '今夜このまま',
+   'detail' => '苦いようで甘いような〜',
+   'file_name' => ''
+  ]);
 
   $response->assertRedirect('/admin/create');
  }

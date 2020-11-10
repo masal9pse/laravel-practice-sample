@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Song;
 use App\Models\Tag;
-
+// 普通にSQLで実行しているので本来なら必要ない
 class SongTag extends Model
 {
  protected $table = 'song_tag';
