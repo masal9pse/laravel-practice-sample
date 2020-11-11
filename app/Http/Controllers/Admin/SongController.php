@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Song;
 use App\Http\Requests\CreateSongTask;
-use App\Http\Requests\TagRequest;
 use Illuminate\Support\Facades\DB;
 use App\Models\Tag;
 use PDO;
@@ -48,7 +47,15 @@ class SongController extends Controller
 
  public function store(CreateSongTask $request)
  {
-  //dd($_POST['tags']);
+  $last_song_insert_id = $this->songInsert($request);
+
+  $this->tagInsert($last_song_insert_id);
+
+  return redirect()->route('admin.create')->with(['success' => 'ファイルを保存しました']);
+ }
+
+ private function songInsert($request)
+ {
   $song = Song::create($request->only(['title', 'detail', 'file_name']));
 
   if ($request->file('file_name')) {
@@ -57,31 +64,21 @@ class SongController extends Controller
 
   $song->file_name = basename($song->file_name);
   $song->save();
-  $last_insert_id = $song->id;
-  //dd($last_insert_id); // song_idの値を取得
-  //exit;
-  //$song->tags()->sync($request->tags);
-  // 普通に SQLを実行しているので中間テーブル用のモデルSongTagは必要ない
+  $last_song_insert_id = $song->id;
+
+  return $last_song_insert_id;
+ }
+
+ private function tagInsert($last_insert_id)
+ {
   $db = DB::connection()->getPdo();
   $sql = "INSERT INTO song_tag(song_id,tag_id) VALUES (:song_id,:tag_id)";
-  //dd($now_post_insert_id);
   $tag_stmt = $db->prepare($sql);
-  ////var_dump($tag_num);
   foreach ($_POST['tags'] as $tag) {
-   //$tag_stmt->bindValue(':song_id', $last_insert_id, PDO::PARAM_INT);
    $tag_stmt->bindValue(':song_id', $last_insert_id);
-   //$tag_stmt->bindValue(':tag_id', $tag['id'], PDO::PARAM_INT);
    $tag_stmt->bindValue(':tag_id', $tag);
    $tag_stmt->execute();
   }
-  //exit;
-  // SongTag::create([
-  //  'song_id' => ,
-  //  'user_id' => ,
-  // ]);
-  //}
-
-  return redirect()->route('admin.create')->with(['success' => 'ファイルを保存しました']);
  }
 
  public function show($id)
