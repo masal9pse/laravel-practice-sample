@@ -21,8 +21,8 @@ class SongController extends Controller
 
   $songInstanse->titleSearch($search, $songs);
 
-  $songs = $songs->orderBy('id', 'desc')->paginate(3);
-  $problems = Problem::all();
+  $songs = $this->songPaginate($songs);
+  $problems = $this->problem();
 
   return view('songs.index', [
    'songs' => $songs,
@@ -30,6 +30,17 @@ class SongController extends Controller
   ]);
  }
 
+ private function songPaginate($songs)
+ {
+  $songs = $songs->orderBy('id', 'desc')->paginate(3);
+  return $songs;
+ }
+
+ private function problem()
+ {
+  $problems = Problem::all();
+  return $problems;
+ }
  /**
   * Show the form for creating a new resource.
   *
