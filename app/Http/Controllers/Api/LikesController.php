@@ -35,13 +35,10 @@ class LikesController extends Controller
   return $like;
  }
 
- public function show(Song $song)
+ // いいね機能を実行するためにはパラメーターが必要なのでそれを取得する
+ public function show($id)
  {
-
-  $likeShows = Song::find($song->id)->likes;
-  foreach ($likeShows as $like) {
-   $like_id = $like->song_id;
-  }
-  return $like_id;
+  $like = Like::find($id);
+  return $like;
  }
 }

@@ -18,7 +18,7 @@ class Like extends Model
  //  'foreignKey' => 'song_id'
  // ]
  //];
-
+ protected $primaryKey = 'song_id';
  protected $fillable = ['user_id', 'song_id'];
 
  public function Song()
