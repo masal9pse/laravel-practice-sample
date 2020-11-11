@@ -10,14 +10,14 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
 
 class Like extends Model
 {
- use CounterCache;
+ //use CounterCache;
 
- public $counterCacheOptions = [
-  'Song' => [
-   'field' => 'likes_count',
-   'foreignKey' => 'song_id'
-  ]
- ];
+ //public $counterCacheOptions = [
+ // 'Song' => [
+ //  'field' => 'likes_count',
+ //  'foreignKey' => 'song_id'
+ // ]
+ //];
 
  protected $fillable = ['user_id', 'song_id'];
 
