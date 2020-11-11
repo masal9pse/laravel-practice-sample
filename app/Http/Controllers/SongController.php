@@ -21,6 +21,7 @@ class SongController extends Controller
 
   $songInstanse->titleSearch($search, $songs);
 
+  // 左辺の$songsは$songLimitと同じ
   $songs = $this->songPaginate($songs);
   $problems = $this->problem();
 
@@ -32,8 +33,8 @@ class SongController extends Controller
 
  private function songPaginate($songs)
  {
-  $songs = $songs->orderBy('id', 'desc')->paginate(3);
-  return $songs;
+  $songLimit = $songs->orderBy('id', 'desc')->paginate(3);
+  return $songLimit;
  }
 
  private function problem()
