@@ -23,7 +23,7 @@
   <div class="form-group">
    {{--  ここのv-bindもsongController@showから取得している --}}
    <like :song-id="{{ json_encode($song->id) }}" :user-id="{{ json_encode($userAuth->id) }}"
-    :default-Count="{{ json_encode($defaultCount) }}" :default-Liked="{{ json_encode($defaultLiked) }}">
+    :get-like="{{ json_encode($getLike) }}" :is-like="{{ json_encode($isLike) }}">
    </like>
   </div>
  </div>
@@ -74,7 +74,7 @@
  </div>
  <div class="form-group">
   <like :song-id="{{ json_encode($song->id) }}" :user-id="{{ json_encode($userAuth->id) }}"
-   :default-Liked="{{ json_encode($defaultLiked) }}" :default-Count="{{ json_encode($defaultCount) }}">
+   :get-like="{{ json_encode($getLike) }}" :is-like="{{ json_encode($isLike) }}">
   </like>
  </div>
 </div>

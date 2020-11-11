@@ -50,13 +50,13 @@ class SongController extends Controller
   $song = Song::find($id);
   $song->load('user', 'books', 'comments', 'likes', 'comments.replies.user');
   //dd($song);
-  list($userAuth, $defaultCount, $defaultLiked) = $this->likeFunc($song);
+  list($userAuth, $getLike, $isLike) = $this->likeFunc($song);
 
   $params = [
    'userAuth' => $userAuth,
    'song' => $song,
-   'defaultCount' => $defaultCount,
-   'defaultLiked' => $defaultLiked
+   'getLike' => $getLike,
+   'isLike' => $isLike
   ];
 
   return view('songs.show', $params);
@@ -65,13 +65,13 @@ class SongController extends Controller
  private function likeFunc($song)
  {
   $userAuth = \Auth::user();
-  $defaultCount = count($song->likes);
-  $defaultLiked = $song->likes()->where('user_id', $userAuth->id)->first();
-  if (count($defaultLiked) == 0) {
-   $defaultLiked == false;
+  $getLike = count($song->likes);
+  $isLike = $song->likes()->where('user_id', $userAuth->id)->first();
+  if (count($isLike) == 0) {
+   $isLike == false;
   } else {
-   $defaultLiked == true;
+   $isLike == true;
   }
-  return [$userAuth, $defaultCount, $defaultLiked];
+  return [$userAuth, $getLike, $isLike];
  }
 }

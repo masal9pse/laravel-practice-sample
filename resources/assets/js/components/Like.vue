@@ -16,7 +16,7 @@
 
 <script>
 export default {
-  props: ["songId", "userId", "defaultCount", "defaultLiked"],
+  props: ["songId", "userId", "getLike", "isLike"],
   data() {
     return {
       //songId,
@@ -27,8 +27,8 @@ export default {
     };
   },
   mounted() {
-    this.liked = this.defaultLiked;
-    this.likeCount = this.defaultCount;
+    this.liked = this.isLike;
+    this.likeCount = this.getLike;
     this.loadGetAll();
     this.propsCheck();
   },
@@ -67,8 +67,8 @@ export default {
     propsCheck() {
       console.log(this.songId);
       console.log(this.userId);
-      console.log(this.defaultLiked);
-      console.log(this.defaultCount);
+      console.log(this.isLike);
+      console.log(this.getLike);
       //console.log("songId");
     },
     loadGetAll() {
