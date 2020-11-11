@@ -8,9 +8,9 @@
       <i class="fas fa-heart fa-fw"></i>
       <span>{{ likeCount }}</span>
     </button>
-    <ul v-for="(like,index) in likeArray" :key="index">
+    <!--<ul v-for="(like,index) in likeArray" :key="index">
       <li>{{ like.song_id }}</li>
-    </ul>
+    </ul>-->
   </div>
 </template>
 
