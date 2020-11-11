@@ -55,8 +55,8 @@ class SongController extends Controller
   $params = [
    'userAuth' => $userAuth,
    'song' => $song,
-   'defaultLiked' => $defaultLiked,
-   'defaultCount' => $defaultCount
+   'defaultCount' => $defaultCount,
+   'defaultLiked' => $defaultLiked
   ];
 
   return view('songs.show', $params);

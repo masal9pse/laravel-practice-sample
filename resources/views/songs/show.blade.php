@@ -21,9 +21,9 @@
    @endif
   </div>
   <div class="form-group">
-   {{--  htmlを返すコントローラー定義した後に、部分的にapi化する。 --}}
+   {{--  ここのv-bindもsongController@showから取得している --}}
    <like :song-id="{{ json_encode($song->id) }}" :user-id="{{ json_encode($userAuth->id) }}"
-    :default-Liked="{{ json_encode($defaultLiked) }}" :default-Count="{{ json_encode($defaultCount) }}">
+    :default-Count="{{ json_encode($defaultCount) }}" :default-Liked="{{ json_encode($defaultLiked) }}">
    </like>
   </div>
  </div>

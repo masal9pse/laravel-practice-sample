@@ -16,9 +16,10 @@
 
 <script>
 export default {
-  props: ["songId", "userId", "defaultLiked", "defaultCount"],
+  props: ["songId", "userId", "defaultCount", "defaultLiked"],
   data() {
     return {
+      //songId,
       liked: false,
       likeCount: 0,
       likeArray: [],
@@ -29,6 +30,7 @@ export default {
     this.liked = this.defaultLiked;
     this.likeCount = this.defaultCount;
     this.loadGetAll();
+    this.propsCheck();
   },
   methods: {
     like(songId) {
@@ -61,14 +63,17 @@ export default {
           return false;
         });
     },
-
+    // 出力されない
+    propsCheck() {
+      console.log(this.songId);
+      console.log(this.userId);
+      console.log(this.defaultLiked);
+      console.log(this.defaultCount);
+      //console.log("songId");
+    },
     loadGetAll() {
       axios.get(this.getUri + "index").then(response => {
         this.likeArray = response.data;
-        //this.loading = true;
-        console.log(response);
-        //console.log(response.data[0]);
-        console.log(this.likeArray);
       });
     }
   }
