@@ -36,22 +36,12 @@ class LikesController extends Controller
  }
 
  public function show(Song $song)
- //public function show($id)
  {
-  //dd($likeInstance);
-  $userAuth = \Auth::user();
-  $song = Song::find($song->id);
-  //$song = Song::find($song->id)->likes;
 
-  //dd($song);
-  //$like = Like::where('user_id', \Auth::id())->where('song_id', $song->id)->first();
-  //$like = $song->likes()->where('user_id', $userAuth->id)->first();
-  // カウントする際に使う
-  //$like = Like::where('song_id', $song->id)->get();
-  //$like = new Like();
-  //$like = Like::where('song_id', $like->song_id)->get(); // これだととれない
-  //$like->load('Song');
-  //return [$song, $like];
-  return $song;
+  $likeShows = Song::find($song->id)->likes;
+  foreach ($likeShows as $like) {
+   $like_id = $like->song_id;
+  }
+  return $like_id;
  }
 }
