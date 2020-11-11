@@ -8,6 +8,9 @@
       <i class="fas fa-heart fa-fw"></i>
       <span>{{ likeCount }}</span>
     </button>
+    <ul v-for="(like,index) in likeArray" :key="index">
+      <li>{{ like.song_id }}</li>
+    </ul>
   </div>
 </template>
 
@@ -17,18 +20,21 @@ export default {
   data() {
     return {
       liked: false,
-      likeCount: 0
+      likeCount: 0,
+      likeArray: [],
+      getUri: `/api/gets/`
     };
   },
-  created() {
+  mounted() {
     this.liked = this.defaultLiked;
     this.likeCount = this.defaultCount;
+    this.loadGetAll();
   },
   methods: {
     like(songId) {
-      let url = `/api/posts/${songId}/like`;
+      let uri = `/api/posts/${songId}/like`;
       axios
-        .post(url, {
+        .post(uri, {
           user_id: this.userId
         })
         .then(response => {
@@ -41,9 +47,9 @@ export default {
         });
     },
     unlike(songId) {
-      let url = `/api/posts/${songId}/unlike`;
+      let uri = `/api/posts/${songId}/unlike`;
       axios
-        .post(url, {
+        .post(uri, {
           user_id: this.userId
         })
         .then(response => {
@@ -54,6 +60,16 @@ export default {
           alert("いいねを使うにはログインしてください");
           return false;
         });
+    },
+
+    loadGetAll() {
+      axios.get(this.getUri + "index").then(response => {
+        this.likeArray = response.data;
+        //this.loading = true;
+        console.log(response);
+        //console.log(response.data[0]);
+        console.log(this.likeArray);
+      });
     }
   }
 };
