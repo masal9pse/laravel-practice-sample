@@ -192,7 +192,6 @@ export default {
           }
         });
     },
-
     updateTask() {
       axios
         .patch(this.uri + this.new_update_user.id, {
@@ -215,7 +214,7 @@ export default {
     },
 
     deleteTask(index) {
-      let confirmBox = confirm("Do you really want to delete this?");
+      let confirmBox = confirm("削除しますか?");
 
       if (confirmBox == true) {
         axios
@@ -225,11 +224,19 @@ export default {
             toastr.success(response.data.message);
           })
           .catch(error => {
-            console.log("Could not delete for some reason");
+            console.log("削除できませんでした");
           });
       }
     },
-
+    async logFetch() {
+      try {
+        const response = await fetch(this.uri);
+        // jsonメソッドをつけないとapiの中身を取得できない
+        console.log(await response.json());
+      } catch (err) {
+        console.log("fetch failed", err);
+      }
+    },
     loadTasks() {
       axios.get(this.uri).then(response => {
         this.users = response.data.users;
@@ -246,6 +253,7 @@ export default {
 
   mounted() {
     this.loadTasks();
+    this.logFetch(); // dataとれない
   }
 };
 </script>

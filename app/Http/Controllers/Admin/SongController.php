@@ -8,7 +8,6 @@ use App\Models\Song;
 use App\Http\Requests\CreateSongTask;
 use Illuminate\Support\Facades\DB;
 use App\Models\Tag;
-use PDO;
 
 class SongController extends Controller
 {
