@@ -229,9 +229,9 @@ export default {
       }
     },
     // try,catchはrequireではない
-    async useAsyncUserList() {
+    async useAsyncUserList(url) {
       try {
-        const response = await axios.get(this.uri);
+        const response = await axios.get(url);
         console.log(await response.data);
       } catch (err) {
         console.log("fetch failed", err);
@@ -253,7 +253,7 @@ export default {
 
   mounted() {
     this.loadTasks();
-    this.useAsyncUserList(); // dataとれない
+    this.useAsyncUserList(this.uri); // dataとれない
   }
 };
 </script>
