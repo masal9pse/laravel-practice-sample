@@ -228,11 +228,11 @@ export default {
           });
       }
     },
-    async logFetch() {
+    // try,catchはrequireではない
+    async useAsyncUserList() {
       try {
-        const response = await fetch(this.uri);
-        // jsonメソッドをつけないとapiの中身を取得できない
-        console.log(await response.json());
+        const response = await axios.get(this.uri);
+        console.log(await response.data);
       } catch (err) {
         console.log("fetch failed", err);
       }
@@ -253,7 +253,7 @@ export default {
 
   mounted() {
     this.loadTasks();
-    this.logFetch(); // dataとれない
+    this.useAsyncUserList(); // dataとれない
   }
 };
 </script>
