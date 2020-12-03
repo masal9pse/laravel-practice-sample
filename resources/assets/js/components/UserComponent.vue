@@ -253,7 +253,7 @@ export default {
 
   mounted() {
     this.loadTasks();
-    this.useAsyncUserList(this.uri); // dataとれない
+    this.useAsyncUserList(this.uri);
   }
 };
 </script>
