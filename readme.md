@@ -1,6 +1,8 @@
 # インストール方法
 
 ```
+$ git clone "this repo"
+
 $ docker -v
 Docker version 19.03.13, build 4484c46d9d
 
@@ -12,6 +14,8 @@ $ docker-compose up -d --build
 $ docker-compose exec app bash
 
 $ composer install
+
+$ php artisan key generate
 
 $ npm install
 
