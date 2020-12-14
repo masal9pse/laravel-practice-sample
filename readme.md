@@ -14,6 +14,7 @@ $ docker-compose up -d --build
 $ docker-compose exec app bash
 
 $ copy env.example .env
+// databaseをdocker-composeで作成したテーブルと合わせることを推奨します
 
 $ composer install
 
