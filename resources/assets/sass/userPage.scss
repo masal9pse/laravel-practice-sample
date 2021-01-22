@@ -1,0 +1,64 @@
+$violet-color: blueviolet;
+
+body {
+ background-color: #FFFFEE;
+}
+
+.image {
+ display: block;
+}
+
+.well {
+ display: flex;
+}
+
+.reply-rm-button {
+ margin-left: 20px;
+}
+
+.rep_reply {
+ margin-left: 10px;
+}
+
+.main {
+ display: flex;
+ justify-content: space-between;
+ margin: 30px;
+}
+
+// scssのネストを使用
+.use-scss {
+ .yellow-color {
+  color: yellowgreen;
+ }
+}
+
+// 同一セレクターでのcssの適応＋変数の使用
+.scss-test01 {
+ &.scss-test02 {
+  color: $violet-color;
+ }
+}
+
+@media screen and (max-width:800px) {
+ .main {
+  display: flex;
+  flex-direction: column;
+ }
+
+ .main.songData {
+  //margin-top: 50px;
+  margin-bottom: 50px;
+ }
+}
+
+//.main {
+// @media screen and (max-width:800px) {
+//  display: flex;
+//  flex-direction: column;
+
+//  .songData {
+//   margin-top: 50px;
+//  }
+// }
+//}

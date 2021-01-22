@@ -1,4 +1,7 @@
-タイトル：<a href="{{ route('songs.show',$song) }}">{{ $song->title }}</a>
+<p class="use-scss">
+ <span class="scss-test01 scss-test02">タイトル</span>：<a href="{{ route('songs.show',$song) }}"
+  class="yellow-color">{{ $song->title }}</a>
+</p>
 <div>
  タグ：
  @foreach($song->tags as $tag)
