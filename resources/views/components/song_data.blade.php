@@ -15,4 +15,4 @@
  <a href="{{ route('likes.store', ['id' => $song->id]) }}" class="btn btn-danger btn-sm">いいね<span
    class="badge">{{ $song->likes->count() }}</span></a>
  @endif
- {{--</div>--}}
+</div>
