@@ -21,3 +21,13 @@ Vue.component("like", require("./components/Like.vue"));
 const app = new Vue({
  el: "#app",
 });
+
+$(function() {
+ // 行の一部を変更する
+ $(document).on('click', '#removeList', function() {
+  $(this)
+   .parent()
+   .parent()
+   .remove();
+ });
+});

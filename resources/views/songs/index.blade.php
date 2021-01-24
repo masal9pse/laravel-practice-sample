@@ -5,10 +5,12 @@
   <div class="col-md-12">
    <div class="card">
     <div class="card-header">曲名一覧</div>
+    {{-- mainの親がcard-body --}}
     <div class="card-body">
      <div class="mb-3">
       @include('components.top_search')
      </div>
+     {{-- .songDataの親がmain --}}
      <div class="main">
       @foreach ($songs as $song)
       @if (!empty($song['file_name']))
