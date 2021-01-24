@@ -24,7 +24,23 @@ const app = new Vue({
 
 $(function() {
  // 行の一部を変更する
- $(document).on('click', '#removeList', function() {
+ //$(document).on('click', '#removeList', function() {
+ // //console.log($(this).data().id);
+ // currentId = $(this).data().id;
+ // fetch('/api/posts/' + currentId + '/delete', {
+ //  //method: 'DELETE',
+ //  method: 'POST',
+ //  body: {},
+ // })
+ //  .then(() => {
+ //   $(this)
+ //    .parent()
+ //    .parent()
+ //    .remove();
+ //  })
+ //});
+
+ $('#removeList').click(function() {
   //console.log($(this).data().id);
   currentId = $(this).data().id;
   fetch('/api/posts/' + currentId + '/delete', {
