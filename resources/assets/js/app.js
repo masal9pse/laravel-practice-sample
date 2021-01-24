@@ -25,6 +25,11 @@ const app = new Vue({
 $(function() {
  // 行の一部を変更する
  $(document).on('click', '#removeList', function() {
+  console.log($(this).data());
+  //fetch('/api//' + currentId, {
+  // method: 'DELETE',
+  // body: {},
+  //})
   $(this)
    .parent()
    .parent()
