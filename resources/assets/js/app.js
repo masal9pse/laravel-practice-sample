@@ -74,10 +74,12 @@ $(function() {
    type: "POST",
    //ここでデータの送信先URLを指定します。
    url: "/api/posts/store",
-   data: {title: 'song2', detail: 'test'},
+   data: {title: $("[name=title]").val(), detail: $("[name=detail]").val()},
    //処理が成功したら
    success: function() {
-    //HTMLファイル内の該当箇所にレスポンスデータを追加する場合   
+    //HTMLファイル内の該当箇所にレスポンスデータを追加する場合
+    console.log($("[name=title]").val());
+    console.log($("[name=detail]").val());
     $('#title-data').val('')
     $('#detail-data').val('')
     $('#image-data').val('')
