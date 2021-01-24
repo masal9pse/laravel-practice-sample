@@ -57,4 +57,36 @@ $(function() {
      .remove();
    })
  });
+
+ // フロントだけでとりあえず投稿するとフォームが消える処理を書く
+ $('#store-data').click(function() {
+  $('#title-data').val('')
+  $('#detail-data').val('')
+  $('#image-data').val('')
+  // https://www.s-arcana.co.jp/tech/2014/04/jqueryid.html
+  // 同じidを持つ複数要素を選択するやり方
+  $("[id=tag-data]").removeAttr("checked").prop('checked', false).change()
+ })
+
+ //// あとでフロントとバックを紐づけるためのajaxのフォーマット
+ //$.ajax({
+ // //POST通信
+ // type: "POST",
+ // //ここでデータの送信先URLを指定します。
+ // url: "post.php",
+ // data: {key1: 'adress', key2: 'name'},
+ // //処理が成功したら
+ // success: function(data, dataType) {
+ //  //HTMLファイル内の該当箇所にレスポンスデータを追加する場合
+ //  $('#sample').html("送信成功しました");
+ // },
+ // //処理がエラーであれば
+ // error: function() {
+ //  alert('通信エラー');
+ // }
+ //});
+ ////submitによる画面リロードを防いでいます。
+ //return false;
+
+
 });
