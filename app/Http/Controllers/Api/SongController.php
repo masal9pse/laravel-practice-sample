@@ -8,11 +8,27 @@ use App\Http\Requests\CreateSongTask;
 
 class SongController extends Controller
 {
+ //public function store(CreateSongTask $request)
+ //{
+ // $last_song_insert_id = $this->songInsert($request);
+
+ // $this->tagInsert($last_song_insert_id, $_POST['tags']);
+ //}
+
  public function store(CreateSongTask $request)
  {
-  $last_song_insert_id = $this->songInsert($request);
+  //$song = Song::create($request->only(['title', 'detail', 'file_name']));
+  $song = Song::create($request->only(['title', 'detail']));
 
-  $this->tagInsert($last_song_insert_id, $_POST['tags']);
+  if ($request->file('file_name')) {
+   $song->file_name = $request->file('file_name')->store('public/img');
+  }
+
+  $song->file_name = basename($song->file_name);
+
+  $song->save();
+  $song->tags()->sync($request->tags);
+  return [$song];
  }
 
  private function songInsert($request)
