@@ -52,12 +52,15 @@
    contentType: false,
    cache: false,
    processData: false,
-   success:function(data)
+   // success:functionの引数をdataとすることが多いが、この引数のdataと、上のdata:new Form~は何も関係ない
+   // success:funcの内の引数はサーバーから返ってきたjsonを表す
+   success:function(response)
    {
+    console.log(response)
     $('#message').css('display', 'block');
-    $('#message').html(data.message);
-    $('#message').addClass(data.class_name);
-    $('#uploaded_image').html(data.uploaded_image);
+    $('#message').html(response.message);
+    $('#message').addClass(response.class_name);
+    $('#uploaded_image').html(response.uploaded_image);
    }
   })
  });

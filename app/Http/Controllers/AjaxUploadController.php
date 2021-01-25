@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tag;
 use Illuminate\Http\Request;
 use Validator;
 
@@ -22,6 +23,7 @@ class AjaxUploadController extends Controller
    $new_name = rand() . '.' . $image->getClientOriginalExtension();
    //$image->move(public_path('images'), $new_name);
    $image->move(public_path('images'), $new_name);
+   Tag::create(['title' => $new_name]);
    return response()->json([
     'message'   => 'Image Upload Successfully',
     'uploaded_image' => '<img src="/images/' . $new_name . '" class="img-thumbnail" width="300" />',
