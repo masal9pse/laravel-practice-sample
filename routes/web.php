@@ -19,6 +19,8 @@ Route::get('/', 'SongController@index')->name('songs.index');
 Route::resource('/songs', 'SongController')->only(['show', 'store']);
 Route::resource('/tags', 'TagController', ['only' => ['index', 'create', 'show', 'edit']]);
 Route::resource('/problems', 'ProblemController')->only(['store']);
+Route::get('/ajax_upload', 'AjaxUploadController@index');
+Route::post('/ajax_upload/action', 'AjaxUploadController@action')->name('ajaxupload.action');
 
 Route::group(['middleware' => 'auth:user'], function () {
  Route::resource('/songs', 'SongController', ['except' => ['index', 'create', 'store', 'show']]);

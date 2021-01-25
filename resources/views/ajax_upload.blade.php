@@ -38,24 +38,29 @@
 </body>
 
 </html>
+
 <script>
  $(document).ready(function(){
-$('#upload_form').on('submit',function(event){
+
+ $('#upload_form').on('submit', function(event){
   event.preventDefault();
-  //url: "{{ route('ajaxupload.action') }}",
-  url: "/ajax_upload/action",
-  method: "POST",
-  data: new FormData(this),
-  dataType: 'JSON',
-  contentType: false,
-  cache:false,
-  success: function(data)
-  {
-    $('#message').css('display','block')
-    $('#message').html(data.message)
-    $('#message').addClass(data.class_name)
-    $('#uploaded_image').html(data.uploaded_image)
-  }
-})
-})
+  $.ajax({
+   url:"{{ route('ajaxupload.action') }}",
+   method:"POST",
+   data:new FormData(this),
+   dataType:'JSON',
+   contentType: false,
+   cache: false,
+   processData: false,
+   success:function(data)
+   {
+    $('#message').css('display', 'block');
+    $('#message').html(data.message);
+    $('#message').addClass(data.class_name);
+    $('#uploaded_image').html(data.uploaded_image);
+   }
+  })
+ });
+
+});
 </script>
