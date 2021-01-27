@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Song;
 use Illuminate\Http\Request;
 use App\Problem;
+use Illuminate\Support\Facades\DB;
+use App\Models\User;
 
 class SongController extends Controller
 {
@@ -13,16 +15,28 @@ class SongController extends Controller
   *
   * @return \Illuminate\Http\Response
   */
- public function index(Request $request, Song $songInstanse)
+ public function index(Request $request)
  {
+  //dd(DB::table('songs')->paginate(10));
+  //dd(Song::paginate(10)->count());
+  //dd($request->query('search'));
+  //dd(Song::class);
+  //dd(Song::with('tags')->query()->toSql());
+  //dd(collect(['name' => 'taylor', 'framework' => 'laravel']));
+  //dd(['name' => 'taylor', 'framework' => 'laravel'] . get());
   $search = $request->input('search');
+  //dd($search);
+  $songs = Song::orderBy('id', 'desc')->paginate(3);
+  //dd(Song::with('tags')->orderBy('id', 'desc')->toSql());
+  if ($search) {
+   $songs = Song::where('title', 'like', '%' . $search . '%')->orderBy('id', 'desc')->paginate(3);
+  }
 
-  $songs = Song::query()->with('tags');
-
-  $songInstanse->titleSearch($search, $songs);
-
-  // 左辺の$songsは$songLimitと同じ
-  $songs = $this->songPaginate($songs);
+  //$songs = Song::query()->with('tags');
+  ////$sql = DB::table('users')
+  //// ->where('status', '<>', 1)
+  //// ->toSql();
+  //// 左辺の$songsは$songLimitと同じ
   $problems = $this->problem();
 
   return view('songs.index', [
@@ -57,9 +71,19 @@ class SongController extends Controller
   * @param  \App\Song  $song
   * @return \Illuminate\Http\Response
   */
- public function show($id)
+ public function show(Request $request, $id)
  {
-  $song = Song::find($id);
+  // select * from songs 
+  // left join comments on songs.id = comments.song_id
+  // left join 
+  //where id = ?;
+  // Method input does not exist.
+  dd(Song::find($id));
+  $song = Song::find($song->id);
+  dd($song);
+  //$song = Song::find($request->id);
+  //$song = Song::with('user', 'comments', 'likes', 'comments.replies.user')->where('id', $id)->first();
+  //dd($song);
   $song->load('user', 'books', 'comments', 'likes', 'comments.replies.user');
   //dd($song);
   list($userAuth, $getLike, $isLike) = $this->likeFunc($song);
