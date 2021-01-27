@@ -32,7 +32,7 @@
      </div>
     </div>
     <p class="topPaginate">
-     {{ $songs->links() }}
+     {{ $songs->appends(request()->input())->links() }}
     </p>
     @include('components.problem')
    </div>
