@@ -15,14 +15,14 @@
       @foreach ($songs as $song)
       @if (!empty($song->file_name))
       <div class="songData">
-       <a href="{{ route('songs.show',$song) }}">
+       <a href="{{ route('songs.show',$song->song_alias_id) }}">
         <img src="{{ asset('/storage/img/'.$song->file_name) }}" class="image">
        </a>
        @include('components.song_data')
       </div>
       @else
       <div class="songData">
-       <a href="{{ route('songs.show',['id' => $song->id]) }}">
+       <a href="{{ route('songs.show',$song->song_alias_id) }}">
         <img src="{{ asset('/public_images/black_no_image.png')}}" class="image">
        </a>
        @include('components.song_data')
@@ -33,6 +33,7 @@
     </div>
     <p class="topPaginate">
      {{ $songs->appends(request()->input())->links() }}
+     {{--{{ $songs->links() }}--}}
     </p>
     @include('components.problem')
    </div>

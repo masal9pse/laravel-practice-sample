@@ -12,4 +12,8 @@ values
 -- いいねを解除する処理
 DELETE FROM likes WHERE post_id = :post_id AND user_id = :user_id
 
--- 検索機能
+-- いいねをカウントする処理、
+-- 制約、検索機能でleftJoinを使ったことによりeloquentが使えないためリレーションメソッドが使えない()
+SELECT *
+FROM likes
+WHERE song_id = :song_id
