@@ -13,11 +13,11 @@
  @endforeach
  {{--<div>--}}
  {{-- すでに認証ユーザーがいいねしているレコードがあったら「いいねを外す」ボタンを表示する --}}
- @if(App\Like::where('user_id',Auth::id())->where('song_id',$song->id)->first())
+ {{--@if(App\Like::where('user_id',Auth::id())->where('song_id',$song->id)->first())
  <a href="{{ route('likes.destroy', ['id' => $song->id]) }}" class="btn btn-success btn-sm">いいねを外す
-  <span class="badge">{{ $song->likes->count() }}</span></a>
+ <span class="badge">{{ $song->likes()->count() }}</span></a>
  @else
  <a href="{{ route('likes.store', ['id' => $song->id]) }}" class="btn btn-danger btn-sm">いいね
-  <span class="badge">{{ $song->likes->count() }}</span></a>
- @endif
+  <span class="badge">{{ $song->likes()->count() }}</span></a>
+ @endif--}}
 </div>

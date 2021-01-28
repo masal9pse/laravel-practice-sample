@@ -13,7 +13,7 @@
      {{-- .songDataの親がmain --}}
      <div class="main">
       @foreach ($songs as $song)
-      @if (!empty($song['file_name']))
+      @if (!empty($song->file_name))
       <div class="songData">
        <a href="{{ route('songs.show',$song) }}">
         <img src="{{ asset('/storage/img/'.$song->file_name) }}" class="image">
@@ -22,7 +22,7 @@
       </div>
       @else
       <div class="songData">
-       <a href="{{ route('songs.show',$song) }}">
+       <a href="{{ route('songs.show',['id' => $song->id]) }}">
         <img src="{{ asset('/public_images/black_no_image.png')}}" class="image">
        </a>
        @include('components.song_data')
