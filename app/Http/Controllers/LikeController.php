@@ -11,77 +11,24 @@ use App\Like;
 class LikeController extends Controller
 {
  /**
-  * Display a listing of the resource.
-  *
-  * @return \Illuminate\Http\Response
-  */
- public function index()
- {
-  //
- }
-
- /**
-  * Show the form for creating a new resource.
-  *
-  * @return \Illuminate\Http\Response
-  */
- public function create()
- {
-  //
- }
-
- /**
   * Store a newly created resource in storage.
   *
   * @param  \Illuminate\Http\Request  $request
   * @return \Illuminate\Http\Response
   */
  //public function store(Song $song)
- public function store($id)
+ //public function store($id)
+ public function store(Request $request)
  {
+  //$song_id = $request->query(); // これだとなぜか取れない
+  $song_id = $request->id; // これだと取得できた。
+  //dd($song_id);
   Like::create([
-   'song_id' => $id,
+   'song_id' => $song_id,
    'user_id' => Auth::id(),
-
   ]);
-  session()->flash('success', 'You Liked the Reply.');
-
+  //session()->flash('success', 'You Liked the Reply.');
   return redirect()->back();
- }
-
-
- /**
-  * Display the specified resource.
-  *
-  * @param  int  $id
-  * @return \Illuminate\Http\Response
-  */
- public function show($id)
- {
-  //
- }
-
- /**
-  * Show the form for editing the specified resource.
-  *
-  * @param  int  $id
-  * @return \Illuminate\Http\Response
-  */
- public function edit($id)
- {
-  //
- }
-
- /**
-  * Update the specified resource in storage.
-  *
-  * @param  \Illuminate\Http\Request  $request
-  * @param  int  $id
-  * @return \Illuminate\Http\Response
-  */
- public function update(Request $request, $id)
- {
-  //
  }
 
  /**
@@ -90,13 +37,14 @@ class LikeController extends Controller
   * @param  int  $id
   * @return \Illuminate\Http\Response
   */
- public function destroy($id)
+ public function destroy(Request $request)
  {
-  $like = Like::where('song_id', $id)->where('user_id', Auth::id())->first();
-  $like->delete();
+  //$like = Like::where('song_id', $request->id)->where('user_id', Auth::id())->first();
+  //$like->delete();
+  Like::where('song_id', $request->id)->where('user_id', Auth::id())->delete();
   //dd($like);
 
-  session()->flash('success', 'You Unliked the Reply.');
+  //session()->flash('success', 'You Unliked the Reply.');
 
   return redirect()->back();
  }
