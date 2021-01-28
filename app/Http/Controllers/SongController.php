@@ -9,6 +9,7 @@ use App\Problem;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Collection;
 
 class SongController extends Controller
 {
@@ -19,11 +20,18 @@ class SongController extends Controller
   */
  public function index(Request $request)
  {
+  $users = DB::table('users')->paginate(15);
+  //$users = DB::table('users')->get();
+  //if ($users instanceof Collection) {
+  // dd('a');
+  //}
+  dd($users);
   $search = $request->input('search');
   $songs = Song::orderBy('id', 'desc')->paginate(3);
   //dd($songs->id);
   if ($search) {
-   $songs = Song::where('title', 'like', '%' . $search . '%')->orWhere('detail', 'like', '%' . $search . '%')->orderBy('id', 'desc')->paginate(3);
+   $songs = DB::table('songs')->leftJoin('comments', 'comments.id', '=', 'comments.song_id')->where('title', 'like', '%' . $search . '%')
+    ->orWhere('detail', 'like', '%' . $search . '%')->orWhere('comments.comment', 'like', '%' . $search . '%')->orderBy('id', 'desc')->get();
   }
   $problems = Problem::all();
   //dd(Like::where('user_id', Auth::id())->where('song_id',$songs->id)->first());  
@@ -46,8 +54,8 @@ class SongController extends Controller
   //dd($request->id);
   //$test = $request->id;
   //dd($request);
-  $song = Song::find($request->id);
-  //$song = Song::with('user', 'comments', 'likes', 'comments.replies.user')->find($request->id);
+  //$song = Song::find($request->id);
+  $song = Song::with('user', 'comments', 'likes', 'comments.replies.user')->find($request->id);
   //$song = Song::with('user', 'comments', 'likes', 'comments.replies.user')->where('id', $id)->first();
   //dd($song);
   $song->load('user', 'books', 'comments', 'likes', 'comments.replies.user');
