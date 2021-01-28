@@ -65,3 +65,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
  Route::post('update/{id}', 'Admin\SongController@update')->name('admin.update');
  Route::resource('/tags', 'TagController', ['only' => ['destroy', 'update', 'store']]);
 });
+
+Route::get('/answer/favorite/{id}', 'AnswersController@favorite')->name('answer.favorite');
+Route::get('/answer/unfavorite/{id}', 'AnswersController@unfavorite')->name('answer.unfavorite');

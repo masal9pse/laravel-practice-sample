@@ -17,8 +17,8 @@ class SongController extends Controller
 
  public function store(CreateSongTask $request)
  {
-  //$song = Song::create($request->only(['title', 'detail', 'file_name']));
-  $song = Song::create($request->only(['title', 'detail']));
+  $song = Song::create($request->only(['title', 'detail', 'file_name']));
+  //$song = Song::create($request->only(['title', 'detail']));
 
   if ($request->file('file_name')) {
    $song->file_name = $request->file('file_name')->store('public/img');
@@ -28,7 +28,7 @@ class SongController extends Controller
 
   $song->save();
   $song->tags()->sync($request->tags);
-  return [$song];
+  //return [$song];
  }
 
  private function songInsert($request)

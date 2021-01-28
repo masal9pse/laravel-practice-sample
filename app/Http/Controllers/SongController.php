@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Like;
 use App\Models\Song;
 use Illuminate\Http\Request;
 use App\Problem;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class SongController extends Controller
 {
@@ -17,52 +19,20 @@ class SongController extends Controller
   */
  public function index(Request $request)
  {
-  //dd(DB::table('songs')->paginate(10));
-  //dd(Song::paginate(10)->count());
-  //dd($request->query('search'));
-  //dd(Song::class);
-  //dd(Song::with('tags')->query()->toSql());
-  //dd(collect(['name' => 'taylor', 'framework' => 'laravel']));
-  //dd(['name' => 'taylor', 'framework' => 'laravel'] . get());
   $search = $request->input('search');
-  //dd($search);
   $songs = Song::orderBy('id', 'desc')->paginate(3);
-  //dd(Song::with('tags')->orderBy('id', 'desc')->toSql());
+  //dd($songs->id);
   if ($search) {
    $songs = Song::where('title', 'like', '%' . $search . '%')->orderBy('id', 'desc')->paginate(3);
   }
-
-  //$songs = Song::query()->with('tags');
-  ////$sql = DB::table('users')
-  //// ->where('status', '<>', 1)
-  //// ->toSql();
-  //// 左辺の$songsは$songLimitと同じ
-  $problems = $this->problem();
-
+  $problems = Problem::all();
+  //dd(Like::where('user_id', Auth::id())->where('song_id',$songs->id)->first());  
+  //if (Like::where('user_id', Auth::id())->where('song_id', $songs->id)->first()) {
+  //}
   return view('songs.index', [
    'songs' => $songs,
    'problems' => $problems
   ]);
- }
-
- private function songPaginate($songs)
- {
-  $songLimit = $songs->orderBy('id', 'desc')->paginate(3);
-  return $songLimit;
- }
-
- private function problem()
- {
-  $problems = Problem::all();
-  return $problems;
- }
- /**
-  * Show the form for creating a new resource.
-  *
-  * @return \Illuminate\Http\Response
-  */
- public function create(Problem $problem)
- {
  }
 
  /**

@@ -67,31 +67,50 @@ $(function() {
  // $("[id=tag-data]").removeAttr("checked").prop('checked', false).change()
  //})
 
- //// あとでフロントとバックを紐づけるためのajaxのフォーマット
+ //$("#image-data").change(function() {
+ // var value = this.value;
+ // //console.log(value);
+ //});
  $('#store-data').click(function() {
-  $.ajax({
-   //POST通信
-   type: "POST",
-   //ここでデータの送信先URLを指定します。
-   url: "/api/posts/store",
-   data: {title: $("[name=title]").val(), detail: $("[name=detail]").val()},
-   //処理が成功したら
-   success: function() {
-    //HTMLファイル内の該当箇所にレスポンスデータを追加する場合
-    console.log($("[name=title]").val());
-    console.log($("[name=detail]").val());
-    $('#title-data').val('')
-    $('#detail-data').val('')
-    $('#image-data').val('')
-    // https://www.s-arcana.co.jp/tech/2014/04/jqueryid.html
-    // 同じidを持つ複数要素を選択するやり方
-    $("[id=tag-data]").removeAttr("checked").prop('checked', false).change()
-   },
-   error: function() {
-    alert('通信エラー');
-   }
-  });
+  console.log($("[name=title]").val());
+  console.log($("[name=detail]").val());
+  console.log($("input[type=file]").val());
+  $('#title-data').val('')
+  $('#detail-data').val('')
+  $('#image-data').val('')
  })
+ //// あとでフロントとバックを紐づけるためのajaxのフォーマット
+ //$('#store-data').click(function() {
+ // $.ajax({
+ //  //POST通信
+ //  type: "POST",
+ //  //ここでデータの送信先URLを指定します。
+ //  url: "/api/posts/store",
+ //  data: {
+ //   title: $("[name=title]").val(),
+ //   detail: $("[name=detail]").val(),
+ //   //file_name: $("#image-data [type=file]").val(),
+ //   file_name: $("input[type=file]").val()
+ //  },
+ //  //処理が成功したら
+ //  success: function() {
+ //   //HTMLファイル内の該当箇所にレスポンスデータを追加する場合
+ //   console.log($("[name=title]").val());
+ //   console.log($("[name=detail]").val());
+ //   //console.log($("#image-data [type=file]").val());
+ //   console.log($("input[type=file]").value);
+ //   $('#title-data').val('')
+ //   $('#detail-data').val('')
+ //   $('#image-data').val('')
+ //   // https://www.s-arcana.co.jp/tech/2014/04/jqueryid.html
+ //   // 同じidを持つ複数要素を選択するやり方
+ //   $("[id=tag-data]").removeAttr("checked").prop('checked', false).change()
+ //  },
+ //  error: function() {
+ //   alert('通信エラー');
+ //  }
+ // });
+ //})
  ////submitによる画面リロードを防いでいます。
  //return false;
 });

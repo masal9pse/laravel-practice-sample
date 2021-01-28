@@ -65,6 +65,7 @@ class Song extends Model
   return Like::where('user_id', \Auth::user()->id)->first();
  }
 
+ // これでsong_tagテーブルに紐付けできる
  public function tags()
  {
   return $this->belongsToMany(Tag::class);

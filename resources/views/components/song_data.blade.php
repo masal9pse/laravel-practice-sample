@@ -11,11 +11,12 @@
  @endunless
  @endforeach
  {{--<div>--}}
- @if($song->is_liked_by_auth_user())
- <a href="{{ route('likes.destroy', ['id' => $song->id]) }}" class="btn btn-success btn-sm">いいね<span
-   class="badge">{{ $song->likes->count() }}</span></a>
+ {{-- すでに認証ユーザーがいいねしているレコードがあったら「いいねを外す」ボタンを表示する --}}
+ @if(App\Like::where('user_id',Auth::id())->where('song_id',$song->id)->first())
+ <a href="{{ route('likes.destroy', ['id' => $song->id]) }}" class="btn btn-success btn-sm">いいねを外す
+  <span class="badge">{{ $song->likes->count() }}</span></a>
  @else
- <a href="{{ route('likes.store', ['id' => $song->id]) }}" class="btn btn-danger btn-sm">いいね<span
-   class="badge">{{ $song->likes->count() }}</span></a>
+ <a href="{{ route('likes.store', ['id' => $song->id]) }}" class="btn btn-danger btn-sm">いいね
+  <span class="badge">{{ $song->likes->count() }}</span></a>
  @endif
 </div>

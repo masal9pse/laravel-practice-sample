@@ -1,10 +1,6 @@
 @extends('layouts.app')
 @section('content')
 <div class="container">
- @foreach ($song->books as $book)
- {{ $book->title }}
- <br>
- @endforeach
  @guest
  <div class="row">
   <h3 class="text-center form-group">
