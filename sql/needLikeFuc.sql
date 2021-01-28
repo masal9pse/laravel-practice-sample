@@ -11,3 +11,5 @@ values
 
 -- いいねを解除する処理
 DELETE FROM likes WHERE post_id = :post_id AND user_id = :user_id
+
+-- 検索機能

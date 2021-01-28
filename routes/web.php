@@ -16,7 +16,10 @@ if (version_compare(PHP_VERSION, '7.2.0', '>=')) {
 Auth::routes();
 
 Route::get('/', 'SongController@index')->name('songs.index');
-Route::resource('/songs', 'SongController')->only(['show', 'store']);
+//Route::resource('/songs', 'SongController')->only(['show]);
+Route::get('/songs/{id}', 'SongController@show')->name('songs.show');
+//Route::post('/songs/{song}', 'SongController@store')->name('songs.store');
+//Route::resource('/songs', 'SongController')->only(['show', 'store']);
 Route::resource('/tags', 'TagController', ['only' => ['index', 'create', 'show', 'edit']]);
 Route::resource('/problems', 'ProblemController')->only(['store']);
 Route::get('/ajax_upload', 'AjaxUploadController@index');
@@ -65,6 +68,3 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
  Route::post('update/{id}', 'Admin\SongController@update')->name('admin.update');
  Route::resource('/tags', 'TagController', ['only' => ['destroy', 'update', 'store']]);
 });
-
-Route::get('/answer/favorite/{id}', 'AnswersController@favorite')->name('answer.favorite');
-Route::get('/answer/unfavorite/{id}', 'AnswersController@unfavorite')->name('answer.unfavorite');

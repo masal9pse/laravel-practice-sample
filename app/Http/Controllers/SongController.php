@@ -23,7 +23,7 @@ class SongController extends Controller
   $songs = Song::orderBy('id', 'desc')->paginate(3);
   //dd($songs->id);
   if ($search) {
-   $songs = Song::where('title', 'like', '%' . $search . '%')->orderBy('id', 'desc')->paginate(3);
+   $songs = Song::where('title', 'like', '%' . $search . '%')->orWhere('detail', 'like', '%' . $search . '%')->orderBy('id', 'desc')->paginate(3);
   }
   $problems = Problem::all();
   //dd(Like::where('user_id', Auth::id())->where('song_id',$songs->id)->first());  
@@ -41,17 +41,13 @@ class SongController extends Controller
   * @param  \App\Song  $song
   * @return \Illuminate\Http\Response
   */
- public function show(Request $request, $id)
+ public function show(Request $request)
  {
-  // select * from songs 
-  // left join comments on songs.id = comments.song_id
-  // left join 
-  //where id = ?;
-  // Method input does not exist.
-  dd(Song::find($id));
-  $song = Song::find($song->id);
-  dd($song);
-  //$song = Song::find($request->id);
+  //dd($request->id);
+  //$test = $request->id;
+  //dd($request);
+  $song = Song::find($request->id);
+  //$song = Song::with('user', 'comments', 'likes', 'comments.replies.user')->find($request->id);
   //$song = Song::with('user', 'comments', 'likes', 'comments.replies.user')->where('id', $id)->first();
   //dd($song);
   $song->load('user', 'books', 'comments', 'likes', 'comments.replies.user');
@@ -72,7 +68,8 @@ class SongController extends Controller
  {
   $userAuth = \Auth::user();
   $getLike = count($song->likes);
-  $isLike = $song->likes()->where('user_id', $userAuth->id)->first();
+  //$isLike = $song->likes()->where('user_id', $userAuth->id)->first();
+  $isLike = $song->likes->where('user_id', $userAuth->id)->first();
   if (count($isLike) == 0) {
    $isLike == false;
   } else {

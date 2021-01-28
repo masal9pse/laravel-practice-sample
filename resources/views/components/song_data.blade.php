@@ -1,6 +1,7 @@
 <p class="use-scss">
- <span class="scss-test01 scss-test02">タイトル</span>：<a href="{{ route('songs.show',$song) }}"
-  class="yellow-color">{{ $song->title }}</a>
+ <span class="scss-test01 scss-test02">タイトル</span>：
+ {{--<a href="{{ route('songs.show',['id' => $song->id]) }}" class="yellow-color">{{ $song->title }}</a>--}}
+ <a href="/songs/{{$song->id}}" class="yellow-color">{{ $song->title }}</a>
 </p>
 <div>
  タグ：
