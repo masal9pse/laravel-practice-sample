@@ -45,33 +45,24 @@ class SongController extends Controller
 
  public function store(CreateSongTask $request)
  {
-  //dd($request->input('title'));
-  //dd($request->title);
+  //dd($request->query('file_name')); // null;
+  //dd($request->input('file_name')); // error
+  //dd($request->file_name); // success
+  //dd($request->file('file_name')); // success
   Song::create([
-   // どっちの書き方でもおけ
+   // inputで指定しても直接指定してもどっちの書き方でもおけ
    'title' => $request->title,
-   'detail' => $request->input('detail')
+   'detail' => $request->input('detail'),
+   'file_name' => $request->file_name
   ]);
-  //$last_song_insert_id = $this->songInsert($request);
 
-  //$this->tagInsert($last_song_insert_id);
-
-  return redirect()->route('admin.create')->with(['success' => 'ファイルを保存しました']);
- }
-
- private function songInsert($request)
- {
-  $song = Song::create($request->only(['title', 'detail', 'file_name']));
-
-  if ($request->file('file_name')) {
-   $song->file_name = $request->file('file_name')->store('public/img');
+  if ($request->file_name) {
+   $request->file('file_name')->store('public/img');
   }
 
-  $song->file_name = basename($song->file_name);
-  $song->save();
-  $last_song_insert_id = $song->id;
-
-  return $last_song_insert_id;
+  return redirect()->route('admin.create')->with([
+   'success' => 'ファイルを保存しました',
+  ]);
  }
 
  private function tagInsert($last_insert_id)

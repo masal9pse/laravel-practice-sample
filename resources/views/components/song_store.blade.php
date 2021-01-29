@@ -54,7 +54,8 @@
     </div>
    </div>
    <br>
-   <input type="submit" value="登録する" id="store-data" class="btn btn-info">
+   {{--<input type="submit" value="登録する" id="store-data" class="btn btn-info">--}}
+   <input type="submit" value="登録する" class="btn btn-info">
    <a class="btn btn-danger" href="{{ route('tags.index') }}">タグを追加する</a>
   </div>
  </div>
