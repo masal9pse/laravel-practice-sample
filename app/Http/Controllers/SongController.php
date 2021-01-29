@@ -32,10 +32,10 @@ class SongController extends Controller
   //}
   if ($search) {
    // クエリビルダ 検索状態で
-   // sqlのselect文とほぼ同じ
+   // sqlのselect文とほぼ同じ、idが競合しているためエイリアスをつくる
    $songs = DB::table('songs')
     ->select('songs.id as song_alias_id', 'comments.id as comment_id', 'title')
-    ->leftJoin('comments', 'comments.id', '=', 'comments.song_id')->where('songs.title', 'like', '%' . $search . '%')
+    ->leftJoin('comments', 'songs.id', '=', 'comments.song_id')->where('songs.title', 'like', '%' . $search . '%')
     ->orWhere('songs.detail', 'like', '%' . $search . '%')->orWhere('comments.comment', 'like', '%' . $search . '%')->orderBy('songs.id', 'desc')->paginate(3);
    //dd($songs);
   }

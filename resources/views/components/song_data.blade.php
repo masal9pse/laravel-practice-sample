@@ -5,13 +5,15 @@
 </p>
 <div>
  タグ：
- @foreach($song->tags as $tag)
- <a href="{{ route('tags.show', $tag->id) }}">{{ $tag->title }}</a>
- @unless($loop->last)
- ,
- @endunless
- @endforeach
- {{--<div>--}}
+ @php
+ $tags =
+ DB::table('tags')->join('song_tag','tags.id','=','song_tag.tag_id')->where('song_id',$song->song_alias_id)->get();
+ //dd($tag);
+ foreach ($tags as $key => $tag) {
+ echo $tag->title;
+ echo "\t";
+ }
+ @endphp
  {{-- すでに認証ユーザーがいいねしているレコードがあったら「いいねを外す」ボタンを表示する --}}
  @if(App\Like::where('user_id',Auth::id())->where('song_id',$song->song_alias_id)->first())
  <a href="{{ route('likes.destroy', ['id' => $song->song_alias_id]) }}" class="btn btn-success btn-sm">いいねを外す
