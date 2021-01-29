@@ -53,11 +53,11 @@ class SongController extends Controller
    // inputで指定しても直接指定してもどっちの書き方でもおけ
    'title' => $request->title,
    'detail' => $request->input('detail'),
-   'file_name' => $request->file_name
+   'file_name' => $request->file('file_name')->getClientOriginalName()
   ]);
 
   if ($request->file_name) {
-   $request->file('file_name')->store('public/img');
+   $request->file('file_name')->storeAs('public/img', $request->file('file_name')->getClientOriginalName());
   }
 
   return redirect()->route('admin.create')->with([
