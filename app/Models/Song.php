@@ -8,15 +8,13 @@ use App\Like;
 use App\Models\User;
 use App\Comment;
 use App\Models\Tag;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Auth;
 
 class Song extends Model
 {
  protected $table = 'songs';
-
+ // create文などのeloquentを使用するには$fillableや$guardで指定しないとダメ
  protected $fillable = [
-  'title', 'detail', 'likes_count', 'file_name',
+  'title', 'detail', 'file_name',
  ];
 
  protected $with = ['tags'];

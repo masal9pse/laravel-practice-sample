@@ -26,16 +26,15 @@ class SongController extends Controller
   *
   * @return \Illuminate\Http\Response
   */
- public function create(Request $request, Song $songInstanse)
+ public function create(Request $request)
  {
   $search = $request->input('search');
   $songs = DB::table('songs');
-
-  $songInstanse->titleSearch($search, $songs);
-
-  $songs->select('*');
   $songs->orderBy('created_at', 'desc');
   $songs = $songs->paginate(10);
+  if ($search) {
+   $songs = DB::table('songs')->where('title', 'like', '%' . $search . '%')->orWhere('detail', 'like', '%' . $search . '%')->orderBy('created_at', 'desc')->paginate(10);
+  }
   $tags = Tag::pluck('title', 'id')->toArray();
   // dd($tags);
   return view('admin.create', [
@@ -46,9 +45,16 @@ class SongController extends Controller
 
  public function store(CreateSongTask $request)
  {
-  $last_song_insert_id = $this->songInsert($request);
+  //dd($request->input('title'));
+  //dd($request->title);
+  Song::create([
+   // どっちの書き方でもおけ
+   'title' => $request->title,
+   'detail' => $request->input('detail')
+  ]);
+  //$last_song_insert_id = $this->songInsert($request);
 
-  $this->tagInsert($last_song_insert_id);
+  //$this->tagInsert($last_song_insert_id);
 
   return redirect()->route('admin.create')->with(['success' => 'ファイルを保存しました']);
  }

@@ -2,15 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Like;
 use App\Models\Song;
 use Illuminate\Http\Request;
 use App\Problem;
 use Illuminate\Support\Facades\DB;
-use App\Models\User;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Collection;
-use stdClass;
 
 class SongController extends Controller
 {
@@ -25,19 +20,13 @@ class SongController extends Controller
   $songs = DB::table('songs')
    ->select('songs.id as song_alias_id', 'title')
    ->orderBy('song_alias_id', 'desc')->paginate(3);
-  //dd($songs);
-  //$songs = Song::orderBy('id', 'desc')->paginate(3);
-  //foreach ($songs as $a) {
-  // dd($a);
-  //}
+
   if ($search) {
-   // クエリビルダ 検索状態で
    // sqlのselect文とほぼ同じ、idが競合しているためエイリアスをつくる
    $songs = DB::table('songs')
     ->select('songs.id as song_alias_id', 'comments.id as comment_id', 'title')
     ->leftJoin('comments', 'songs.id', '=', 'comments.song_id')->where('songs.title', 'like', '%' . $search . '%')
     ->orWhere('songs.detail', 'like', '%' . $search . '%')->orWhere('comments.comment', 'like', '%' . $search . '%')->orderBy('songs.id', 'desc')->paginate(3);
-   //dd($songs);
   }
   $problems = Problem::all();
 
