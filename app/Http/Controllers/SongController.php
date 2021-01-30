@@ -17,16 +17,26 @@ class SongController extends Controller
  public function index(Request $request)
  {
   $search = $request->input('search');
-  $songs = DB::table('songs')
-   ->select('songs.id as song_alias_id', 'title')
-   ->orderBy('song_alias_id', 'desc')->paginate(3);
-
+  //$songs = DB::table('songs')
+  // ->select('songs.id as song_alias_id', 'title')
+  // ->orderBy('song_alias_id', 'desc')->paginate(3);
+  $songs = Song::orderBy('id', 'asc')->paginate(3);
   if ($search) {
-   // sqlのselect文とほぼ同じ、idが競合しているためエイリアスをつくる
-   $songs = DB::table('songs')
-    ->select('songs.id as song_alias_id', 'comments.id as comment_id', 'title')
-    ->leftJoin('comments', 'songs.id', '=', 'comments.song_id')->where('songs.title', 'like', '%' . $search . '%')
-    ->orWhere('songs.detail', 'like', '%' . $search . '%')->orWhere('comments.comment', 'like', '%' . $search . '%')->orderBy('songs.id', 'desc')->paginate(3);
+   // sqlのselect文とほぼ同じ、idが競合しているためエイリアスをつくる => whereHasならデータを参照するだけで紐付けしていないのでidの競合を避けることができる。
+   $songs = Song::where('title', 'like', '%' . $search . '%')->orWhere('detail', 'like', '%' . $search . '%')
+    ->orWhereHas('comments', function ($query) use ($search) {
+     $query->where('comment', 'like', '%' . $search . '%');
+    })->paginate(3);
+
+   //foreach ($songs as $song) {
+   // dd($song->comments()->comment);
+   //}
+   //exit;
+   //dd($songs);
+   //$songs = DB::table('songs')
+   // ->select('songs.id as song_alias_id', 'comments.id as comment_id', 'title')
+   // ->leftJoin('comments', 'songs.id', '=', 'comments.song_id')->where('songs.title', 'like', '%' . $search . '%')
+   // ->orWhere('songs.detail', 'like', '%' . $search . '%')->orWhere('comments.comment', 'like', '%' . $search . '%')->orderBy('songs.id', 'desc')->paginate(3);
   }
   $problems = Problem::all();
 
