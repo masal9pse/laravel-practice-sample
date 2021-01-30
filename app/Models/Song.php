@@ -64,7 +64,7 @@ class Song extends Model
   return Like::where('user_id', \Auth::user()->id)->first();
  }
 
- // これでsong_tagテーブルに紐付けできる
+ // belongsToManyを使うとsong_tagモデルを作らなくても、自動的に中間テーブルに紐付けできる
  public function tags()
  {
   return $this->belongsToMany(Tag::class);
