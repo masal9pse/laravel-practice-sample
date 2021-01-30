@@ -17,12 +17,7 @@ class SongController extends Controller
  public function index(Request $request)
  {
   $search = $request->input('search');
-  //$songs = DB::table('songs')
-  // ->select('songs.id as song_alias_id', 'title')
-  // ->orderBy('song_alias_id', 'desc')->paginate(3);
   $songs = Song::with(['tags', 'comments', 'likes'])->orderBy('id', 'asc')->paginate(3);
-  //$songs = Song::orderBy('id', 'asc')->paginate(3);
-  //$songs->load('tags');
 
   //dd($songs);
   if ($search) {
@@ -32,18 +27,6 @@ class SongController extends Controller
     ->orWhereHas('comments', function ($query) use ($search) {
      $query->where('comment', 'like', '%' . $search . '%');
     })->paginate(3);
-   //})->toSql();
-   //dd($songs->load('comments'));
-   //dd($songs->comments());
-   //foreach ($songs as $song) {
-   // dd($song->comments()->comment);
-   //}
-   //exit;
-   //dd($songs);
-   //$songs = DB::table('songs')
-   // ->select('songs.id as song_alias_id', 'comments.id as comment_id', 'title')
-   // ->leftJoin('comments', 'songs.id', '=', 'comments.song_id')->where('songs.title', 'like', '%' . $search . '%')
-   // ->orWhere('songs.detail', 'like', '%' . $search . '%')->orWhere('comments.comment', 'like', '%' . $search . '%')->orderBy('songs.id', 'desc')->paginate(3);
   }
 
   return view('songs.index', [
@@ -59,15 +42,7 @@ class SongController extends Controller
   */
  public function show(Request $request)
  {
-  //dd($request->id);
-  //$test = $request->id;
-  //dd($request);
-  //$song = Song::find($request->id);
   $song = Song::with('user', 'comments', 'likes', 'comments.replies.user')->find($request->id);
-  //$song = Song::with('user', 'comments', 'likes', 'comments.replies.user')->where('id', $id)->first();
-  //dd($song);
-  //$song->load('user', 'books', 'comments', 'likes', 'comments.replies.user');
-  //dd($song);
   list($userAuth, $getLike, $isLike) = $this->likeFunc($song);
 
   $params = [
