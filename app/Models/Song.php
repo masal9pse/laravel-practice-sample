@@ -14,7 +14,7 @@ class Song extends Model
  protected $table = 'songs';
  // create文などのeloquentを使用するには$fillableや$guardで指定しないとダメ
  protected $fillable = [
-  'title', 'detail', 'file_name',
+  'title', 'detail', 'file_name', 'like_count'
  ];
 
  protected $with = ['tags'];
