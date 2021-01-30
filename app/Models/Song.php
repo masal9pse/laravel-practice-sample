@@ -50,7 +50,8 @@ class Song extends Model
 
  public function comments()
  {
-  return $this->hasMany(Comment::class, 'song_id', 'id');
+  //return $this->hasMany(Comment::class, 'song_id', 'id');
+  return $this->hasMany(Comment::class);
  }
 
  public function replies()

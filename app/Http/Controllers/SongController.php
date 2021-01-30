@@ -26,8 +26,9 @@ class SongController extends Controller
    $songs = Song::where('title', 'like', '%' . $search . '%')->orWhere('detail', 'like', '%' . $search . '%')
     ->orWhereHas('comments', function ($query) use ($search) {
      $query->where('comment', 'like', '%' . $search . '%');
-    })->paginate(3);
-
+     //})->paginate(3);
+    })->toSql();
+   dd($songs);
    //foreach ($songs as $song) {
    // dd($song->comments()->comment);
    //}
