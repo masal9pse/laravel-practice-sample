@@ -20,11 +20,15 @@ class SongController extends Controller
   //$songs = DB::table('songs')
   // ->select('songs.id as song_alias_id', 'title')
   // ->orderBy('song_alias_id', 'desc')->paginate(3);
-  $songs = Song::with(['tags', 'comments'])->orderBy('id', 'asc')->paginate(3);
-  dd($songs);
+  $songs = Song::with(['tags', 'comments', 'likes'])->orderBy('id', 'asc')->paginate(3);
+  //$songs = Song::orderBy('id', 'asc')->paginate(3);
+  //$songs->load('tags');
+
+  //dd($songs);
   if ($search) {
    // sqlのselect文とほぼ同じ、idが競合しているためエイリアスをつくる => whereHasならデータを参照するだけで紐付けしていないのでidの競合を避けることができる。
-   $songs = Song::with(['tags', 'comments'])->where('title', 'like', '%' . $search . '%')->orWhere('detail', 'like', '%' . $search . '%')
+   $songs = Song::with(['tags', 'comments', 'likes'])
+    ->where('title', 'like', '%' . $search . '%')->orWhere('detail', 'like', '%' . $search . '%')
     ->orWhereHas('comments', function ($query) use ($search) {
      $query->where('comment', 'like', '%' . $search . '%');
     })->paginate(3);
@@ -41,11 +45,9 @@ class SongController extends Controller
    // ->leftJoin('comments', 'songs.id', '=', 'comments.song_id')->where('songs.title', 'like', '%' . $search . '%')
    // ->orWhere('songs.detail', 'like', '%' . $search . '%')->orWhere('comments.comment', 'like', '%' . $search . '%')->orderBy('songs.id', 'desc')->paginate(3);
   }
-  $problems = Problem::all();
 
   return view('songs.index', [
    'songs' => $songs,
-   'problems' => $problems,
   ]);
  }
 
