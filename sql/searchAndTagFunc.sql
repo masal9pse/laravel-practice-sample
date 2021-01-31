@@ -43,3 +43,15 @@ insert into "song_tag"
  ("song_id", "tag_id")
 values
  (?, ?)
+
+-- 歌詞に紐づいているタグ紐付けで検索
+select *
+from "songs"
+where "title" like ? or "detail" like ? or exists (select *
+ from "comments"
+ where "songs"."id" = "comments"."song_id" and "comment" like ?) or exists (select *
+ from "tags" inner join "song_tag" on "tags"."id" = "song_tag"."tag_id"
+ where "songs"."id" = "song_tag"."song_id" and "title" like ?)
+limit 3 offset 0 
+
+bindValue => %アップテンポ%

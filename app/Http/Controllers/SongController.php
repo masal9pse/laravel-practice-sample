@@ -22,7 +22,7 @@ class SongController extends Controller
   //dd($songs);
   if ($search) {
    // sqlのselect文とほぼ同じ、idが競合しているためエイリアスをつくる => whereHasならデータを参照するだけで紐付けしていないのでidの競合を避けることができる。
-   //DB::enableQueryLog();
+   DB::enableQueryLog();
    $songs = Song::with(['tags', 'comments', 'likes'])
     ->where('title', 'like', '%' . $search . '%')->orWhere('detail', 'like', '%' . $search . '%')
     ->orWhereHas('comments', function ($query) use ($search) {
@@ -31,7 +31,8 @@ class SongController extends Controller
      $query->where('title', 'like', '%' . $search . '%');
     })
     ->paginate(3);
-   //dd(DB::getQueryLog());
+   dd(DB::getQueryLog());
+   dd($songs);
   }
 
   return view('songs.index', [
