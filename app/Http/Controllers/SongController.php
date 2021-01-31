@@ -44,8 +44,9 @@ class SongController extends Controller
  public function like(Request $request)
  {
   //dd($song->users());
+  // エラー文⬇️
   //insert into "likes" ("created_at", "song_id", "updated_at", "user_id") values (2021-02-01 02:35:21, , 2021-02-01 02:35:21, 4)
-  // ただnewしただけのインスタンスだと上記のようなSQLになりsong_idに値が入っていなかったので、findでsong_idに値をぶち込みたい
+  // ただnewしただけのインスタンスだと上記のようなSQLになりsong_idに値が入っていなかったので、findでsong_idに値をぶち込む
   $song = Song::find($request->id);
   $song->users()->attach(Auth::id());
 
@@ -54,7 +55,10 @@ class SongController extends Controller
 
  public function unlike(Request $request)
  {
-  dd($request->id);
+  $song = Song::find($request->id);
+  $song->users()->detach(Auth::id());
+
+  return back();
  }
  /**
   * Display the specified resource.
