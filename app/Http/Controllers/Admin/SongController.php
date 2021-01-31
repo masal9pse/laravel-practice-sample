@@ -48,9 +48,10 @@ class SongController extends Controller
   ]);
  }
 
- public function store(CreateSongTask $request)
+ public function store(CreateSongTask $request, Song $song)
  {
   // 歌詞の登録処理
+  // save()の方が、自由にテーブルに挿入するタイミングを決めることができて便利かも
   $song = Song::create([
    'title' => $request->input('title'),
    'detail' => $request->input('detail'),
@@ -62,9 +63,12 @@ class SongController extends Controller
   if ($request_tags) {
    // クエリビルダでDB::table('song_tag')みたいな感じで中間テーブルに値を入れることもできる
    // Song::create()->tags()みたいな書き方もできるんだ〜〜
-   foreach ($request_tags as $tag) {
-    $song->tags()->attach($tag);
-   }
+   DB::enableQueryLog();
+   //foreach ($request_tags as $tag) {
+   // $song->tags()->attach($tag);
+   //}
+   $song->tags()->sync($request->tags);
+   dd(DB::getQueryLog());
   }
 
 
@@ -112,9 +116,11 @@ class SongController extends Controller
 
   $request_tags = $request->input('tags');
   if ($request_tags) {
-   // sync(array)
+   DB::enableQueryLog();
    $song->tags()->sync($request->tags);
+   dd(DB::getQueryLog());
   }
+
   $song->save();
   // dd($song);
   // ここから画像編集機能
