@@ -19,7 +19,7 @@
     @endforeach
     @endif
     {{--<input type="text" id="title-data" name="title" class="form-control" placeholder="タイトル">--}}
-    <input type="text" name="title" class="form-control" placeholder="タイトル">
+    <input type="text" name="title" value="{{ old('title') }}" class="form-control" placeholder="タイトル">
    </div>
    <br>
    <br>
@@ -35,8 +35,7 @@
     @endforeach
     @endif
     <div class="form-group">
-     {{--<textarea name="detail" id="detail-data" class="form-control" rows="10" placeholder="歌詞を入力してください"></textarea>--}}
-     <textarea name="detail" class="form-control" rows="10" placeholder="歌詞を入力してください"></textarea>
+     <textarea name="detail" class="form-control" rows="10" placeholder="歌詞を入力してください">{{old('detail')}}</textarea>
     </div>
    </div>
    <br>
