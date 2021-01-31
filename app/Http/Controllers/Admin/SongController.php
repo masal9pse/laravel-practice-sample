@@ -87,11 +87,11 @@ class SongController extends Controller
   ]);
  }
 
- public function edit($id)
+ public function edit(Request $request)
  {
-  $song = Song::find($id);
+  //$song = Song::find($id);
+  $song = Song::where('id', $request->id)->first();
   $song->load('tags');
-  // dd($song);
   $tags = Tag::pluck('title', 'id')->toArray();
   return view('admin.edit', compact('song', 'tags'));
  }
@@ -100,17 +100,28 @@ class SongController extends Controller
  {
   $song = Song::find($id);
 
+  //$song = Song::find($id)->update([
+  // 'title' => $request->input('title'),
+  // 'detail' => $request->input('detail'),
+  // 'file_name' => $request->file_name ? $request->file('file_name')->getClientOriginalName() : ''
+  //]);
   $song->title = $request->input('title');
   $song->detail = $request->input('detail');
+  $song->file_name = $request->file_name ? $request->file('file_name')->getClientOriginalName() : '';
+
+
+  $request_tags = $request->input('tags');
+  if ($request_tags) {
+   // sync(array)
+   $song->tags()->sync($request->tags);
+  }
+  $song->save();
+  // dd($song);
   // ここから画像編集機能
-  if ($request->file('file_name')) {
-   $song->file_name = $request->file('file_name')->store('public/img');
+  if ($request->file_name) {
+   $request->file('file_name')->storeAs('public/img', $request->file('file_name')->getClientOriginalName());
   }
 
-  $song->file_name = basename($song->file_name);
-  $song->save();
-  $song->tags()->sync($request->tags);
-  // dd($song);
   return redirect()->route('admin.create');
  }
 
