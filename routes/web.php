@@ -32,8 +32,11 @@ Route::group(['middleware' => 'auth:user'], function () {
  Route::post('comments', 'CommentController@store')->name('comments.store');
  Route::post('comments/{id}', 'CommentController@destroy')->name('comments.destroy');
  // Route::resource('/replies', 'ReplyController');
- Route::get('/songs/like/{id}', 'LikeController@store')->name('likes.store');
- Route::get('/songs/unlike/{id}', 'LikeController@destroy')->name('likes.destroy');
+ //Route::get('/songs/like/{id}', 'LikeController@store')->name('likes.store');
+ // もうaタグにしてしまったのでgetにする。どうしてもpostにしたかったらformを使う
+ Route::get('/songs/like/{id}', 'SongController@like')->name('likes.store');
+ //Route::get('/songs/unlike/{id}', 'LikeController@destroy')->name('likes.destroy');
+ Route::get('/songs/unlike/{id}', 'SongController@unlike')->name('likes.destroy');
  Route::get('/replies/create', 'ReplyController@create')->name('replies.create');
  Route::post('/replies', 'ReplyController@store')->name('replies.store');
  Route::post('/replies/{id}', 'ReplyController@destroy')->name('replies.destroy');

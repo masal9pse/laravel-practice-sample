@@ -63,12 +63,12 @@ class SongController extends Controller
   if ($request_tags) {
    // クエリビルダでDB::table('song_tag')みたいな感じで中間テーブルに値を入れることもできる
    // Song::create()->tags()みたいな書き方もできるんだ〜〜
-   DB::enableQueryLog();
+   //DB::enableQueryLog();
    //foreach ($request_tags as $tag) {
    // $song->tags()->attach($tag);
    //}
    $song->tags()->sync($request->tags);
-   dd(DB::getQueryLog());
+   //dd(DB::getQueryLog());
   }
 
 

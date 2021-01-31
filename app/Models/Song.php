@@ -45,7 +45,9 @@ class Song extends Model
  public function users()
  {
   //return $this->belongsToMany(User::class)->withTimestamps();
-  return $this->belongsToMany(User::class)->using(Like::class)->withTimestamps();
+  //return $this->belongsToMany(User::class)->using(Like::class)->withPivot(['user_id'])->withTimestamps();
+  return $this->belongsToMany(User::class, 'likes', 'song_id', 'user_id')->withTimestamps();
+  //return $this->belongsToMany(User::class)->withTimestamps();
  }
 
  public function comments()

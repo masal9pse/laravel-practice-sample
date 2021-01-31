@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Song;
 use Illuminate\Http\Request;
 use App\Problem;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class SongController extends Controller
@@ -22,7 +23,7 @@ class SongController extends Controller
   //dd($songs);
   if ($search) {
    // sqlのselect文とほぼ同じ、idが競合しているためエイリアスをつくる => whereHasならデータを参照するだけで紐付けしていないのでidの競合を避けることができる。
-   DB::enableQueryLog();
+   //DB::enableQueryLog();
    $songs = Song::with(['tags', 'comments', 'likes'])
     ->where('title', 'like', '%' . $search . '%')->orWhere('detail', 'like', '%' . $search . '%')
     ->orWhereHas('comments', function ($query) use ($search) {
@@ -31,8 +32,8 @@ class SongController extends Controller
      $query->where('title', 'like', '%' . $search . '%');
     })
     ->paginate(3);
-   dd(DB::getQueryLog());
-   dd($songs);
+   //dd(DB::getQueryLog());
+   //dd($songs);
   }
 
   return view('songs.index', [
@@ -40,6 +41,21 @@ class SongController extends Controller
   ]);
  }
 
+ public function like(Request $request)
+ {
+  //dd($song->users());
+  //insert into "likes" ("created_at", "song_id", "updated_at", "user_id") values (2021-02-01 02:35:21, , 2021-02-01 02:35:21, 4)
+  // ただnewしただけのインスタンスだと上記のようなSQLになりsong_idに値が入っていなかったので、findでsong_idに値をぶち込みたい
+  $song = Song::find($request->id);
+  $song->users()->attach(Auth::id());
+
+  return back();
+ }
+
+ public function unlike(Request $request)
+ {
+  dd($request->id);
+ }
  /**
   * Display the specified resource.
   *
