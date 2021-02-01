@@ -6,7 +6,9 @@ use App\Models\Book;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -64,10 +66,15 @@ class UserController extends Controller
 
  public function like(Request $request)
  {
-  //dd($request->id);
-  //return $request->input('id');
+  DB::enableQueryLog();
+  $user = User::find($request->input('id'));
+  $result = $user->songs()->attach($request->song_id);
+  DB::getQueryLog();
+
   return response()->json([
-   'message' => (int)$request->id
+   'message' => (int)$request->id,
+   'user' => $user,
+   'result' => $result
   ]);
  }
 

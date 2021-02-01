@@ -27,10 +27,6 @@ class Song extends Model
  {
   return $this->hasMany(Book::class);
  }
- //public function likes(): BelongsToMany
- //{
- // return $this->BelongsToMany(User::class, 'likes');
- //}
 
  public function likes()
  {
@@ -42,12 +38,10 @@ class Song extends Model
   return $this->belongsTo(User::class, 'user_id');
  }
 
+ // 第２引数にカスタムの中間テーブルを設定しないとデフォルトではsong_userテーブルになってしまう
  public function users()
  {
-  //return $this->belongsToMany(User::class)->withTimestamps();
-  //return $this->belongsToMany(User::class)->using(Like::class)->withPivot(['user_id'])->withTimestamps();
   return $this->belongsToMany(User::class, 'likes', 'song_id', 'user_id')->withTimestamps();
-  //return $this->belongsToMany(User::class)->withTimestamps();
  }
 
  public function comments()

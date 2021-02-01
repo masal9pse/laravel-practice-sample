@@ -9,7 +9,6 @@
  {{ $tag->title }}
  @endforeach
  <div>
-  {{--@if ($song->likes->where('song_id',$song->id)->where('user_id',Auth::id())->first())--}}
   @if ($song->likes->where('user_id',Auth::id())->first())
   <a href="{{ route('likes.destroy', ['id' => $song->id]) }}" class="btn btn-success btn-sm">いいねを外す
    <span class="badge">{{ $song->likes->where('song_id',$song->id)->count() }}</span></a>
