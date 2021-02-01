@@ -61,6 +61,19 @@ class UserController extends Controller
  {
  }
 
+
+ public function like(Request $request)
+ {
+  //dd($request->id);
+  //return $request->input('id');
+  return response()->json([
+   'message' => (int)$request->id
+  ]);
+ }
+
+ public function unlike()
+ {
+ }
  /**
   * Store a newly created resource in storage.
   *
