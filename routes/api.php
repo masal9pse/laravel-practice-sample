@@ -18,6 +18,7 @@ Route::group(['middleware' => ['api']], function () {
  Route::post('/books', 'Api\UserController@book_store')->name('books.book_store');
  Route::post('/user/{song}/like', 'Api\UserController@like');
  Route::post('/user/{song}/unlike', 'Api\UserController@unlike');
+ Route::get('/index', 'Api\SongController@index');
  Route::post('/posts/{song}/delete', 'Api\SongController@destroy');
  Route::post('/posts/{song}/like', 'Api\LikesController@like');
  Route::post('/posts/store', 'Api\SongController@store');
