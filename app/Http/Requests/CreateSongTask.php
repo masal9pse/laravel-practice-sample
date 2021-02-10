@@ -31,4 +31,9 @@ class CreateSongTask extends FormRequest
    'file_name' => 'nullable|file|image|mimes:jpeg,png,jpg,gif|max:2048'
   ];
  }
+
+ public function test()
+ {
+  return 'masato';
+ }
 }

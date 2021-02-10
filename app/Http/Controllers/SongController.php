@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Problem;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Http\Requests\CreateSongTask;
 
 class SongController extends Controller
 {
@@ -17,6 +18,8 @@ class SongController extends Controller
   */
  public function index(Request $request)
  {
+  $create_song_task = new CreateSongTask;
+  //dd($create_song_task->test());
   $search = $request->input('search');
   $songs = Song::with(['tags', 'comments', 'likes'])->orderBy('id', 'asc')->paginate(3);
 
@@ -24,6 +27,7 @@ class SongController extends Controller
   if ($search) {
    // sqlのselect文とほぼ同じ、idが競合しているためエイリアスをつくる => whereHasならデータを参照するだけで紐付けしていないのでidの競合を避けることができる。
    //DB::enableQueryLog();
+   // select => explain
    $songs = Song::with(['tags', 'comments', 'likes'])
     ->where('title', 'like', '%' . $search . '%')->orWhere('detail', 'like', '%' . $search . '%')
     ->orWhereHas('comments', function ($query) use ($search) {
