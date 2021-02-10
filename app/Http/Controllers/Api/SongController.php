@@ -5,35 +5,34 @@ namespace App\Http\Controllers\Api;
 use App\Models\Song;
 use App\Http\Controllers\Controller; // 大事！！
 use App\Http\Requests\CreateSongTask;
+use App\Services\SongService;
+use Illuminate\Support\Facades\Request;
 
 class SongController extends Controller
 {
+ protected $songService;
+ public function __construct(SongService $song_service)
+ {
+  $this->songService = $song_service;
+ }
+
+ //public function index(Request $request)
  public function index()
  {
-  $song = Song::all();
-  return $song;
+  $songs = $this->songService->getSong();
+  return $songs;
  }
 
  public function store(CreateSongTask $request)
  {
-  $song = Song::create($request->only(['title', 'detail', 'file_name']));
-  //$song = Song::create($request->only(['title', 'detail']));
+  $song = Song::create([
+   'title' => $request->title,
+   'detail' => $request->detail,
+  ]);
 
-  if ($request->file('file_name')) {
-   $song->file_name = $request->file('file_name')->store('public/img');
-  }
-
-  $song->file_name = basename($song->file_name);
-
-  $song->save();
-  $song->tags()->sync($request->tags);
-  //return [$song];
- }
-
- public function destroy($id)
- {
-  $song = Song::find($id);
-  $song->delete();
-  return $song;
+  return response()->json([
+   'song' => $song,
+   'message' => '投稿に成功しました。'
+  ], 200);
  }
 }

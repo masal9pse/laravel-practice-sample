@@ -27,8 +27,6 @@ class AppServiceProvider extends ServiceProvider
   */
  public function register()
  {
-  if ($this->app->environment('local', 'testing', 'staging')) {
-   $this->app->register(DuskServiceProvider::class);
-  }
+  $this->app->bind('App\Services\SongService');
  }
 }
