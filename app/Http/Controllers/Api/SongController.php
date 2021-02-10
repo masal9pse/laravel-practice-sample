@@ -19,8 +19,10 @@ class SongController extends Controller
  //public function index(Request $request)
  public function index()
  {
+  $higedan = new SongService;
+  $higedans = $higedan->higedan();
   $songs = $this->songService->getSong();
-  return $songs;
+  return [$higedans, $songs];
  }
 
  public function store(CreateSongTask $request)

@@ -10,4 +10,9 @@ class SongService
  {
   return Song::all();
  }
+
+ public function higedan()
+ {
+  return 'pretender';
+ }
 }
