@@ -19,6 +19,7 @@ Route::group(['middleware' => ['api']], function () {
  Route::post('/user/{song}/like', 'Api\UserController@like');
  Route::post('/user/{song}/unlike', 'Api\UserController@unlike');
  Route::get('/index', 'Api\SongController@index');
+ Route::post('/store', 'Api\SongController@store');
  Route::post('/posts/{song}/delete', 'Api\SongController@destroy');
  Route::post('/posts/{song}/like', 'Api\LikesController@like');
  Route::post('/posts/store', 'Api\SongController@store');

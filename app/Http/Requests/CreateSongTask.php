@@ -25,7 +25,9 @@ class CreateSongTask extends FormRequest
  public function rules()
  {
   return [
-   'title' => 'required|string|max:100',
+   //'title' => 'required|string|max:100',
+   'title' => 'nullable|string|max:100',
+   'change_title' => 'required|string|max:100',
    'detail' => 'required|string|max:1000',
    //'detail' => 'nullable|string|max:1000',
    'file_name' => 'nullable|file|image|mimes:jpeg,png,jpg,gif|max:2048'

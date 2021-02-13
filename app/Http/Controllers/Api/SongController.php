@@ -28,7 +28,8 @@ class SongController extends Controller
  public function store(CreateSongTask $request)
  {
   $song = Song::create([
-   'title' => $request->title,
+   'title' => $request->change_title,
+   //'title2' => $request->title,
    'detail' => $request->detail,
   ]);
 
