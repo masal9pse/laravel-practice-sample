@@ -44,11 +44,15 @@ class SongController extends Controller
 
  public function fileRequest(Request $request)
  {
-  $file = $request->file('image')->store('img');
-  //$file = $request->file('image'); // storeをつけないとレスポンスした値が返ってこない
-  // getの場合はjsonオブジェクトに変換しなくて勝手に変換してくれる。
-  return response()->json([
-   'file' => $file
-  ]);
+  try {
+   $file = $request->file('image')->store('img');
+
+   return response()->json([
+    'file' => $file,
+    'success' => 'file upload success'
+   ]);
+  } catch (Exception $e) {
+   return response($e->getMessage(), 500);
+  }
  }
 }
