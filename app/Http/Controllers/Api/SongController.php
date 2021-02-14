@@ -6,7 +6,7 @@ use App\Models\Song;
 use App\Http\Controllers\Controller; // 大事！！
 use App\Http\Requests\CreateSongTask;
 use App\Services\SongService;
-use Illuminate\Support\Facades\Request;
+use Illuminate\Http\Request; // これ以外のRequestオブジェクトをuseするとfileメソッドなどが使えずエラーになった
 
 class SongController extends Controller
 {
@@ -40,5 +40,15 @@ class SongController extends Controller
    'song' => $song,
    'message' => '投稿に成功しました。'
   ], 200);
+ }
+
+ public function fileRequest(Request $request)
+ {
+  $file = $request->file('image')->store('img');
+  //$file = $request->file('image'); // storeをつけないとレスポンスした値が返ってこない
+  // getの場合はjsonオブジェクトに変換しなくて勝手に変換してくれる。
+  return response()->json([
+   'file' => $file
+  ]);
  }
 }
