@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Like;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Models\Song;
 
 class User extends Authenticatable
 {
@@ -25,19 +26,11 @@ class User extends Authenticatable
   * @var array
   */
  protected $hidden = [
-  //'password', 'remember_token',
   'remember_token',
  ];
 
  public function songs()
  {
-  return $this->hasMany(Song::class);
- }
-
- public function likes()
- {
-  //return $this->belongsToMany(Like::class)->withTimestamps();
-  return $this->belongsToMany(Song::class)->using(Like::class)->withTimestamps();
-  //return $this->belongsToMany(Song::class)->withTimestamps();
+  return $this->belongsToMany(Song::class, 'likes', 'user_id', 'song_id')->withTimestamps();
  }
 }

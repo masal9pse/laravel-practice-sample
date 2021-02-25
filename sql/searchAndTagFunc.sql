@@ -55,3 +55,16 @@ where "title" like ? or "detail" like ? or exists (select *
 limit 3 offset 0 
 
 bindValue => %アップテンポ%
+
+-- タグと紐づいている歌詞を取得
+select *
+from songs
+where exists(select *
+from tags inner join song_tag on tags.id=song_tag.tag_id
+where "songs"."id" = "song_tag"."song_id" and tags.title like '%声%')
+
+SELECT count(tag_id)
+FROM song_tag
+-- join songs.id=song_tag
+WHERE songs.id = song_tag.song_id
+HAVING count(tag_id) = 2

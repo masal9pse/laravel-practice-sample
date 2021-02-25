@@ -46,11 +46,16 @@ class SongController extends Controller
  {
   try {
    $file = $request->file('image')->store('img');
+   //$data = json_decode($request->input()['data']);
+   $data = json_decode($request->input(['data']));
+   //$data = $request->input(['data']); // json_decodeを使わないとこんな感じのよくわからないjsonが返ってくる "datas": "{\"test1\":\"1\",\"test2\":\"2\",\"test3\":\"3\"}",
+
 
    return response()->json([
     'file' => $file,
+    'datas' => $data,
     'success' => 'file upload success'
-   ]);
+   ], 500);
   } catch (Exception $e) {
    return response($e->getMessage(), 500);
   }

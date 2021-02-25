@@ -8,6 +8,8 @@ use App\Models\Song;
 use App\Http\Requests\CreateSongTask;
 use Illuminate\Support\Facades\DB;
 use App\Models\Tag;
+use Illuminate\Http\File;
+use Illuminate\Support\Facades\Storage;
 
 class SongController extends Controller
 {
@@ -74,7 +76,8 @@ class SongController extends Controller
 
   // アップロードファイルの保存処理
   if ($request->file_name) {
-   $request->file('file_name')->storeAs('public/img', $request->file('file_name')->getClientOriginalName());
+   //$request->file('file_name')->storeAs('public/img', $request->file('file_name')->getClientOriginalName(), 's3');
+   Storage::putFile('file_name', new File('/public/img'));
   }
 
   return redirect()->route('admin.create')->with([
@@ -118,7 +121,7 @@ class SongController extends Controller
   if ($request_tags) {
    DB::enableQueryLog();
    $song->tags()->sync($request->tags);
-   dd(DB::getQueryLog());
+   DB::getQueryLog();
   }
 
   $song->save();
