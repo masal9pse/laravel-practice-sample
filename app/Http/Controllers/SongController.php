@@ -18,6 +18,7 @@ class SongController extends Controller
   */
  public function index(Request $request)
  {
+  dd(add());  
   $create_song_task = new CreateSongTask;
   //dd($create_song_task->test());
   $search = $request->input('search');
