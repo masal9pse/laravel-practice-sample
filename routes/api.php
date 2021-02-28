@@ -27,4 +27,5 @@ Route::group(['middleware' => ['api']], function () {
  Route::post('/posts/{song}/unlike', 'Api\LikesController@unlike');
  Route::get('/gets/index', 'Api\LikesController@index');
  Route::get('/gets/{song}/show', 'Api\LikesController@show');
+ Route::post('/photo', 'Api\SongController@uploadImage');
 });

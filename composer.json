@@ -15,7 +15,8 @@
     "kanazaca/counter-cache": "1.0.*",
     "laravel/framework": "^5.5.0",
     "laravel/tinker": "~1.0",
-    "laravelcollective/html": "5.5.*"
+    "laravelcollective/html": "5.5.*",
+    "league/flysystem-aws-s3-v3": "~1.0"
   },
   "require-dev": {
     "filp/whoops": "~2.0",
