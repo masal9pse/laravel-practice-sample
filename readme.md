@@ -75,7 +75,7 @@ $ php artisan serve
 
 - 削除機能を非同期で実装(jquery/Ajax を使用)
 
-- タグ付け機能(ここの投稿の部分だけがっつり SQL 書いています。)
+- タグ付け機能(ここの投稿の部分だけがっつり SQL 書いています。 => syncメソッドに変更)
 
 - phpunit で feature テスト
 
