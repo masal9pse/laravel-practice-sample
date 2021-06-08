@@ -31,12 +31,6 @@ $ npm run dev
 $ php artisan serve
 ```
 
-## Web ページサンプル
-
-![wantedlyimage](https://user-images.githubusercontent.com/51937772/89991779-4acc7900-dcbf-11ea-8f55-08d89b96dc0a.png)
-
-![スクリーンショット 2020-08-10 3 26 03](https://user-images.githubusercontent.com/51937772/89739154-3fa7fc00-dab9-11ea-8306-317996706339.png)
-
 ## 機能一覧
 
 - 曲一覧表示機能
@@ -111,9 +105,8 @@ $ php artisan serve
 
 - CircleCI
 
-### これから追加したいこと
-
-- jquery と Ajax で API をやりとりして非同期処理を実装する
+これから使いたい機能
+LaravelのJob
 
 ### 以前使用していたが、開発環境を変更したため使わなくなったリポジトリの URL
 
